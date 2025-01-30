@@ -6,7 +6,7 @@ function Staffs() {
             <Container>
                 <div className="mb-10">
                     <h1 className="text-5xl font-medium">
-                        Staffs
+                        Staff Management
                     </h1>
                 </div>
                 <div className="flex justify-around rounded-2xl border-2 mb-5">
@@ -43,7 +43,7 @@ function Staffs() {
                                 <td>IT</td>
                                 <td>IT Admin</td>
                                 <td>
-                                    <Link to="" className="text-white bg-blue-400 px-4 rounded-xl">
+                                    <Link to="/staffs/edit/1212" className="text-white bg-blue-400 px-4 rounded-xl">
                                         Edit
                                     </Link>
                                 </td>
