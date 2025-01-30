@@ -3,6 +3,7 @@ import Staffs from "../../pages/staffs/Staffs";
 import Layout from "../../components/layouts/Layout";
 import DefaultInterceptor from "../../components/interceptors/DefaultInterceptor";
 import BasicSecurityInterceptor from "../../components/interceptors/BasicSecurityInterceptor";
+import Dashboard from "../../pages/dashboard/Dashboard";
 
 class AppRouter {
     public createRouter(): ReturnType<typeof createBrowserRouter> {
@@ -15,17 +16,20 @@ class AppRouter {
                         path: "/",
                         element: <DefaultInterceptor />,
                         children: [
-                            {
-                                path: "/staffs",
-                                element: <Staffs />
-                            }
                         ]
                     }
                     , {
                         path: "/",
                         element: <BasicSecurityInterceptor />,
                         children: [
-
+                            {
+                                path: "/staffs",
+                                element: <Staffs />
+                            },
+                            {
+                                path: "/dashboard",
+                                element: <Dashboard />
+                            }
                         ]
                     }
                 ]

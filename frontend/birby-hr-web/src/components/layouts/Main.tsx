@@ -3,9 +3,7 @@ function Main({ children }: MainProps) {
     return (
         <>
             <main>
-                <div className="mb-10">
-                    {children}
-                </div>
+                {children}
             </main>
         </>
     )
