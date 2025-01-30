@@ -23,12 +23,12 @@ class AppRouter {
                         element: <BasicSecurityInterceptor />,
                         children: [
                             {
-                                path: "/staffs",
-                                element: <Staffs />
-                            },
-                            {
                                 path: "/dashboard",
                                 element: <Dashboard />
+                            },
+                            {
+                                path: "/staffs",
+                                element: <Staffs />
                             }
                         ]
                     }

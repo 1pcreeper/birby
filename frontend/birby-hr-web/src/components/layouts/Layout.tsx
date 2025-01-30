@@ -10,7 +10,6 @@ function Layout() {
             <Main>
                 <Outlet />
             </Main>
-            <Outlet />
             <Footer />
         </>
     );
