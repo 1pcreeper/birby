@@ -38,7 +38,6 @@ function Staffs() {
                                     Roles
                                 </th>
                                 <th>
-
                                 </th>
                             </tr>
                         </thead>

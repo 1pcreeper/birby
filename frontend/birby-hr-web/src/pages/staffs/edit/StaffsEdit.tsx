@@ -1,4 +1,4 @@
-import { Form, Link, NavigateFunction, useLoaderData, useNavigate } from "react-router-dom";
+import { Form, NavigateFunction, useLoaderData, useNavigate } from "react-router-dom";
 import Container from "../../../components/common/general/Container";
 import TitleHeader from "../../../components/common/general/TitleHeader";
 import StaffsEditLoader from "../../../routes/loaders/StaffsEditLoader";
@@ -37,27 +37,38 @@ function StaffsEdit() {
                                         <label htmlFor="form-tag">
                                             Tag :
                                         </label>
-                                        <input type="text" id="form-tag" name="tag" value={loaderData.id} className="grow border-1" />
+                                        <input type="text" id="form-tag" name="tag" value={loaderData.id} className="border-1" />
                                     </div>
                                     <div className="flex mb-2">
                                         <label htmlFor="form-name">
                                             Name :
                                         </label>
-                                        <input type="text" id="form-name" name="name" value={loaderData.id} className="grow border-1" />
-                                    </div>
-                                    <div className="mb-3">
+                                        <input type="text" id="form-name" name="name" value={loaderData.id} className="border-1" />
                                     </div>
                                     <div className="flex mb-2">
                                         <label htmlFor="form-id">
                                             ID :
                                         </label>
-                                        <input type="text" id="form-id" name="id" value={loaderData.id} className="grow border-1" />
+                                        <span>
+                                            1234
+                                        </span>
                                     </div>
-                                    <div className="flex">
+                                    <div className="flex mb-2">
                                         <label htmlFor="form-email">
                                             Email :
                                         </label>
-                                        <input type="text" id="form-email" name="email" value={loaderData.id} className="grow border-1" />
+                                        <span>
+                                            1234
+                                        </span>
+                                    </div>
+                                    <div className="flex">
+                                        <label className="me-3">
+                                            Gender :
+                                        </label>
+                                        <input type="radio" id="form-gender-male" name="gender" value={"male"} className="border-1" />
+                                        <label className="me-3" htmlFor="form-gender-male">Male</label>
+                                        <input type="radio" id="form-gender-female" name="gender" value={"female"} className="border-1" />
+                                        <label htmlFor="form-gender-female">Female</label>
                                     </div>
                                 </div>
                                 <div className="text-2xl w-sm h-full rounded-2xl bg-amber-100 overflow-hidden mx-auto">
@@ -70,6 +81,11 @@ function StaffsEdit() {
                                                 <th>
                                                     Depart.
                                                 </th>
+                                                <th>
+                                                    <button type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                                        +
+                                                    </button>
+                                                </th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -79,6 +95,24 @@ function StaffsEdit() {
                                                 </td>
                                                 <td title="XXXXX">
                                                     IT
+                                                </td>
+                                                <td>
+                                                    <button type="button" className="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">
+                                                        X
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            <tr className="p-3">
+                                                <td title="XXXXX">
+                                                    IT Admin
+                                                </td>
+                                                <td title="XXXXX">
+                                                    IT
+                                                </td>
+                                                <td>
+                                                    <button type="button" className="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">
+                                                        X
+                                                    </button>
                                                 </td>
                                             </tr>
                                         </tbody>

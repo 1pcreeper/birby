@@ -1,19 +1,23 @@
-import { Form, Link } from "react-router-dom";
+import { Form, NavigateFunction, useLoaderData, useNavigate } from "react-router-dom";
 import Container from "../../../components/common/general/Container";
 import TitleHeader from "../../../components/common/general/TitleHeader";
+import StaffsEditLoader from "../../../routes/loaders/StaffsEditLoader";
 
 function StaffsCreate() {
+    const navigate: NavigateFunction = useNavigate();
+    const handleOnClickCancel = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+        e.preventDefault();
+        navigate(`/staffs`);
+    }
     return (
         <>
             <Container>
                 <TitleHeader title="Staff Management / Staff / Create" />
-                <Form method="post" action="/staffs/create">
-                    <div className="flex flex-wrap w-full mb-3 gap-x-2 justify-between">
-                        <Link to="/staffs">
-                            <button type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                                Back
-                            </button>
-                        </Link>
+                <Form method="post" action={`/staffs/create`}>
+                    <div className="flex flex-wrap justify-between w-full mb-3 gap-x-2">
+                        <button onClick={handleOnClickCancel} type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                            Back
+                        </button>
                         <button type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                             Submit
                         </button>
@@ -27,25 +31,30 @@ function StaffsCreate() {
                                         <label htmlFor="form-tag">
                                             Tag :
                                         </label>
-                                        <input type="text" id="form-tag" name="tag" value={""} className="grow border-1" placeholder="" />
+                                        <input type="text" id="form-tag" name="tag" className="border-1" />
                                     </div>
                                     <div className="flex mb-2">
                                         <label htmlFor="form-name">
                                             Name :
                                         </label>
-                                        <input type="text" id="form-name" name="name" value={""} className="grow border-1" placeholder="Name" />
+                                        <input type="text" id="form-name" name="name" className="border-1" />
                                     </div>
                                     <div className="flex mb-2">
                                         <label htmlFor="form-email">
                                             Email :
                                         </label>
-                                        <span className="ms-1">EMAIL</span>
+                                        <span>
+                                            1234
+                                        </span>
                                     </div>
-                                    <div>
-                                        <label htmlFor="form-id">
-                                            Avatar :
+                                    <div className="flex">
+                                        <label className="me-3">
+                                            Gender :
                                         </label>
-                                        <input type="file" id="form-id" name="id" className="grow border-1 w-100" />
+                                        <input type="radio" id="form-gender-male" name="gender" value={"male"} className="border-1" />
+                                        <label className="me-3" htmlFor="form-gender-male">Male</label>
+                                        <input type="radio" id="form-gender-female" name="gender" value={"female"} className="border-1" />
+                                        <label htmlFor="form-gender-female">Female</label>
                                     </div>
                                 </div>
                                 <div className="text-2xl w-sm h-full rounded-2xl bg-amber-100 overflow-hidden mx-auto">
@@ -58,6 +67,11 @@ function StaffsCreate() {
                                                 <th>
                                                     Depart.
                                                 </th>
+                                                <th>
+                                                    <button type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                                        +
+                                                    </button>
+                                                </th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -67,6 +81,24 @@ function StaffsCreate() {
                                                 </td>
                                                 <td title="XXXXX">
                                                     IT
+                                                </td>
+                                                <td>
+                                                    <button type="button" className="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">
+                                                        X
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            <tr className="p-3">
+                                                <td title="XXXXX">
+                                                    IT Admin
+                                                </td>
+                                                <td title="XXXXX">
+                                                    IT
+                                                </td>
+                                                <td>
+                                                    <button type="button" className="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">
+                                                        X
+                                                    </button>
                                                 </td>
                                             </tr>
                                         </tbody>
