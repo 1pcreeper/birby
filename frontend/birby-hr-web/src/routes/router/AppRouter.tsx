@@ -43,14 +43,14 @@ class AppRouter {
                                 path: "/staffs/view/:id",
                                 element: <StaffsView />,
                                 loader: async ({ params }: LoaderFunctionArgs<unknown>) => {
-                                    return await this.staffsViewRoute.loader(params);
+                                    return await this.staffsViewRoute.loader({ params } as LoaderFunctionArgs<unknown>);
                                 }
                             },
                             {
                                 path: "/staffs/edit/:id",
                                 element: <StaffsEdit />,
                                 loader: async ({ params }: LoaderFunctionArgs<unknown>) => {
-                                    return await this.staffsViewRoute.loader(params);
+                                    return await this.staffsViewRoute.loader({ params } as LoaderFunctionArgs<unknown>);
                                 }
                             }
                         ]
