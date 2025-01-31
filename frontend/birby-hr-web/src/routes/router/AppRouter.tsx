@@ -6,6 +6,7 @@ import BasicSecurityInterceptor from "../../components/interceptors/BasicSecurit
 import Dashboard from "../../pages/dashboard/Dashboard";
 import StaffsViewRoute from "../StaffsViewRoute.tsx";
 import StaffsView from "../../pages/staffs/view/StaffsView.tsx";
+import StaffsEdit from "../../pages/staffs/edit/StaffsEdit.tsx";
 
 class AppRouter {
     private readonly staffsViewRoute: StaffsViewRoute;
@@ -41,6 +42,13 @@ class AppRouter {
                             {
                                 path: "/staffs/view/:id",
                                 element: <StaffsView />,
+                                loader: async ({ params }: LoaderFunctionArgs<unknown>) => {
+                                    return await this.staffsViewRoute.loader(params);
+                                }
+                            },
+                            {
+                                path: "/staffs/edit/:id",
+                                element: <StaffsEdit />,
                                 loader: async ({ params }: LoaderFunctionArgs<unknown>) => {
                                     return await this.staffsViewRoute.loader(params);
                                 }
