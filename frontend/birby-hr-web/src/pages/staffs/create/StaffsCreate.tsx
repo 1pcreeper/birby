@@ -1,32 +1,22 @@
-import { Form, Link, NavigateFunction, useLoaderData, useNavigate } from "react-router-dom";
+import { Form, Link } from "react-router-dom";
 import Container from "../../../components/common/general/Container";
 import TitleHeader from "../../../components/common/general/TitleHeader";
-import StaffsEditLoader from "../../../routes/loaders/StaffsEditLoader";
 
-function StaffsEdit() {
-    const loaderData: StaffsEditLoader = useLoaderData<StaffsEditLoader>();
-    const navigate: NavigateFunction = useNavigate();
-    const handleOnClickCancel = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-        e.preventDefault();
-        navigate(`/staffs/view/${loaderData.id}`);
-    }
+function StaffsCreate() {
     return (
         <>
             <Container>
-                <TitleHeader title="Staff Management / Staff / Edit" />
-                <Form method="post" action={`/staffs/edit/${loaderData.id}`}>
-                    <div className="flex flex-wrap justify-between w-full mb-3 gap-x-2">
-                        <button onClick={handleOnClickCancel} type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                            Back
-                        </button>
-                        <div className="gap-x-2 flex">
-                            <button type="button" className="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">
-                                Delete
-                            </button>
+                <TitleHeader title="Staff Management / Staff / Create" />
+                <Form method="post" action="/staffs/create">
+                    <div className="flex flex-wrap w-full mb-3 gap-x-2 justify-between">
+                        <Link to="/staffs">
                             <button type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                                Submit
+                                Back
                             </button>
-                        </div>
+                        </Link>
+                        <button type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                            Submit
+                        </button>
                     </div>
                     <div className="flex flex-wrap w-full justify-center">
                         <img src="https://fakeimg.pl/500x500/" className="size-60 mb-5" />
@@ -37,27 +27,25 @@ function StaffsEdit() {
                                         <label htmlFor="form-tag">
                                             Tag :
                                         </label>
-                                        <input type="text" id="form-tag" name="tag" value={loaderData.id} className="grow border-1" />
+                                        <input type="text" id="form-tag" name="tag" value={""} className="grow border-1" placeholder="" />
                                     </div>
                                     <div className="flex mb-2">
                                         <label htmlFor="form-name">
                                             Name :
                                         </label>
-                                        <input type="text" id="form-name" name="name" value={loaderData.id} className="grow border-1" />
-                                    </div>
-                                    <div className="mb-3">
+                                        <input type="text" id="form-name" name="name" value={""} className="grow border-1" placeholder="Name" />
                                     </div>
                                     <div className="flex mb-2">
-                                        <label htmlFor="form-id">
-                                            ID :
-                                        </label>
-                                        <input type="text" id="form-id" name="id" value={loaderData.id} className="grow border-1" />
-                                    </div>
-                                    <div className="flex">
                                         <label htmlFor="form-email">
                                             Email :
                                         </label>
-                                        <input type="text" id="form-email" name="email" value={loaderData.id} className="grow border-1" />
+                                        <span className="ms-1">EMAIL</span>
+                                    </div>
+                                    <div>
+                                        <label htmlFor="form-id">
+                                            Avatar :
+                                        </label>
+                                        <input type="file" id="form-id" name="id" className="grow border-1 w-100" />
                                     </div>
                                 </div>
                                 <div className="text-2xl w-sm h-full rounded-2xl bg-amber-100 overflow-hidden mx-auto">
@@ -90,6 +78,6 @@ function StaffsEdit() {
                 </Form>
             </Container>
         </>
-    );
+    )
 }
-export default StaffsEdit;
+export default StaffsCreate;

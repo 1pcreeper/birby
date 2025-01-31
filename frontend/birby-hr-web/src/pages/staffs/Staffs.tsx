@@ -12,6 +12,18 @@ function Staffs() {
                         Search
                     </button>
                 </div>
+                <div className="pb-3 gap-x-2 flex">
+                    <Link to="/dashboard">
+                        <button className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                            Back
+                        </button>
+                    </Link>
+                    <Link to="/staffs/create">
+                        <button className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                            Create
+                        </button>
+                    </Link>
+                </div>
                 <div className="overflow-x-auto border-3">
                     <table className="w-full">
                         <thead className="sm:text-2xl text-lg">
@@ -26,7 +38,7 @@ function Staffs() {
                                     Roles
                                 </th>
                                 <th>
-                                    Control
+
                                 </th>
                             </tr>
                         </thead>
@@ -36,8 +48,8 @@ function Staffs() {
                                 <td>A1234</td>
                                 <td>IT Admin</td>
                                 <td>
-                                    <Link to="/staffs/view/1212" className="text-white bg-blue-400 px-4 rounded-xl">
-                                        Edit
+                                    <Link to="/staffs/view/1212" className="sm:text-xl text-white bg-blue-400 px-4 rounded-xl">
+                                        View
                                     </Link>
                                 </td>
                             </tr>
