@@ -4,15 +4,15 @@ import Layout from "../../components/layouts/Layout";
 import DefaultInterceptor from "../../components/interceptors/DefaultInterceptor";
 import BasicSecurityInterceptor from "../../components/interceptors/BasicSecurityInterceptor";
 import Dashboard from "../../pages/dashboard/Dashboard";
-import StaffsEditRoute from "../StaffsEditRoute";
-import StaffsEdit from "../../pages/staffs/edit/StaffsEdit";
+import StaffsViewRoute from "../StaffsViewRoute.tsx";
+import StaffsView from "../../pages/staffs/view/StaffsView.tsx";
 
 class AppRouter {
-    private readonly staffsEditRoute: StaffsEditRoute;
+    private readonly staffsViewRoute: StaffsViewRoute;
     constructor(
-        staffsEditRoute: StaffsEditRoute
+        staffsViewRoute: StaffsViewRoute
     ) {
-        this.staffsEditRoute = staffsEditRoute;
+        this.staffsViewRoute = staffsViewRoute;
     }
     public createRouter(): ReturnType<typeof createBrowserRouter> {
         return createBrowserRouter([
@@ -39,10 +39,10 @@ class AppRouter {
                                 element: <Staffs />
                             },
                             {
-                                path: "/staffs/edit/:id",
-                                element: <StaffsEdit />,
+                                path: "/staffs/view/:id",
+                                element: <StaffsView />,
                                 loader: async ({ params }: LoaderFunctionArgs<unknown>) => {
-                                    return await this.staffsEditRoute.loader(params);
+                                    return await this.staffsViewRoute.loader(params);
                                 }
                             }
                         ]

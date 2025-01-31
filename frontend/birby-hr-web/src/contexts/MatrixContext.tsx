@@ -1,7 +1,7 @@
 import { createContext } from "react";
+import MatrixImpl from "./matrix/MatrixImpl";
 import Matrix from "./matrix/Matrix";
-import MatrixType from "./matrix/MatrixType";
 
-const matrix: Matrix = new Matrix();
-const MatrixContext: React.Context<MatrixType> = createContext<MatrixType>(matrix);
+const matrix: MatrixImpl = new MatrixImpl();
+const MatrixContext: React.Context<Matrix> = createContext<Matrix>(matrix);
 export default MatrixContext;

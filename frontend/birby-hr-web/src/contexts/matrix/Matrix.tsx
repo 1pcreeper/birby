@@ -1,14 +1,8 @@
-import StaffsEditRoute from "../../routes/StaffsEditRoute";
-import AppRouter from "./../../routes/router/AppRouter";
-import MatrixType from "./MatrixType";
+import StaffsViewRoute from "../../routes/StaffsViewRoute";
+import AppRouter from "../../routes/router/AppRouter";
 
-class Matrix implements MatrixType {
-    public readonly appRouter: AppRouter;
-    public readonly staffsEditRoute: StaffsEditRoute;
-    constructor() {
-        this.staffsEditRoute = new StaffsEditRoute();
-
-        this.appRouter = new AppRouter(this.staffsEditRoute);
-    }
+interface Matrix {
+    appRouter: AppRouter;
+    staffsViewRoute: StaffsViewRoute
 }
 export default Matrix;
