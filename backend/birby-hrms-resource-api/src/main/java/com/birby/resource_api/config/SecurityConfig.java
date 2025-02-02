@@ -26,7 +26,6 @@ import java.util.stream.Collectors;
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity(securedEnabled = true)
-@EnableConfigurationProperties({FirebaseProperties.class,SecurityConfig.class})
 public class SecurityConfig {
     private final SecurityProperties securityProperties;
     private final FirebaseProperties firebaseProperties;
