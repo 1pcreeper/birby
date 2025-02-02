@@ -1,1 +1,1 @@
-spring.application.name=hrms
+spring.application.name: resource_api
