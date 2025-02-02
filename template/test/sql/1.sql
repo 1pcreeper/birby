@@ -156,4 +156,9 @@ CREATE TABLE pend_req_sickleave(
     FOREIGN KEY (sick_leave_id) REFERENCES sick_leave(id)
 );
 
+CREATE TABLE properties(
+	id VARCHAR(255) NOT NULL,
+    props_value VARCHAR(255) NULL,
+    PRIMARY KEY (id)
+);
 
