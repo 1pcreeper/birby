@@ -74,37 +74,86 @@ CREATE TABLE venue(
     id VARCHAR(255) NOT NULL,
     name VARCHAR(50) NOT NULL,
     address VARCHAR(300) NOT NULL,
-    staff_amount INT NOT NULL DEFAULT 0,
-    time_start TIME NOT NULL,
-    time_end TIME NOT NULL,
+    staff_amount INT NOT NULL,
     is_active BOOL DEFAULT true,
-    PRIMARY KEY (id),
-    CHECK (time_end > time_start)
+    PRIMARY KEY (id)
 );
 
+CREATE TABLE staff_venue_preference(
+	staff_id VARCHAR(255) NOT NULL,
+    venue_id VARCHAR(255) NOT NULL,
+    z_index INT DEFAULT 0,
+    PRIMARY KEY (staff_id,venue_id),
+    FOREIGN KEY (staff_id) REFERENCES staff(id),
+    FOREIGN KEY (venue_id) REFERENCES venue(id)
+);
+
+CREATE TABLE shift (
+	id VARCHAR(255) NOT NULL,
+    name VARCHAR(50) NOT NULL,
+    start_time TIME NOT NULL,
+    end_time TIME NOT NULL,
+    PRIMARY KEY (id)
+);
 CREATE TABLE attendance (
 	id VARCHAR(255) NOT NULL,
     staff_id VARCHAR(255) NOT NULL,
     `date` DATE NOT NULL,
+    shift_id VARCHAR(255) NOT NULL,
     sick_leave_id VARCHAR(255) NULL,
-    wage_hour INT DEFAULT 0,
     venue_id VARCHAR(255) NOT NULL,
-    mission TEXT NULL,
+    task TEXT NULL,
     PRIMARY KEY (id),
     UNIQUE (staff_id,`date`),
     FOREIGN KEY (staff_id) REFERENCES staff(id),
     FOREIGN KEY (sick_leave_id) REFERENCES sick_leave(id),
-    FOREIGN KEY (venue_id) REFERENCES venue(id)
+    FOREIGN KEY (venue_id) REFERENCES venue(id),
+    FOREIGN KEY (shift_id) REFERENCES shift(id)
 );
-CREATE TABLE staff_duty (
+CREATE TABLE duty (
 	id VARCHAR(255) NOT NULL,
     attend_id VARCHAR(255) NOT NULL UNIQUE,
-    is_paid BOOL DEFAULT FALSE,
     arrive_time TIME NULL,
     leave_time TIME NULL,
+    report TEXT NULL,
     PRIMARY KEY (id),
     FOREIGN KEY (attend_id) REFERENCES attendance(id),
     INDEX (attend_id)
+);
+CREATE TABLE staff_wage(
+	id VARCHAR(255) NOT NULL,
+    duty_id VARCHAR(255) NOT NULL UNIQUE,
+    wage DECIMAL(10,10),
+    is_paid BOOL DEFAULT FALSE,
+    PRIMARY KEY (id),
+    FOREIGN KEY (duty_id) REFERENCES duty(id),
+    INDEX (duty_id)
+);
+----------------------------------------------------------------------
+
+CREATE TABLE request_method(
+	id VARCHAR(255) NOT NULL,
+    name VARCHAR(50) NOT NULL,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE request(
+	id VARCHAR(255) NOT NULL,
+    req_method_id VARCHAR(255) NOT NULL,
+    from_staff_id VARCHAR(255) NOT NULL,
+    time DATETIME NOT NULL,
+    is_approved BOOL NULL,
+    PRIMARY KEY (id),
+    FOREIGN KEY (req_method_id) REFERENCES request_method(id),
+    FOREIGN KEY (from_staff_id) REFERENCES staff(id)
+);
+
+CREATE TABLE pend_req_sickleave(
+	req_id VARCHAR(255) NOT NULL,
+    sick_leave_id VARCHAR(255) NOT NULL,
+    PRIMARY KEY (req_id),
+    FOREIGN KEY (req_id) REFERENCES request(id),
+    FOREIGN KEY (sick_leave_id) REFERENCES sick_leave(id)
 );
 
 
