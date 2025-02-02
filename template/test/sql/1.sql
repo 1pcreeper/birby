@@ -8,12 +8,19 @@ CREATE TABLE staff(
     email VARCHAR(50) NOT NULL UNIQUE,
     PRIMARY KEY (id)
 );
+CREATE TABLE job_type(
+    id VARCHAR(255) NOT NULL,
+    name VARCHAR(20) NOT NULL,
+    PRIMARY KEY (id)
+);
 CREATE TABLE staff_detail(
 	staff_id VARCHAR(255) NOT NULL,
     gender BOOL NOT NULL,
     hk_phone VARCHAR(8) UNIQUE CHECK (REGEXP_LIKE(hk_phone, '^[0-9]{8}$')),
+    job_type_id VARCHAR(255) NOT NULL,
     PRIMARY KEY (staff_id),
-    FOREIGN KEY (staff_id) REFERENCES staff(id)
+    FOREIGN KEY (staff_id) REFERENCES staff(id),
+    FOREIGN KEY (job_type_id) REFERENCES job_type(id)
 );
 
 CREATE TABLE department(
@@ -21,7 +28,6 @@ CREATE TABLE department(
     name VARCHAR(20) NOT NULL,
     PRIMARY KEY (id)
 );
-
 CREATE TABLE vocation(
 	id VARCHAR(255) NOT NULL,
     name VARCHAR(20) NOT NULL,
@@ -30,7 +36,6 @@ CREATE TABLE vocation(
     PRIMARY KEY (id),
     FOREIGN KEY (depart_id) REFERENCES department(id) 
 );
-
 CREATE TABLE role(
     id VARCHAR(255) NOT NULL,
     name VARCHAR(20) NOT NULL,
@@ -46,52 +51,28 @@ CREATE TABLE staff_role(
     FOREIGN KEY (role_id) REFERENCES role(id)
 );
 
-
-
-
-
-
-
-
-
-
-
-CREATE TABLE update_log(
-    id VARCHAR(255) NOT NULL,
-    date DATE NOT NULL,
-    user_id VARCHAR(255) NOT NULL,
-    table_name VARCHAR(20) NOT NULL,
-    content TEXT NOT NULL,
-    PRIMARY KEY (id),
-    UNIQUE(date,user_id),
-    FOREIGN KEY (user_id) REFERENCES user(id)
-);
-
-
-CREATE TABLE job_type(
-    id VARCHAR(255) NOT NULL,
+CREATE TABLE leave_approval(
+	id VARCHAR(255) NOT NULL,
     name VARCHAR(20) NOT NULL,
     PRIMARY KEY (id)
 );
-
-
-
-
-
-
-
+CREATE TABLE leave_wage_type(
+	id VARCHAR(255) NOT NULL,
+    name VARCHAR(20) NOT NULL,
+    PRIMARY KEY (id)
+);
 CREATE TABLE sick_leave(
-    id VARCHAR(100) NOT NULL,
-    date DATE NOT NULL,
-    staff_id VARCHAR(100) NOT NULL,
-    reason TEXT,
+	id VARCHAR(255) NOT NULL,
+    name VARCHAR(20) NOT NULL,
+    leave_approval_id VARCHAR(255) NOT NULL,
+    leave_wage_type_id VARCHAR(255) NOT NULL,
     PRIMARY KEY (id),
-    UNIQUE(date,staff_id),
-    FOREIGN KEY (staff_id) REFERENCES staff(id)
+    FOREIGN KEY (leave_approval_id) REFERENCES leave_approval(id),
+    FOREIGN KEY (leave_wage_type_id) REFERENCES leave_wage_type(id)
 );
 CREATE TABLE venue(
-    id VARCHAR(100) NOT NULL,
-    name VARCHAR(100) NOT NULL,
+    id VARCHAR(255) NOT NULL,
+    name VARCHAR(50) NOT NULL,
     address VARCHAR(300) NOT NULL,
     staff_amount INT NOT NULL DEFAULT 0,
     time_start TIME NOT NULL,
@@ -101,27 +82,29 @@ CREATE TABLE venue(
     CHECK (time_end > time_start)
 );
 
-
-
-
-CREATE TABLE duty(
-    id VARCHAR(100) NOT NULL,
-    venue_id VARCHAR(100) NOT NULL,
-    date DATE NOT NULL,
-    time_start TIME NOT NULL,
-    time_end TIME NOT NULL,
+CREATE TABLE attendance (
+	id VARCHAR(255) NOT NULL,
+    staff_id VARCHAR(255) NOT NULL,
+    `date` DATE NOT NULL,
+    sick_leave_id VARCHAR(255) NULL,
+    wage_hour INT DEFAULT 0,
+    venue_id VARCHAR(255) NOT NULL,
+    mission TEXT NULL,
     PRIMARY KEY (id),
-    UNIQUE(venue_id,date),
-    FOREIGN KEY (venue_id) REFERENCES venue(id),
-    CHECK (time_end > time_start)
-);
-CREATE TABLE staff_duty(
-    id VARCHAR(100) NOT NULL,
-    staff_id VARCHAR(100) NOT NULL,
-    duty_id VARCHAR(100) NOT NULL,
-    hourly_wage DECIMAL(10,3) NOT NULL,
-    PRIMARY KEY (id),
-    UNIQUE(staff_id,duty_id),
+    UNIQUE (staff_id,`date`),
     FOREIGN KEY (staff_id) REFERENCES staff(id),
-    FOREIGN KEY (duty_id) REFERENCES duty(id)
-);CREATE TABLE user_detail(  user_id VARCHAR(100) NOT NULL,     hk_phone VARCHAR(8) UNIQUE CHECK (REGEXP_LIKE(hk_phone, '^[0-9]{8}$')),     PRIMARY KEY (user_id),     FOREIGN KEY (user_id) REFERENCES user(id) )
+    FOREIGN KEY (sick_leave_id) REFERENCES sick_leave(id),
+    FOREIGN KEY (venue_id) REFERENCES venue(id)
+);
+CREATE TABLE staff_duty (
+	id VARCHAR(255) NOT NULL,
+    attend_id VARCHAR(255) NOT NULL UNIQUE,
+    is_paid BOOL DEFAULT FALSE,
+    arrive_time TIME NULL,
+    leave_time TIME NULL,
+    PRIMARY KEY (id),
+    FOREIGN KEY (attendance) REFERENCES attendance(id),
+    INDEX (attend_id)
+);
+
+
