@@ -26,6 +26,13 @@ function Dashboard() {
                                         </Link>
                                     </td>
                                 </tr>
+                                <tr>
+                                    <td className="text-2xl p-3">
+                                        <Link to="/sick-leave">
+                                            Sick Leave
+                                        </Link>
+                                    </td>
+                                </tr>
                             </tbody>
                         </table>
                     </section>

@@ -9,16 +9,23 @@ import StaffsView from "../../pages/staffs/view/StaffsView.tsx";
 import StaffsEdit from "../../pages/staffs/edit/StaffsEdit.tsx";
 import StaffsEditRoute from "../StaffsEditRoute.tsx";
 import StaffsCreate from "../../pages/staffs/create/StaffsCreate.tsx";
+import StaffsCreateRoute from "../StaffsCreateRoute.tsx";
+import SickLeave from "./../../pages/sick-leave/SickLeave.tsx"
+import SickLeaveCreate from "../../pages/sick-leave/create/SickLeaveCreate.tsx";
+import SickLeaveEdit from "../../pages/sick-leave/edit/SickLeaveEdit.tsx";
 
 class AppRouter {
     private readonly staffsViewRoute: StaffsViewRoute;
     private readonly staffsEditRoute: StaffsEditRoute;
+    private readonly staffsCreateRoute: StaffsCreateRoute;
     constructor(
         staffsViewRoute: StaffsViewRoute,
-        staffsEditRoute: StaffsEditRoute
+        staffsEditRoute: StaffsEditRoute,
+        staffsCreateRoute: StaffsCreateRoute
     ) {
         this.staffsViewRoute = staffsViewRoute;
         this.staffsEditRoute = staffsEditRoute;
+        this.staffsCreateRoute = staffsCreateRoute;
     }
     public createRouter(): ReturnType<typeof createBrowserRouter> {
         return createBrowserRouter([
@@ -63,7 +70,22 @@ class AppRouter {
                             },
                             {
                                 path: "/staffs/create",
-                                element: <StaffsCreate />
+                                element: <StaffsCreate />,
+                                action: async ({ request, params }: ActionFunctionArgs) => {
+                                    return await this.staffsCreateRoute.action({ request, params } as ActionFunctionArgs);
+                                }
+                            },
+                            {
+                                path: "/sick-leave",
+                                element: <SickLeave />
+                            },
+                            {
+                                path: "/sick-leave/edit",
+                                element: <SickLeaveEdit />
+                            },
+                            {
+                                path: "/sick-leave/create",
+                                element: <SickLeaveCreate />
                             }
                         ]
                     }
