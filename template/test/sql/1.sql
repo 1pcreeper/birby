@@ -103,7 +103,7 @@ CREATE TABLE staff_duty (
     arrive_time TIME NULL,
     leave_time TIME NULL,
     PRIMARY KEY (id),
-    FOREIGN KEY (attendance) REFERENCES attendance(id),
+    FOREIGN KEY (attend_id) REFERENCES attendance(id),
     INDEX (attend_id)
 );
 
