@@ -15,8 +15,9 @@ import java.io.IOException;
 public class FirebaseAuthConfig {
     @Value("classpath:firebase-adminsdk.json")
     public Resource serviceAccount;
+
     @Bean
-    public FirebaseAuth firebaseAuth() throws IOException{
+    public FirebaseAuth firebaseAuth() throws IOException {
         FirebaseOptions options = FirebaseOptions
                 .builder()
                 .setCredentials(GoogleCredentials.fromStream(
