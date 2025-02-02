@@ -13,7 +13,7 @@ public class ApiResponse<T> {
     private boolean success;
     private String message;
     private T data;
-    public static <T> ApiResponse<T> ok(boolean success,String message,T data){
-        return (ApiResponse<T>) ApiResponse.builder().success(success).message(message).data(data).build();
-    }
+//    public static <T> ApiResponse<T> ok(boolean success,String message,T data){
+//        return (ApiResponse<T>) ApiResponse.builder().success(success).message(message).data(data).build();
+//    }
 }

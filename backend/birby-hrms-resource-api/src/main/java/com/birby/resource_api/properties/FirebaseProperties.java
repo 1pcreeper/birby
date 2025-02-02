@@ -9,5 +9,5 @@ import org.springframework.context.annotation.Configuration;
 @ConfigurationProperties(prefix = "firebase-config")
 public class FirebaseProperties {
     private String issuerLocation;
-    private String claims;
+    private String rolesClaim;
 }

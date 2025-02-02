@@ -1,6 +1,9 @@
 package com.birby.resource_api.config;
 
-import org.springframework.beans.factory.annotation.Value;
+import com.birby.resource_api.properties.FirebaseProperties;
+import com.birby.resource_api.properties.SecurityProperties;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
@@ -17,20 +20,30 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity(securedEnabled = true)
+@EnableConfigurationProperties({FirebaseProperties.class,SecurityConfig.class})
 public class SecurityConfig {
-    @Value("${firebase-config.issuer-location}")
-    private String issuerLocation;
-    @Value("${firebase-config.claims}")
-    private String claims;
-    @Value("${security-config.allowed-cors}")
-    private String allowedCors;
+    private final SecurityProperties securityProperties;
+    private final FirebaseProperties firebaseProperties;
+    @Autowired
+    public SecurityConfig(
+            SecurityProperties securityProperties,
+            FirebaseProperties firebaseProperties
+    ){
+        this.securityProperties = securityProperties;
+        this.firebaseProperties = firebaseProperties;
+    }
+//    @Value("${firebase-config.issuer-location}")
+//    private String issuerLocation;
+//    @Value("${firebase-config.claims}")
+//    private String claims;
+//    @Value("${security-config.allowed-cors}")
+//    private String allowedCors;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -52,13 +65,13 @@ public class SecurityConfig {
 
     @Bean
     public JwtDecoder jwtDecoder() {
-        return JwtDecoders.fromIssuerLocation(issuerLocation);
+        return JwtDecoders.fromIssuerLocation(firebaseProperties.getIssuerLocation());
     }
 
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration corsConfiguration = new CorsConfiguration();
-        corsConfiguration.setAllowedOrigins(Arrays.asList(allowedCors));
+        corsConfiguration.setAllowedOrigins(Arrays.asList(securityProperties.getAllowedCors()));
         corsConfiguration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         corsConfiguration.setAllowedHeaders(Arrays.asList("*"));
         corsConfiguration.setAllowCredentials(true);
@@ -74,7 +87,7 @@ public class SecurityConfig {
         jwtAuthenticationConverter.setJwtGrantedAuthoritiesConverter(
                 jwt -> Optional.ofNullable(
                                 jwt.getClaimAsStringList(
-                                        claims
+                                        firebaseProperties.getRolesClaim()
                                 )
                         ).stream()
                         .flatMap(Collection::stream)

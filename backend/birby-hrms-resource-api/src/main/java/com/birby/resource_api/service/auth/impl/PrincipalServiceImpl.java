@@ -4,7 +4,9 @@ import com.birby.resource_api.exception.PrincipalException;
 import com.birby.resource_api.properties.FirebaseProperties;
 import com.birby.resource_api.service.auth.PrincipalService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
+import org.springframework.stereotype.Service;
 
 import java.security.Principal;
 import java.util.HashMap;
@@ -13,6 +15,8 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+@Service
+@EnableConfigurationProperties(FirebaseProperties.class)
 public class PrincipalServiceImpl implements PrincipalService {
     private final FirebaseProperties firebaseProperties;
     @Autowired
@@ -25,7 +29,7 @@ public class PrincipalServiceImpl implements PrincipalService {
     @Override
     public Map<String, Object> getPrincipalData(Principal principal) throws PrincipalException {
         Map<String,Object> data = new HashMap<>();
-        String roleKey = firebaseProperties.getClaims();
+        String roleKey = firebaseProperties.getRolesClaim();
         String uidKey = "uid";
 
         data.put(uidKey,principal.getName());
@@ -59,7 +63,7 @@ public class PrincipalServiceImpl implements PrincipalService {
     }
     private List<String> getRolesClaim(Principal principal) throws PrincipalException{
         try{
-            return (List<String>) getClaim(principal,firebaseProperties.getClaims());
+            return (List<String>) getClaim(principal,firebaseProperties.getRolesClaim());
         }catch(PrincipalException e){
             throw new PrincipalException(e.getMessage());
         }
