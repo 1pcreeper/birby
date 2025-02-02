@@ -1,7 +1,7 @@
-import { Form, NavigateFunction, useLoaderData, useNavigate } from "react-router-dom";
+import { Form, NavigateFunction, useNavigate } from "react-router-dom";
 import Container from "../../../components/common/general/Container";
 import TitleHeader from "../../../components/common/general/TitleHeader";
-import StaffsEditLoader from "../../../routes/loaders/StaffsEditLoader";
+
 
 function StaffsCreate() {
     const navigate: NavigateFunction = useNavigate();

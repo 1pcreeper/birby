@@ -13,6 +13,8 @@ import StaffsCreateRoute from "../StaffsCreateRoute.tsx";
 import SickLeave from "./../../pages/sick-leave/SickLeave.tsx"
 import SickLeaveCreate from "../../pages/sick-leave/create/SickLeaveCreate.tsx";
 import SickLeaveEdit from "../../pages/sick-leave/edit/SickLeaveEdit.tsx";
+import Shift from "../../pages/shift/Shift.tsx";
+import Attendance from "../../pages/attendance/Attendance.tsx";
 
 class AppRouter {
     private readonly staffsViewRoute: StaffsViewRoute;
@@ -86,6 +88,14 @@ class AppRouter {
                             {
                                 path: "/sick-leave/create",
                                 element: <SickLeaveCreate />
+                            },
+                            {
+                                path: "/shift",
+                                element: <Shift />
+                            },
+                            {
+                                path: "/attendance",
+                                element: <Attendance />
                             }
                         ]
                     }

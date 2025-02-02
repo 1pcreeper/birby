@@ -28,6 +28,20 @@ function Dashboard() {
                                 </tr>
                                 <tr>
                                     <td className="text-2xl p-3">
+                                        <Link to="/shift">
+                                            Shift Management
+                                        </Link>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td className="text-2xl p-3">
+                                        <Link to="/attendance">
+                                            Attendance Management
+                                        </Link>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td className="text-2xl p-3">
                                         <Link to="/sick-leave">
                                             Sick Leave
                                         </Link>

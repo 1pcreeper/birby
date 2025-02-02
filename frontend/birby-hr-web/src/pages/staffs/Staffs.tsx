@@ -1,17 +1,13 @@
 import { Link } from "react-router-dom";
 import Container from "../../components/common/general/Container";
 import TitleHeader from "../../components/common/general/TitleHeader";
+import SearchBar from "../../components/common/general/SearchBar";
 function Staffs() {
     return (
         <>
             <Container>
                 <TitleHeader title="Staff Management" />
-                <div className="flex justify-around rounded-2xl border-2 mb-5">
-                    <input type="text" className="w-full py-2" />
-                    <button className="text-white border-l-2 px-5 rounded-r-2xl dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                        Search
-                    </button>
-                </div>
+                <SearchBar />
                 <div className="pb-3 gap-x-2 flex">
                     <Link to="/dashboard">
                         <button className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
