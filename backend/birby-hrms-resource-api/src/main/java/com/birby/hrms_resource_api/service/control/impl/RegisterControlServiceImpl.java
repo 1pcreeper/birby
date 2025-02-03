@@ -37,25 +37,25 @@ public class RegisterControlServiceImpl implements RegisterControlService {
         boolean isNameExisted = true;
         boolean isEmailExistedInFirebase = true;
         String errMessage = "";
-        try{
+        try {
             firebaseAuthService.getUserByEmail(alignedEmail);
-            errMessage="Email Already Existed";
-        }catch (FirebaseAuthException e){
-            isEmailExistedInFirebase=false;
+            errMessage = "Email Already Existed";
+        } catch (FirebaseAuthException e) {
+            isEmailExistedInFirebase = false;
         }
         try {
             staffManagerService.findByName(alignedName);
-            errMessage="Name Already Existed";
+            errMessage = "Name Already Existed";
         } catch (ResourceNotFoundException e) {
-            isNameExisted=false;
+            isNameExisted = false;
         }
-        try{
+        try {
             staffManagerService.findByEmail(alignedEmail);
-            errMessage="Email Already Existed";
-        }catch(ResourceNotFoundException e){
-            isEmailExisted=false;
+            errMessage = "Email Already Existed";
+        } catch (ResourceNotFoundException e) {
+            isEmailExisted = false;
         }
-        if(isEmailExisted||isNameExisted||isEmailExistedInFirebase){
+        if (isEmailExisted || isNameExisted || isEmailExistedInFirebase) {
             throw new RegisterFailureException(errMessage);
         }
         FirebaseAuthCreateUserReqBo reqBo = FirebaseAuthCreateUserReqBo
