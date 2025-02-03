@@ -17,6 +17,6 @@ public interface StaffRoleRepository extends JpaRepository<StaffRole, StaffRoleI
     Optional<List<StaffRole>> findByStaffId(@Param("staffId") String staffId);
 
     @Modifying
-    @Query(value = "INSERT INTO StaffRole (staff_id,role_id) VALUES (:staffId,:roleId)", nativeQuery = true)
+    @Query(value = "INSERT INTO staff_role (staff_id,role_id) VALUES (:staffId,:roleId)", nativeQuery = true)
     int add(@Param("staffId") String staffId, @Param("roleId") String roleId);
 }
