@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.birby</groupId>
-	<artifactId>resource_api</artifactId>
+	<artifactId>hrms_resource_api</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>resource_api</name>
+	<name>hrms_resource_api</name>
 	<description>Demo project for Birby Office Account Management System</description>
 	<url/>
 	<licenses>
