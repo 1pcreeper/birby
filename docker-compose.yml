@@ -1,0 +1,14 @@
+services:
+  hrms_account_db:
+    container_name: hrms_account_db
+    hostname: hrms_account_db
+    restart: always
+    build:
+      context: ./docker/src/database/hrms_account_db
+      dockerfile: dockerfile
+    stdin_open: true
+    tty: true
+    ports:
+      - 3306:3306
+    volumes:
+      - ./docker/volume/database/hrms_account_db:/var/lib/mysql

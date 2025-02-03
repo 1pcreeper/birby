@@ -1,5 +1,3 @@
-CREATE DATABASE birby_hrms_account_db;
-USE birby_hrms_account_db;
 CREATE TABLE staff(
     id VARCHAR(255) NOT NULL,
     uid VARCHAR(255) NOT NULL UNIQUE,

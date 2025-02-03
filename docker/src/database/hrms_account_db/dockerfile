@@ -1,0 +1,6 @@
+FROM mysql:latest AS base
+ENV MYSQL_DATABASE=hrms_account_db
+ENV MYSQL_ROOT_PASSWORD=root
+WORKDIR /docker-entrypoint-initdb.d
+COPY ./sql/ .
+EXPOSE 3306
