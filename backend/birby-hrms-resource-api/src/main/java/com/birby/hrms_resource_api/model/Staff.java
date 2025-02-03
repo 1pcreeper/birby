@@ -18,12 +18,14 @@ import lombok.NoArgsConstructor;
 @Table(name = "staff")
 public class Staff {
     @Id
-    @Column(name = "id")
+    @Column(name = "id" , nullable = false)
     private String id;
-    @Column(name = "uid", unique = true)
+    @Column(name = "uid", unique = true ,nullable = false)
     private String uid;
-    @Column(name = "name",unique = true, length = 20)
+    @Column(name = "name",unique = true, length = 20 , nullable = false)
     private String name;
-    @Column(name="email", unique = true, length = 50)
+    @Column(name="email", unique = true, length = 50 , nullable = false)
     private String email;
+    @Column(name = "display_name" , length = 5 , nullable = false)
+    private String displayName;
 }
