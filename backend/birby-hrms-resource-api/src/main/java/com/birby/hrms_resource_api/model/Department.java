@@ -17,8 +17,8 @@ import lombok.NoArgsConstructor;
 @Table(name = "department")
 public class Department {
     @Id
-    @Column(name = "id" , nullable = false)
+    @Column(name = "id", nullable = false)
     private String id;
-    @Column(name = "name",nullable = false,length = 20)
+    @Column(name = "name", nullable = false, length = 20)
     private String name;
 }

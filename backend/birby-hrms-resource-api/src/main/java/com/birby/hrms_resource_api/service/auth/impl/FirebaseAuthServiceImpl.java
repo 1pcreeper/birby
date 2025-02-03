@@ -18,11 +18,12 @@ import java.util.Map;
 public class FirebaseAuthServiceImpl implements FirebaseAuthService {
     private final FirebaseAuth firebaseAuth;
     private final FirebaseProperties firebaseProperties;
+
     @Autowired
     public FirebaseAuthServiceImpl(
             FirebaseAuth firebaseAuth,
             FirebaseProperties firebaseProperties
-    ){
+    ) {
         this.firebaseAuth = firebaseAuth;
         this.firebaseProperties = firebaseProperties;
     }
@@ -43,7 +44,18 @@ public class FirebaseAuthServiceImpl implements FirebaseAuthService {
 
     @Override
     public void setRoleClaims(String uid, List<String> roles) throws FirebaseAuthException {
-        Map<String,Object> claims = Map.of(firebaseProperties.getRolesClaim(),roles);
-        firebaseAuth.setCustomUserClaims(uid,claims);
+        Map<String, Object> claims = Map.of(firebaseProperties.getRolesClaim(), roles);
+        firebaseAuth.revokeRefreshTokens(uid);
+        firebaseAuth.setCustomUserClaims(uid, claims);
+    }
+
+    @Override
+    public UserRecord getUser(String uid) throws FirebaseAuthException {
+        return firebaseAuth.getUser(uid);
+    }
+
+    @Override
+    public UserRecord getUserByEmail(String email) throws FirebaseAuthException {
+        return firebaseAuth.getUserByEmail(email);
     }
 }

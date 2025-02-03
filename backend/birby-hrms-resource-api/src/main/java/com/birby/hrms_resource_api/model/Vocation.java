@@ -14,13 +14,13 @@ import lombok.NoArgsConstructor;
 @Table(name = "vocation")
 public class Vocation {
     @Id
-    @Column(name = "id" , nullable = false)
+    @Column(name = "id", nullable = false)
     private String id;
-    @Column(name = "name",nullable = false,length = 20)
+    @Column(name = "name", nullable = false, length = 20)
     private String name;
-    @JoinColumn(name="depart_id",nullable = false)
+    @JoinColumn(name = "depart_id", nullable = false)
     @ManyToOne(cascade = CascadeType.ALL)
     private Department department;
-    @Column(name="is_admin")
+    @Column(name = "is_admin")
     private boolean isAdmin = false;
 }

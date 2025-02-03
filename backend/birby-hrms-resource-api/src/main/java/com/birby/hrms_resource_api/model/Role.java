@@ -14,11 +14,11 @@ import lombok.NoArgsConstructor;
 @Table(name = "role")
 public class Role {
     @Id
-    @Column(name = "id" , nullable = false)
+    @Column(name = "id", nullable = false)
     private String id;
-    @Column(name = "name",nullable = false,length = 20)
+    @Column(name = "name", nullable = false, length = 20)
     private String name;
-    @JoinColumn(name="voc_id",nullable = false,unique = true)
+    @JoinColumn(name = "voc_id", nullable = false, unique = true)
     @ManyToOne(cascade = CascadeType.ALL)
     private Vocation vocation;
 }
