@@ -71,7 +71,7 @@ CREATE TABLE sick_leave(
 CREATE TABLE venue(
     id VARCHAR(255) NOT NULL,
     name VARCHAR(50) NOT NULL,
-    address VARCHAR(300) NOT NULL,
+    address TEXT NOT NULL,
     staff_amount INT NOT NULL,
     is_active BOOL DEFAULT true,
     PRIMARY KEY (id)
