@@ -4,9 +4,11 @@ import com.birby.hrms_resource_api.bo.request.FirebaseAuthCreateUserReqBo;
 import com.birby.hrms_resource_api.constant.Roles;
 import com.birby.hrms_resource_api.exception.RegisterFailureException;
 import com.birby.hrms_resource_api.exception.ResourceNotFoundException;
+import com.birby.hrms_resource_api.model.Staff;
 import com.birby.hrms_resource_api.service.auth.FirebaseAuthService;
 import com.birby.hrms_resource_api.service.control.RegisterControlService;
 import com.birby.hrms_resource_api.service.manager.StaffManagerService;
+import com.birby.hrms_resource_api.utility.UuidUtility;
 import com.google.firebase.auth.FirebaseAuthException;
 import org.springframework.stereotype.Service;
 
@@ -67,9 +69,18 @@ public class RegisterControlServiceImpl implements RegisterControlService {
         try {
             uid = firebaseAuthService.createUser(reqBo);
             firebaseAuthService.setRoleClaims(uid, List.of(Roles.STAFF));
-            return uid;
         } catch (FirebaseAuthException e) {
             throw new RegisterFailureException(e.getMessage());
         }
+        Staff newStaff = Staff
+                .builder()
+                .id(UuidUtility.generate())
+                .uid(uid)
+                .displayName(alignedName)
+                .name(alignedName)
+                .email(alignedEmail)
+                .build();
+        staffManagerService.save(newStaff);
+        return uid;
     }
 }

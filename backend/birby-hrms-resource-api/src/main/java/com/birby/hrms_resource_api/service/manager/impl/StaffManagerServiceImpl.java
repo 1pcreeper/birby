@@ -30,4 +30,9 @@ public class StaffManagerServiceImpl implements StaffManagerService {
     public Staff findByEmail(String email) throws ResourceNotFoundException {
         return staffRepository.findByEmail(email).orElseThrow(()->new ResourceNotFoundException("Email Not Found"));
     }
+
+    @Override
+    public Staff save(Staff staff) {
+        return staffRepository.save(staff);
+    }
 }
