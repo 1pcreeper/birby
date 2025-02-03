@@ -18,8 +18,8 @@ target/
 *.iws
 *.iml
 *.ipr
-**/application.yml
 **/firebase-adminsdk.json
+**/.env
 
 ### NetBeans ###
 /nbproject/private/
