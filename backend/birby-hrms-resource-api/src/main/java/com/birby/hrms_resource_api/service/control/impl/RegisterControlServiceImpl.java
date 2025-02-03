@@ -8,6 +8,7 @@ import com.birby.hrms_resource_api.model.Staff;
 import com.birby.hrms_resource_api.service.auth.FirebaseAuthService;
 import com.birby.hrms_resource_api.service.control.RegisterControlService;
 import com.birby.hrms_resource_api.service.manager.StaffManagerService;
+import com.birby.hrms_resource_api.service.manager.StaffRoleManagerService;
 import com.birby.hrms_resource_api.utility.UuidUtility;
 import com.google.firebase.auth.FirebaseAuthException;
 import jakarta.transaction.Transactional;
@@ -20,18 +21,23 @@ import java.util.Locale;
 public class RegisterControlServiceImpl implements RegisterControlService {
     private final FirebaseAuthService firebaseAuthService;
     private final StaffManagerService staffManagerService;
+    private final StaffRoleManagerService staffRoleManagerService;
 
     public RegisterControlServiceImpl(
             FirebaseAuthService firebaseAuthService,
-            StaffManagerService staffManagerService
+            StaffManagerService staffManagerService,
+            StaffRoleManagerService staffRoleManagerService
     ) {
         this.firebaseAuthService = firebaseAuthService;
         this.staffManagerService = staffManagerService;
+        this.staffRoleManagerService = staffRoleManagerService;
     }
 
     @Override
     @Transactional(rollbackOn = RuntimeException.class)
     public String register(String name, String email, String password) throws RegisterFailureException {
+        List<String> roles = List.of(Roles.STAFF);
+
         String alignedName = name.toLowerCase(Locale.ROOT).trim();
         String alignedEmail = email.toLowerCase(Locale.ROOT).trim();
 
@@ -68,21 +74,25 @@ public class RegisterControlServiceImpl implements RegisterControlService {
                 .disable(false)
                 .build();
         String uid;
+        String id = UuidUtility.generate();
         try {
             uid = firebaseAuthService.createUser(reqBo);
-            firebaseAuthService.setRoleClaims(uid, List.of(Roles.STAFF));
+            firebaseAuthService.setRoleClaims(uid, roles);
         } catch (FirebaseAuthException e) {
             throw new RegisterFailureException(e.getMessage());
         }
         Staff newStaff = Staff
                 .builder()
-                .id(UuidUtility.generate())
+                .id(id)
                 .uid(uid)
                 .displayName(alignedName)
                 .name(alignedName)
                 .email(alignedEmail)
                 .build();
         staffManagerService.save(newStaff);
+        for(String r : roles){
+            staffRoleManagerService.add(id,r);
+        }
         return uid;
     }
 }
