@@ -10,6 +10,7 @@ import com.birby.hrms_resource_api.service.control.RegisterControlService;
 import com.birby.hrms_resource_api.service.manager.StaffManagerService;
 import com.birby.hrms_resource_api.utility.UuidUtility;
 import com.google.firebase.auth.FirebaseAuthException;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -29,6 +30,7 @@ public class RegisterControlServiceImpl implements RegisterControlService {
     }
 
     @Override
+    @Transactional(rollbackOn = RuntimeException.class)
     public String register(String name, String email, String password) throws RegisterFailureException {
         String alignedName = name.toLowerCase(Locale.ROOT).trim();
         String alignedEmail = email.toLowerCase(Locale.ROOT).trim();

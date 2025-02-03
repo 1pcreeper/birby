@@ -26,6 +26,6 @@ public class Staff {
     private String name;
     @Column(name = "email", unique = true, length = 50, nullable = false)
     private String email;
-    @Column(name = "display_name", length = 5, nullable = false)
+    @Column(name = "display_name", length = 20, nullable = false)
     private String displayName;
 }

@@ -10,12 +10,12 @@ import java.util.Optional;
 
 @Repository
 public interface StaffRepository extends JpaRepository<Staff, String> {
-    @Query(value = "SELECT s FROM Staff s WHERE LOWER(s.name) = LOWER(:name) LIMIT 1")
+    @Query(value = "SELECT s FROM Staff s WHERE LOWER(s.name) = LOWER(:name)")
     Optional<Staff> findByName(@Param("name") String name);
 
-    @Query(value = "SELECT s FROM Staff s WHERE s.uid = :uid LIMIT 1")
+    @Query(value = "SELECT s FROM Staff s WHERE s.uid = :uid")
     Optional<Staff> findByUid(@Param("uid") String uid);
 
-    @Query(value = "SELECT s FROM Staff s WHERE LOWER(s.email) = LOWER(:email) LIMIT 1")
+    @Query(value = "SELECT s FROM Staff s WHERE LOWER(s.email) = LOWER(:email)")
     Optional<Staff> findByEmail(@Param("email") String email);
 }

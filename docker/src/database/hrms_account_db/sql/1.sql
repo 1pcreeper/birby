@@ -2,7 +2,7 @@ CREATE TABLE staff(
     id VARCHAR(255) NOT NULL,
     uid VARCHAR(255) NOT NULL UNIQUE,
     name VARCHAR(20) NOT NULL UNIQUE,
-    display_name VARCHAR(5) NOT NULL,
+    display_name VARCHAR(20) NOT NULL,
     email VARCHAR(50) NOT NULL UNIQUE,
     PRIMARY KEY (id)
 );
