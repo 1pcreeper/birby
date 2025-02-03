@@ -20,7 +20,7 @@ public class Vocation {
     private String name;
     @JoinColumn(name="depart_id",nullable = false)
     @ManyToOne(cascade = CascadeType.ALL)
-    private String departId;
+    private Department department;
     @Column(name="is_admin")
     private boolean isAdmin = false;
 }

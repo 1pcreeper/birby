@@ -6,10 +6,10 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 
 @SpringBootApplication
 @EnableConfigurationProperties
-public class ResourceApiApplication {
+public class HRMSResourceApiApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ResourceApiApplication.class, args);
+		SpringApplication.run(HRMSResourceApiApplication.class, args);
 	}
 
 }

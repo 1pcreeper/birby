@@ -20,5 +20,5 @@ public class Role {
     private String name;
     @JoinColumn(name="voc_id",nullable = false,unique = true)
     @ManyToOne(cascade = CascadeType.ALL)
-    private String vocId;
+    private Vocation vocation;
 }
