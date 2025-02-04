@@ -21,7 +21,7 @@ CREATE TABLE vocation(
 );
 CREATE TABLE role(
     id VARCHAR(255) NOT NULL,
-    name VARCHAR(20) NOT NULL,
+    name VARCHAR(20) NOT NULL UNIQUE,
     voc_id VARCHAR(255) NULL,
     PRIMARY KEY (id),
     FOREIGN KEY (voc_id) REFERENCES vocation(id)

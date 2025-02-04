@@ -16,7 +16,7 @@ public class Role {
     @Id
     @Column(name = "id", nullable = false)
     private String id;
-    @Column(name = "name", nullable = false, length = 20)
+    @Column(name = "name", nullable = false, length = 20 , unique = true)
     private String name;
     @JoinColumn(name = "voc_id")
     @ManyToOne(cascade = CascadeType.ALL)

@@ -11,7 +11,7 @@ INSERT INTO department (id, name) VALUES
 ('2f6de9ae-2095-4700-90d0-1d26acaf0189', 'HR'),
 ('88d05bb4-22d0-4bd0-9e78-f1701dc5fa8f', 'Sales'),
 ('2c0b3ee4-b869-4702-a4cd-ff5883d34742', 'BA'),
-('a416ea57-848d-4bf6-a035-09c965a6d1e7', 'Other');
+('a416ea57-848d-4bf6-a035-09c965a6d1e7', 'Default');
 
 
 INSERT INTO vocation (id, name, depart_id, is_admin) VALUES 
@@ -31,7 +31,7 @@ INSERT INTO role (id, name, voc_id) VALUES
 ('67577630-b051-416d-9fc0-3a1c570fbfde', 'SALES_ADMIN', '615ef133-fe38-4297-9ea3-1ad572c7136b'),
 ('ea8231eb-daf2-4f07-a1c0-fa5e517439eb', 'SALES_GENERAL', 'fe28c7a1-faf3-418d-89c1-44b203facadf'),
 ('71f4b734-b2e9-481c-bc61-246ece8cf7f4', 'BA_GENERAL', '041991b9-2ecc-4c46-8cbc-b651ae28f5d3'),
-('08760e01-ee0e-4a55-a3d3-e43a701eb0bf', 'OTHER_STAFF', '4b57a34f-2a3d-4349-81ff-9e56a9a0ad98');
+('08760e01-ee0e-4a55-a3d3-e43a701eb0bf', 'DEFAULT_STAFF', '4b57a34f-2a3d-4349-81ff-9e56a9a0ad98');
 
 
 INSERT INTO staff_role (staff_id, role_id) VALUES 
@@ -40,8 +40,10 @@ INSERT INTO staff_role (staff_id, role_id) VALUES
 ('11111111-1111-1111-1111-111111111111', '08760e01-ee0e-4a55-a3d3-e43a701eb0bf'),
 ('3f22aec3-5bd1-4e00-85b5-f74c8b32c8d6', '1767e0f0-7a35-4b28-b5be-86a8e9d58dc0'),
 ('3f22aec3-5bd1-4e00-85b5-f74c8b32c8d6', '525b04a2-f9ef-4b22-b387-26f5bfa5b384'),
+('3f22aec3-5bd1-4e00-85b5-f74c8b32c8d6', '08760e01-ee0e-4a55-a3d3-e43a701eb0bf'),
 ('679aa5c6-5700-4a02-aec3-d7ff4d1c07e8', '525b04a2-f9ef-4b22-b387-26f5bfa5b384'),
-('e7361b16-8163-4486-abe9-83c891920fa3', '08760e01-ee0e-4a55-a3d3-e43a701eb0bf');
+('e7361b16-8163-4486-abe9-83c891920fa3', '08760e01-ee0e-4a55-a3d3-e43a701eb0bf'),
+('679aa5c6-5700-4a02-aec3-d7ff4d1c07e8', '08760e01-ee0e-4a55-a3d3-e43a701eb0bf');
 
 
 INSERT INTO properties (id, props_value) VALUES 
