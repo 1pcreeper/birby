@@ -1,18 +1,17 @@
-package com.birby.hrms_resource_api.dto.response;
+package com.birby.hrms_resource_api.bo.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
+import java.util.Map;
 
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class AuthResDto {
-    private String uid;
+public class AuthResBo {
+    private Map<String,Object> principalData;
     private String staffId;
-    private List<String> roles;
 }

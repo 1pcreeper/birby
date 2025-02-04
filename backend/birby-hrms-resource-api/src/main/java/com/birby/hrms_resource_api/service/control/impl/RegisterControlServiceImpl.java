@@ -1,6 +1,7 @@
 package com.birby.hrms_resource_api.service.control.impl;
 
 import com.birby.hrms_resource_api.bo.request.FirebaseAuthCreateUserReqBo;
+import com.birby.hrms_resource_api.bo.response.RegisterResBo;
 import com.birby.hrms_resource_api.constant.Roles;
 import com.birby.hrms_resource_api.exception.RegisterFailureException;
 import com.birby.hrms_resource_api.exception.ResourceNotFoundException;
@@ -35,7 +36,7 @@ public class RegisterControlServiceImpl implements RegisterControlService {
 
     @Override
     @Transactional(rollbackOn = RuntimeException.class)
-    public String register(String name, String email, String password) throws RegisterFailureException {
+    public RegisterResBo register(String name, String email, String password) throws RegisterFailureException {
         List<String> roles = List.of(Roles.STAFF);
 
         String alignedName = name.toLowerCase(Locale.ROOT).trim();
@@ -93,6 +94,6 @@ public class RegisterControlServiceImpl implements RegisterControlService {
         for(String r : roles){
             staffRoleManagerService.add(id,r);
         }
-        return uid;
+        return RegisterResBo.builder().staffId(id).uid(uid).build();
     }
 }

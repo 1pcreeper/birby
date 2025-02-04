@@ -11,4 +11,5 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class RegisterResDto {
     private String uid;
+    private String staffId;
 }
