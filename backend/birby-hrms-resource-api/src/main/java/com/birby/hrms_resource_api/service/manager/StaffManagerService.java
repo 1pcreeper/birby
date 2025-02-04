@@ -8,4 +8,5 @@ public interface StaffManagerService {
     Staff findByUid(String uid) throws ResourceNotFoundException;
     Staff findByEmail(String email) throws ResourceNotFoundException;
     Staff save(Staff staff);
+    Staff findById(String id) throws ResourceNotFoundException;
 }

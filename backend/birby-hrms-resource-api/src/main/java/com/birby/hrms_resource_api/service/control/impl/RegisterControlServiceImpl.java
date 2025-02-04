@@ -13,6 +13,7 @@ import com.birby.hrms_resource_api.service.manager.StaffRoleManagerService;
 import com.birby.hrms_resource_api.utility.UuidUtility;
 import com.google.firebase.auth.FirebaseAuthException;
 import jakarta.transaction.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,7 +24,7 @@ public class RegisterControlServiceImpl implements RegisterControlService {
     private final FirebaseAuthService firebaseAuthService;
     private final StaffManagerService staffManagerService;
     private final StaffRoleManagerService staffRoleManagerService;
-
+    @Autowired
     public RegisterControlServiceImpl(
             FirebaseAuthService firebaseAuthService,
             StaffManagerService staffManagerService,

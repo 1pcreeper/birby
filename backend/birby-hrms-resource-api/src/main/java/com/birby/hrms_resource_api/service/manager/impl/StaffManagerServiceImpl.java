@@ -35,4 +35,9 @@ public class StaffManagerServiceImpl implements StaffManagerService {
     public Staff save(Staff staff) {
         return staffRepository.save(staff);
     }
+
+    @Override
+    public Staff findById(String id) throws ResourceNotFoundException {
+        return staffRepository.findById(id).orElseThrow(()->new ResourceNotFoundException("StaffId Not Found"));
+    }
 }

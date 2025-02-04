@@ -1,6 +1,7 @@
 package com.birby.hrms_resource_api.service.manager.impl;
 
 import com.birby.hrms_resource_api.exception.ResourceNotFoundException;
+import com.birby.hrms_resource_api.model.Role;
 import com.birby.hrms_resource_api.model.StaffRole;
 import com.birby.hrms_resource_api.repository.StaffRoleRepository;
 import com.birby.hrms_resource_api.service.manager.StaffRoleManagerService;
@@ -27,4 +28,15 @@ public class StaffRoleManagerServiceImpl implements StaffRoleManagerService {
     public int add(String staffId, String roleId) {
         return staffRoleRepository.add(staffId,roleId);
     }
+
+    @Override
+    public void delete(StaffRole staffRole) {
+        staffRoleRepository.delete(staffRole);
+    }
+
+    @Override
+    public void deleteAll(List<StaffRole> staffRoles) {
+        staffRoleRepository.deleteAll(staffRoles);
+    }
+
 }
