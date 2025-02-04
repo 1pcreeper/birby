@@ -37,7 +37,7 @@ public class RegisterControlServiceImpl implements RegisterControlService {
     @Override
     @Transactional(rollbackOn = RuntimeException.class)
     public RegisterResBo register(String name, String email, String password) throws RegisterFailureException {
-        List<String> roles = List.of(Roles.STAFF);
+        List<String> roles = List.of(Roles.DEFAULT_STAFF);
 
         String alignedName = name.toLowerCase(Locale.ROOT).trim();
         String alignedEmail = email.toLowerCase(Locale.ROOT).trim();
