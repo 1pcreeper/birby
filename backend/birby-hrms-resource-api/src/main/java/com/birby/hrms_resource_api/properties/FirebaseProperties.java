@@ -5,9 +5,10 @@ import org.springframework.stereotype.Component;
 
 @Component
 @ConfigurationProperties(prefix = "firebase-config")
-public class FirebaseProperties{
+public class FirebaseProperties {
     private String issuerLocation;
     private String rolesClaim;
+    private String defaultRegisterEmail;
 
     public String getIssuerLocation() {
         return issuerLocation;
@@ -23,5 +24,13 @@ public class FirebaseProperties{
 
     public void setRolesClaim(String rolesClaim) {
         this.rolesClaim = rolesClaim;
+    }
+
+    public String getDefaultRegisterEmail() {
+        return defaultRegisterEmail;
+    }
+
+    public void setDefaultRegisterEmail(String defaultRegisterEmail) {
+        this.defaultRegisterEmail = defaultRegisterEmail;
     }
 }

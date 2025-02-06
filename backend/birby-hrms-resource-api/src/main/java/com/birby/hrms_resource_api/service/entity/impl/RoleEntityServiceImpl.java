@@ -1,17 +1,15 @@
-package com.birby.hrms_resource_api.service.manager.impl;
+package com.birby.hrms_resource_api.service.entity.impl;
 
 import com.birby.hrms_resource_api.exception.ResourceNotFoundException;
 import com.birby.hrms_resource_api.model.Role;
 import com.birby.hrms_resource_api.repository.RoleRepository;
-import com.birby.hrms_resource_api.service.manager.RoleManagerService;
+import com.birby.hrms_resource_api.service.entity.RoleEntityService;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-
 @Service
-public class RoleManagerServiceImpl implements RoleManagerService {
+public class RoleEntityServiceImpl implements RoleEntityService {
     private final RoleRepository roleRepository;
-    public RoleManagerServiceImpl(RoleRepository roleRepository) {
+    public RoleEntityServiceImpl(RoleRepository roleRepository) {
         this.roleRepository = roleRepository;
     }
     @Override

@@ -28,16 +28,16 @@ function StaffsView() {
                             <div className="flex justify-between w-full flex-wrap">
                                 <div className="p-4 text-2xl ms-5 grow">
                                     <div className="flex mb-2">
-                                        <label htmlFor="form-tag">
-                                            Tag :
+                                        <label htmlFor="form-name">
+                                            Name :
                                         </label>
                                         <span>
-                                            TAG
+                                            NAME
                                         </span>
                                     </div>
                                     <div className="flex mb-2">
-                                        <label htmlFor="form-name">
-                                            Name :
+                                        <label htmlFor="form-display-name">
+                                            Display Name :
                                         </label>
                                         <span>
                                             NAME

@@ -34,16 +34,16 @@ function StaffsEdit() {
                             <div className="flex justify-between w-full flex-wrap">
                                 <div className="p-4 text-2xl ms-5 grow">
                                     <div className="flex mb-2">
-                                        <label htmlFor="form-tag">
-                                            Tag :
-                                        </label>
-                                        <input type="text" id="form-tag" name="tag" value={loaderData.id} className="border-1" />
-                                    </div>
-                                    <div className="flex mb-2">
                                         <label htmlFor="form-name">
                                             Name :
                                         </label>
                                         <input type="text" id="form-name" name="name" value={loaderData.id} className="border-1" />
+                                    </div>
+                                    <div className="flex mb-2">
+                                        <label htmlFor="form-display-name">
+                                            Display Name :
+                                        </label>
+                                        <input type="text" id="form-display-name" name="display-name" value={loaderData.id} className="border-1" />
                                     </div>
                                     <div className="flex mb-2">
                                         <label htmlFor="form-id">

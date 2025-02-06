@@ -1,10 +1,8 @@
-package com.birby.hrms_resource_api.service.manager;
+package com.birby.hrms_resource_api.service.entity;
 
 import com.birby.hrms_resource_api.exception.ResourceNotFoundException;
 import com.birby.hrms_resource_api.model.Role;
 
-import java.util.Optional;
-
-public interface RoleManagerService {
+public interface RoleEntityService {
     Role findById(String id) throws ResourceNotFoundException;
 }

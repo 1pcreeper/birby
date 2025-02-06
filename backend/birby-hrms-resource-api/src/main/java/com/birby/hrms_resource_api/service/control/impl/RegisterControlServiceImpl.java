@@ -6,42 +6,49 @@ import com.birby.hrms_resource_api.constant.Roles;
 import com.birby.hrms_resource_api.exception.RegisterFailureException;
 import com.birby.hrms_resource_api.exception.ResourceNotFoundException;
 import com.birby.hrms_resource_api.model.Staff;
+import com.birby.hrms_resource_api.properties.FirebaseProperties;
 import com.birby.hrms_resource_api.service.auth.FirebaseAuthService;
 import com.birby.hrms_resource_api.service.control.RegisterControlService;
-import com.birby.hrms_resource_api.service.manager.StaffManagerService;
-import com.birby.hrms_resource_api.service.manager.StaffRoleManagerService;
+import com.birby.hrms_resource_api.service.entity.StaffEntityService;
+import com.birby.hrms_resource_api.service.entity.StaffRoleEntityService;
 import com.birby.hrms_resource_api.utility.UuidUtility;
 import com.google.firebase.auth.FirebaseAuthException;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Locale;
 
 @Service
+@EnableConfigurationProperties(FirebaseProperties.class)
 public class RegisterControlServiceImpl implements RegisterControlService {
     private final FirebaseAuthService firebaseAuthService;
-    private final StaffManagerService staffManagerService;
-    private final StaffRoleManagerService staffRoleManagerService;
+    private final StaffEntityService staffEntityService;
+    private final StaffRoleEntityService staffRoleEntityService;
+    private final FirebaseProperties firebaseProperties;
+
     @Autowired
     public RegisterControlServiceImpl(
             FirebaseAuthService firebaseAuthService,
-            StaffManagerService staffManagerService,
-            StaffRoleManagerService staffRoleManagerService
+            StaffEntityService staffEntityService,
+            StaffRoleEntityService staffRoleEntityService,
+            FirebaseProperties firebaseProperties
     ) {
         this.firebaseAuthService = firebaseAuthService;
-        this.staffManagerService = staffManagerService;
-        this.staffRoleManagerService = staffRoleManagerService;
+        this.staffEntityService = staffEntityService;
+        this.staffRoleEntityService = staffRoleEntityService;
+        this.firebaseProperties = firebaseProperties;
     }
 
     @Override
     @Transactional(rollbackOn = RuntimeException.class)
-    public RegisterResBo register(String name, String email, String password) throws RegisterFailureException {
+    public RegisterResBo register(String name,  String password, String displayName) throws RegisterFailureException {
         List<String> roles = List.of(Roles.DEFAULT_STAFF);
 
         String alignedName = name.toLowerCase(Locale.ROOT).trim();
-        String alignedEmail = email.toLowerCase(Locale.ROOT).trim();
+        String alignedEmail = alignedName.concat("@").concat(firebaseProperties.getDefaultRegisterEmail());
 
         boolean isEmailExisted = true;
         boolean isNameExisted = true;
@@ -54,13 +61,13 @@ public class RegisterControlServiceImpl implements RegisterControlService {
             isEmailExistedInFirebase = false;
         }
         try {
-            staffManagerService.findByName(alignedName);
+            staffEntityService.findByName(alignedName);
             errMessage = "Name Already Existed";
         } catch (ResourceNotFoundException e) {
             isNameExisted = false;
         }
         try {
-            staffManagerService.findByEmail(alignedEmail);
+            staffEntityService.findByEmail(alignedEmail);
             errMessage = "Email Already Existed";
         } catch (ResourceNotFoundException e) {
             isEmailExisted = false;
@@ -70,7 +77,7 @@ public class RegisterControlServiceImpl implements RegisterControlService {
         }
         FirebaseAuthCreateUserReqBo reqBo = FirebaseAuthCreateUserReqBo
                 .builder()
-                .displayName(alignedName)
+                .displayName(displayName)
                 .email(alignedEmail)
                 .password(password)
                 .disable(false)
@@ -83,17 +90,17 @@ public class RegisterControlServiceImpl implements RegisterControlService {
         } catch (FirebaseAuthException e) {
             throw new RegisterFailureException(e.getMessage());
         }
-        Staff newStaff = Staff
+        Staff staff = Staff
                 .builder()
                 .id(id)
                 .uid(uid)
-                .displayName(alignedName)
+                .displayName(displayName)
                 .name(alignedName)
                 .email(alignedEmail)
                 .build();
-        staffManagerService.save(newStaff);
-        for(String r : roles){
-            staffRoleManagerService.add(id,r);
+        staffEntityService.save(staff);
+        for (String r : roles) {
+            staffRoleEntityService.insert(id, r);
         }
         return RegisterResBo.builder().staffId(id).uid(uid).build();
     }

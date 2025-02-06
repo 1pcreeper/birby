@@ -18,6 +18,5 @@ public class StaffRoleReqDto {
     @NotBlank
     private String staffId;
     @NotNull
-    @NotBlank
     private List<String> roleIds;
 }

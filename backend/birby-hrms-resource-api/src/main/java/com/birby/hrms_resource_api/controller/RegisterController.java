@@ -32,8 +32,8 @@ public class RegisterController {
                 "Registered new account",
                 registerMapper.toRegisterResDto(registerControlService.register(
                         reqDto.getName(),
-                        reqDto.getEmail(),
-                        reqDto.getPassword()
+                        reqDto.getPassword(),
+                        reqDto.getDisplayName()
                 ))
         );
     }

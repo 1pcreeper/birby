@@ -1,43 +1,23 @@
 package com.birby.hrms_resource_api.service.manager.impl;
 
-import com.birby.hrms_resource_api.exception.ResourceNotFoundException;
+import com.birby.hrms_resource_api.bo.request.StaffUpdateReqBo;
 import com.birby.hrms_resource_api.model.Staff;
-import com.birby.hrms_resource_api.repository.StaffRepository;
+import com.birby.hrms_resource_api.service.entity.StaffEntityService;
 import com.birby.hrms_resource_api.service.manager.StaffManagerService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class StaffManagerServiceImpl implements StaffManagerService {
-    private final StaffRepository staffRepository;
-
-    public StaffManagerServiceImpl(
-            StaffRepository staffRepository
-    ) {
-        this.staffRepository = staffRepository;
+    private final StaffEntityService staffEntityService;
+    @Autowired
+    public StaffManagerServiceImpl(StaffEntityService staffEntityService) {
+        this.staffEntityService = staffEntityService;
     }
-
     @Override
-    public Staff findByName(String name) throws ResourceNotFoundException {
-        return staffRepository.findByName(name).orElseThrow(()->new ResourceNotFoundException("Name Not Found"));
-    }
-
-    @Override
-    public Staff findByUid(String uid) throws ResourceNotFoundException {
-        return staffRepository.findByUid(uid).orElseThrow(()->new ResourceNotFoundException("Uid Not Found"));
-    }
-
-    @Override
-    public Staff findByEmail(String email) throws ResourceNotFoundException {
-        return staffRepository.findByEmail(email).orElseThrow(()->new ResourceNotFoundException("Email Not Found"));
-    }
-
-    @Override
-    public Staff save(Staff staff) {
-        return staffRepository.save(staff);
-    }
-
-    @Override
-    public Staff findById(String id) throws ResourceNotFoundException {
-        return staffRepository.findById(id).orElseThrow(()->new ResourceNotFoundException("StaffId Not Found"));
+    public Staff updateStaff(StaffUpdateReqBo reqBo) {
+        Staff staff = staffEntityService.findById(reqBo.getUpdateId());
+        staff.setDisplayName(reqBo.getDisplayName());
+        return staffEntityService.save(staff);
     }
 }

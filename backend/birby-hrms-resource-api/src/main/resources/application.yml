@@ -20,6 +20,7 @@ spring:
 firebase-config:
   issuer-location: ${FIREBASE_CONFIG_ISSUER_LOCATION}
   roles-claim: ${FIREBASE_CONFIG_ROLES_CLAIM}
+  default-register-email: ${FIREBASE_DEFAULT_REGISTER_EMAIL}
 security-config:
   allowed-cors:
     - http://localhost

@@ -25,10 +25,10 @@ function Staffs() {
                         <thead className="sm:text-2xl text-lg">
                             <tr className="border-b-3">
                                 <th className="text-start ps-4">
-                                    Name
+                                    Display Name
                                 </th>
                                 <th>
-                                    Tag
+                                    Name
                                 </th>
                                 <th>
                                     Roles
