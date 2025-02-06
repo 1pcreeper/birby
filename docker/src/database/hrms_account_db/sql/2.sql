@@ -47,7 +47,4 @@ INSERT INTO staff_role (staff_id, role_id) VALUES
 
 
 INSERT INTO properties (id, props_value) VALUES 
-('p1', 'Value 1'),
-('p2', 'Value 2'),
-('p3', 'Value 3'),
-('p4', 'Value 4');
+('p1', 'Value 1');

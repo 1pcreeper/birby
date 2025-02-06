@@ -1,6 +1,7 @@
 package com.birby.hrms_resource_api.handler;
 
 import com.birby.hrms_resource_api.dto.ApiResponse;
+import com.birby.hrms_resource_api.exception.DatabaseUpdateFailureException;
 import com.birby.hrms_resource_api.exception.PrincipalException;
 import com.birby.hrms_resource_api.exception.RegisterFailureException;
 import com.birby.hrms_resource_api.exception.ResourceNotFoundException;
@@ -14,7 +15,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(PrincipalException.class)
     public ResponseEntity<ApiResponse<String>> handlePrincipalException(PrincipalException e){
         return ResponseEntity
-                .status(HttpStatus.UNPROCESSABLE_ENTITY)
+                .status(HttpStatus.BAD_REQUEST)
                 .body(
                 ApiResponse.error(e.getMessage())
         );
@@ -31,6 +32,14 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ApiResponse<String>> handleResourceNotFoundException(ResourceNotFoundException e){
         return ResponseEntity
                 .status(HttpStatus.NOT_FOUND)
+                .body(
+                        ApiResponse.error(e.getMessage())
+                );
+    }
+    @ExceptionHandler(DatabaseUpdateFailureException.class)
+    public ResponseEntity<ApiResponse<String>> handleDatabaseUpdateFailureException(DatabaseUpdateFailureException e){
+        return ResponseEntity
+                .status(HttpStatus.UNPROCESSABLE_ENTITY)
                 .body(
                         ApiResponse.error(e.getMessage())
                 );

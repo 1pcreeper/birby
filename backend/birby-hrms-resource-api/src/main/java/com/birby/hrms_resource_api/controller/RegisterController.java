@@ -26,11 +26,9 @@ public class RegisterController {
         this.registerMapper = registerMapper;
     }
 
-    @PermitAll
     @PostMapping
     public ApiResponse<RegisterResDto> register(@Valid @RequestBody RegisterReqDto reqDto) {
         return ApiResponse.ok(
-                true,
                 "Registered new account",
                 registerMapper.toRegisterResDto(registerControlService.register(
                         reqDto.getName(),

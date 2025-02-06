@@ -1,5 +1,6 @@
 package com.birby.hrms_resource_api.service.manager.impl;
 
+import com.birby.hrms_resource_api.exception.DatabaseUpdateFailureException;
 import com.birby.hrms_resource_api.exception.ResourceNotFoundException;
 import com.birby.hrms_resource_api.model.Role;
 import com.birby.hrms_resource_api.model.StaffRole;
@@ -25,8 +26,12 @@ public class StaffRoleManagerServiceImpl implements StaffRoleManagerService {
     }
 
     @Override
-    public int add(String staffId, String roleId) {
-        return staffRoleRepository.add(staffId,roleId);
+    public int add(String staffId, String roleId) throws DatabaseUpdateFailureException {
+        try {
+            return staffRoleRepository.add(staffId,roleId);
+        }catch(RuntimeException e){
+            throw new DatabaseUpdateFailureException(e.getMessage());
+        }
     }
 
     @Override

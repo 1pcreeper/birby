@@ -1,5 +1,6 @@
 package com.birby.hrms_resource_api.service.control.impl;
 
+import com.birby.hrms_resource_api.exception.DatabaseUpdateFailureException;
 import com.birby.hrms_resource_api.exception.ResourceNotFoundException;
 import com.birby.hrms_resource_api.model.Role;
 import com.birby.hrms_resource_api.model.Staff;
@@ -32,7 +33,8 @@ public class StaffRoleControlServiceImpl implements StaffRoleControlService {
     }
 
     @Override
-    public void setStaffRoles(String staffId, List<String> roleIds) throws ResourceNotFoundException, FirebaseAuthException {
+    public void setStaffRoles(String staffId, List<String> roleIds)
+            throws ResourceNotFoundException, FirebaseAuthException , DatabaseUpdateFailureException {
         List<StaffRole> staffRoles = staffRoleManagerService.findByStaffId(staffId);
         staffRoleManagerService.deleteAll(staffRoles);
         for(String roleId : roleIds){
