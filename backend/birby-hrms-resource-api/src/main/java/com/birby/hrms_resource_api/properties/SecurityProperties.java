@@ -7,9 +7,17 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-@Getter
+@Data
 @Component
 @ConfigurationProperties(prefix = "security-config")
 public class SecurityProperties {
     private List<String> allowedCors;
+
+    public List<String> getAllowedCors() {
+        return allowedCors;
+    }
+
+    public void setAllowedCors(List<String> allowedCors) {
+        this.allowedCors = allowedCors;
+    }
 }
