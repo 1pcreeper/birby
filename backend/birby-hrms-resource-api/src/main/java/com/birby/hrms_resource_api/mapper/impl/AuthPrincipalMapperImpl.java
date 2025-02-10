@@ -1,7 +1,6 @@
 package com.birby.hrms_resource_api.mapper.impl;
 
 import com.birby.hrms_resource_api.bo.response.AuthResBo;
-import com.birby.hrms_resource_api.bo.response.RegisterResBo;
 import com.birby.hrms_resource_api.dto.response.AuthResDto;
 import com.birby.hrms_resource_api.exception.PrincipalException;
 import com.birby.hrms_resource_api.mapper.AuthPrincipalMapper;
@@ -33,7 +32,7 @@ public class AuthPrincipalMapperImpl implements AuthPrincipalMapper {
         try{
             AuthResDto resDto = new AuthResDto();
             resDto.setUid((String)principalData.get(UID_KEY));
-            resDto.setRoles((List<String>)principalData.get(ROLES_KEY));
+            resDto.setRoleIds((List<String>)principalData.get(ROLES_KEY));
             resDto.setStaffId(staffId);
             return resDto;
         } catch (RuntimeException e) {

@@ -2,6 +2,7 @@ package com.birby.hrms_resource_api.service.control.impl;
 
 import com.birby.hrms_resource_api.bo.response.AuthResBo;
 import com.birby.hrms_resource_api.exception.ResourceNotFoundException;
+import com.birby.hrms_resource_api.exception.UnAuthorizedException;
 import com.birby.hrms_resource_api.model.Staff;
 import com.birby.hrms_resource_api.service.auth.PrincipalService;
 import com.birby.hrms_resource_api.service.control.AuthControlService;
@@ -25,7 +26,7 @@ public class AuthControlServiceImpl implements AuthControlService {
         this.staffEntityService = staffEntityService;
     }
     @Override
-    public AuthResBo getAuthData(Principal principal) throws ResourceNotFoundException {
+    public AuthResBo getAuthData(Principal principal) throws UnAuthorizedException,ResourceNotFoundException {
         Map<String,Object> principalData = principalService.getPrincipalData(principal);
         String uid = (String) principalData.get("uid");
         Staff staff = staffEntityService.findByUid(uid);

@@ -1,10 +1,7 @@
 package com.birby.hrms_resource_api.handler;
 
 import com.birby.hrms_resource_api.dto.ApiResponse;
-import com.birby.hrms_resource_api.exception.DatabaseUpdateFailureException;
-import com.birby.hrms_resource_api.exception.PrincipalException;
-import com.birby.hrms_resource_api.exception.RegisterFailureException;
-import com.birby.hrms_resource_api.exception.ResourceNotFoundException;
+import com.birby.hrms_resource_api.exception.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -40,6 +37,14 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ApiResponse<String>> handleDatabaseUpdateFailureException(DatabaseUpdateFailureException e){
         return ResponseEntity
                 .status(HttpStatus.UNPROCESSABLE_ENTITY)
+                .body(
+                        ApiResponse.error(e.getMessage())
+                );
+    }
+    @ExceptionHandler(UnAuthorizedException.class)
+    public ResponseEntity<ApiResponse<String>> handleUnAuthorizedException(UnAuthorizedException e){
+        return ResponseEntity
+                .status(HttpStatus.UNAUTHORIZED)
                 .body(
                         ApiResponse.error(e.getMessage())
                 );

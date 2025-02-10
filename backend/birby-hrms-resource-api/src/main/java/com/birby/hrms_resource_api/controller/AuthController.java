@@ -1,8 +1,9 @@
 package com.birby.hrms_resource_api.controller;
 
 import com.birby.hrms_resource_api.dto.response.AuthResDto;
+import com.birby.hrms_resource_api.exception.UnAuthorizedException;
 import com.birby.hrms_resource_api.mapper.AuthPrincipalMapper;
-import com.birby.hrms_resource_api.service.auth.PrincipalService;
+import com.birby.hrms_resource_api.service.control.BloomFilterControlService;
 import com.birby.hrms_resource_api.service.control.AuthControlService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,16 +17,21 @@ import java.security.Principal;
 public class AuthController {
     private final AuthControlService authControlService;
     private final AuthPrincipalMapper authPrincipalMapper;
+    private final BloomFilterControlService bloomFilterControlService;
     @Autowired
     public AuthController(
             AuthControlService authControlService,
-            AuthPrincipalMapper authPrincipalMapper
+            AuthPrincipalMapper authPrincipalMapper,
+            BloomFilterControlService bloomFilterControlService
     ) {
         this.authControlService = authControlService;
         this.authPrincipalMapper = authPrincipalMapper;
+        this.bloomFilterControlService = bloomFilterControlService;
     }
     @GetMapping()
-    public AuthResDto getPrincipal(Principal principal){
-        return authPrincipalMapper.toAuthResDto(authControlService.getAuthData(principal));
+    public AuthResDto getPrincipal(Principal principal) throws UnAuthorizedException {
+        AuthResDto authData = authPrincipalMapper.toAuthResDto(authControlService.getAuthData(principal));
+        bloomFilterControlService.authorize(authData.getStaffId(),authData.getRoleIds());
+        return authData;
     }
 }

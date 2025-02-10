@@ -14,5 +14,5 @@ import java.util.List;
 public class AuthResDto {
     private String uid;
     private String staffId;
-    private List<String> roles;
+    private List<String> roleIds;
 }
