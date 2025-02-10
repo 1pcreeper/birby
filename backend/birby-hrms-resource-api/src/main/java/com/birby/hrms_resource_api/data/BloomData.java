@@ -2,7 +2,6 @@ package com.birby.hrms_resource_api.data;
 
 import com.google.common.hash.BloomFilter;
 import com.google.common.hash.Funnels;
-import lombok.Getter;
 
 import java.nio.charset.StandardCharsets;
 

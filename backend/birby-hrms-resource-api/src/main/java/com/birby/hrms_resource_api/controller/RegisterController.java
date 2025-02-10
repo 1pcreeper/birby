@@ -5,7 +5,6 @@ import com.birby.hrms_resource_api.dto.request.RegisterReqDto;
 import com.birby.hrms_resource_api.dto.response.RegisterResDto;
 import com.birby.hrms_resource_api.mapper.RegisterMapper;
 import com.birby.hrms_resource_api.service.control.RegisterControlService;
-import jakarta.annotation.security.PermitAll;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
