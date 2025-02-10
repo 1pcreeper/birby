@@ -28,24 +28,36 @@ function StaffsCreate() {
                             <div className="flex justify-between w-full flex-wrap">
                                 <div className="p-4 text-2xl ms-5 grow">
                                     <div className="flex mb-2">
-                                        <label htmlFor="form-name">
-                                            Name :
-                                        </label>
-                                        <input type="text" id="form-name" name="name" className="border-1" />
-                                    </div>
-                                    <div className="flex mb-2">
-                                        <label htmlFor="form-display-name">
-                                            Display Name :
-                                        </label>
-                                        <input type="text" id="form-display-name" name="display-name" className="border-1" />
-                                    </div>
-                                    <div className="flex mb-2">
                                         <label htmlFor="form-email">
                                             Email :
                                         </label>
                                         <span>
                                             1234
                                         </span>
+                                    </div>
+                                    <div className="flex mb-2">
+                                        <label htmlFor="form-name">
+                                            Name :
+                                        </label>
+                                        <input type="text" id="form-name" name="name" className="border-1" placeholder="Tag/Name" />
+                                    </div>
+                                    <div className="flex mb-2">
+                                        <label htmlFor="form-display-name">
+                                            Display Name :
+                                        </label>
+                                        <input type="text" id="form-display-name" name="display-name" className="border-1" placeholder="Display Name" />
+                                    </div>
+                                    <div className="flex mb-2">
+                                        <label htmlFor="form-password">
+                                            Password :
+                                        </label>
+                                        <input type="password" id="form-password" name="form-password" className="border-1" placeholder="" />
+                                    </div>
+                                    <div className="flex mb-2">
+                                        <label htmlFor="form-confirm-password">
+                                            Confirm Password :
+                                        </label>
+                                        <input type="password" id="form-confirm-password" name="form-confirm-password" className="border-1" placeholder="" />
                                     </div>
                                     <div className="flex">
                                         <label className="me-3">
