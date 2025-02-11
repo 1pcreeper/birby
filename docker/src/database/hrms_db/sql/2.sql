@@ -1,3 +1,4 @@
+USE hrms_db;
 INSERT INTO staff (id, display_name) VALUES 
 ('11111111-1111-1111-1111-111111111111', 'Lin Chi Kin'),
 ('3f22aec3-5bd1-4e00-85b5-f74c8b32c8d6', 'Bob B.'),

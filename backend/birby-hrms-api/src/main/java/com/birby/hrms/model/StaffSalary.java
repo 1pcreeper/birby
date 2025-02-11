@@ -22,9 +22,9 @@ public class StaffSalary {
     @OneToOne(cascade = CascadeType.ALL)
     private Staff staff;
     @Column(name = "hourly", nullable = false)
-    private BigDecimal hourly;
+    private BigDecimal hourly = BigDecimal.ZERO;
     @Column(name = "daily", nullable = false)
-    private BigDecimal daily;
+    private BigDecimal daily = BigDecimal.ZERO;
     @Column(name = "monthly", nullable = false)
-    private BigDecimal monthly;
+    private BigDecimal monthly = BigDecimal.ZERO;
 }

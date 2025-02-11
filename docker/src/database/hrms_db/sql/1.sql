@@ -10,12 +10,12 @@ CREATE TABLE job_type(
 );
 CREATE TABLE staff_salary(
     staff_id VARCHAR(255) NOT NULL,
-    hourly DECIMAL(5,2) DEFAULT 0,
-    daily DECIMAL(5,2) DEFAULT 0,
-    monthly DECIMAL(5,2) DEFAULT 0,
+    hourly DECIMAL(8,2) DEFAULT 0.0,
+    daily DECIMAL(8,2) DEFAULT 0.0,
+    monthly DECIMAL(8,2) DEFAULT 0.0,
     PRIMARY KEY (staff_id),
     FOREIGN KEY (staff_id) REFERENCES staff(id)
-)
+);
 CREATE TABLE staff_detail(
 	staff_id VARCHAR(255) NOT NULL,
     gender BOOLEAN NOT NULL,
@@ -29,7 +29,7 @@ CREATE TABLE staff_detail(
 CREATE TABLE leave_wage_type(
 	id VARCHAR(255) NOT NULL,
     name VARCHAR(20) NOT NULL,
-    ratio DECIMAL(5,2) NOT NULL,
+    ratio DECIMAL(8,2) NOT NULL,
     PRIMARY KEY (id)
 );
 CREATE TABLE sick_leave(
@@ -92,7 +92,7 @@ CREATE TABLE attendance (
 CREATE TABLE staff_wage(
 	id VARCHAR(255) NOT NULL,
     attend_id VARCHAR(255) NOT NULL UNIQUE,
-    wage DECIMAL(5,2) NOT NULL,
+    wage DECIMAL(8,2) NOT NULL,
     is_paid BOOL DEFAULT FALSE,
     PRIMARY KEY (id),
     FOREIGN KEY (attend_id) REFERENCES attendance(id),
