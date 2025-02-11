@@ -41,4 +41,11 @@ public class StaffRoleManagerServiceImpl implements StaffRoleManagerService {
         Staff staff = staffEntityService.findById(staffId);
         firebaseAuthService.setRoleClaims(staff.getUid(),roleIds);
     }
+
+    @Override
+    public List<StaffRole> findByStaffId(String staffId) {
+        return staffRoleEntityService.findByStaffId(staffId);
+    }
+
+
 }
