@@ -50,3 +50,6 @@ INSERT INTO staff_salary (staff_id,hourly,daily,monthly) VALUES
 ('3f22aec3-5bd1-4e00-85b5-f74c8b32c8d6', 60,600,18000),
 ('679aa5c6-5700-4a02-aec3-d7ff4d1c07e8', 50,500,15000),
 ('e7361b16-8163-4486-abe9-83c891920fa3', 40,400,12000);
+
+-- INSERT INTO shift (id,name,start_time,end_time) VALUES
+-- ();
