@@ -2,12 +2,16 @@ package com.birby.hrms;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 
 @SpringBootApplication
-public class HrmsApplication {
+@EnableFeignClients
+@EnableConfigurationProperties
+public class HRMSApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(HrmsApplication.class, args);
+		SpringApplication.run(HRMSApplication.class, args);
 	}
 
 }
