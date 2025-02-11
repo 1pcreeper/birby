@@ -16,8 +16,11 @@ import java.sql.Date;
 @Table(name = "staff_detail")
 public class StaffDetail {
     @Id
-    @Column(name = "staff_id", nullable = false)
-    private String staffId;
+    private int id;
+    @MapsId
+    @JoinColumn(name = "staff_id", nullable = false)
+    @OneToOne(cascade = CascadeType.ALL)
+    private Staff staff;
     @Column(name = "gender", nullable = false)
     private boolean gender;
     @Column(name = "birth")

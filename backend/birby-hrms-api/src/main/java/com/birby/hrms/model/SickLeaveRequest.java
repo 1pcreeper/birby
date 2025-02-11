@@ -20,6 +20,7 @@ public class SickLeaveRequest {
     @OneToOne(cascade = CascadeType.ALL)
     private String reqId;
     @JoinColumn(name = "sick_leave_id", nullable = false)
+    @ManyToOne(cascade = CascadeType.ALL)
     private SickLeave sickLeave;
 
 }

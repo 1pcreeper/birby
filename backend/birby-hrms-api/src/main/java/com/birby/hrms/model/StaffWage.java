@@ -18,8 +18,9 @@ public class StaffWage {
     @Id
     @Column(name = "id", nullable = false)
     private String id;
-    @JoinColumn(name = "duty_id", nullable = false, unique = true)
-    private Duty duty;
+    @JoinColumn(name = "attend_id", nullable = false, unique = true)
+    @ManyToOne(cascade = CascadeType.ALL)
+    private Attendance attendance;
     @Column(name = "wage", nullable = false)
     private BigDecimal wage;
     @Column(name = "is_paid")

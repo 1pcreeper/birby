@@ -8,6 +8,14 @@ CREATE TABLE job_type(
     name VARCHAR(20) NOT NULL,
     PRIMARY KEY (id)
 );
+CREATE TABLE staff_salary(
+    staff_id VARCHAR(255) NOT NULL,
+    hourly DECIMAL(5,2) DEFAULT 0,
+    daily DECIMAL(5,2) DEFAULT 0,
+    monthly DECIMAL(5,2) DEFAULT 0,
+    PRIMARY KEY (staff_id),
+    FOREIGN KEY (staff_id) REFERENCES staff(id)
+)
 CREATE TABLE staff_detail(
 	staff_id VARCHAR(255) NOT NULL,
     gender BOOLEAN NOT NULL,
@@ -18,24 +26,17 @@ CREATE TABLE staff_detail(
     FOREIGN KEY (staff_id) REFERENCES staff(id),
     FOREIGN KEY (job_type_id) REFERENCES job_type(id)
 );
-
-CREATE TABLE leave_approval(
-	id VARCHAR(255) NOT NULL,
-    name VARCHAR(20) NOT NULL,
-    PRIMARY KEY (id)
-);
 CREATE TABLE leave_wage_type(
 	id VARCHAR(255) NOT NULL,
     name VARCHAR(20) NOT NULL,
+    ratio DECIMAL(5,2) NOT NULL,
     PRIMARY KEY (id)
 );
 CREATE TABLE sick_leave(
 	id VARCHAR(255) NOT NULL,
     name VARCHAR(20) NOT NULL,
-    leave_approval_id VARCHAR(255) NOT NULL,
     leave_wage_type_id VARCHAR(255) NOT NULL,
     PRIMARY KEY (id),
-    FOREIGN KEY (leave_approval_id) REFERENCES leave_approval(id),
     FOREIGN KEY (leave_wage_type_id) REFERENCES leave_wage_type(id)
 );
 CREATE TABLE venue(
@@ -63,7 +64,7 @@ CREATE TABLE shift (
     end_time TIME NOT NULL,
     PRIMARY KEY (id)
 );
-CREATE TABLE attendance (
+CREATE TABLE duty (
 	id VARCHAR(255) NOT NULL,
     staff_id VARCHAR(255) NOT NULL,
     `date` DATE NOT NULL,
@@ -78,27 +79,25 @@ CREATE TABLE attendance (
     FOREIGN KEY (venue_id) REFERENCES venue(id),
     FOREIGN KEY (shift_id) REFERENCES shift(id)
 );
-CREATE TABLE duty (
+CREATE TABLE attendance (
 	id VARCHAR(255) NOT NULL,
-    attend_id VARCHAR(255) NOT NULL UNIQUE,
+    duty_id VARCHAR(255) NOT NULL UNIQUE,
     arrive_time TIME NULL,
     leave_time TIME NULL,
     report TEXT NULL,
     PRIMARY KEY (id),
-    FOREIGN KEY (attend_id) REFERENCES attendance(id),
+    FOREIGN KEY (duty_id) REFERENCES duty(id),
     INDEX (attend_id)
 );
 CREATE TABLE staff_wage(
 	id VARCHAR(255) NOT NULL,
-    duty_id VARCHAR(255) NOT NULL UNIQUE,
-    wage DECIMAL(10,10) NOT NULL,
+    attend_id VARCHAR(255) NOT NULL UNIQUE,
+    wage DECIMAL(5,2) NOT NULL,
     is_paid BOOL DEFAULT FALSE,
     PRIMARY KEY (id),
-    FOREIGN KEY (duty_id) REFERENCES duty(id),
+    FOREIGN KEY (attend_id) REFERENCES attendance(id),
     INDEX (duty_id)
 );
-----------------------------------------------------------------------
-
 CREATE TABLE request_method(
 	id VARCHAR(255) NOT NULL,
     name VARCHAR(50) NOT NULL,

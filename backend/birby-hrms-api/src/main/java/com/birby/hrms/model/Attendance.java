@@ -6,32 +6,25 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.sql.Date;
+import java.sql.Time;
 
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(
-        name = "attendance",
-        uniqueConstraints = @UniqueConstraint(columnNames = {"staff_id", "date"})
-)
+@Table(name = "duty")
 public class Attendance {
     @Id
     @Column(name = "id", nullable = false)
     private String id;
-    @ManyToOne
-    @JoinColumn(name = "staff_id", nullable = false)
-    private Staff staff;
-    @Column(name = "date", nullable = false)
-    private Date date;
-    @JoinColumn(name = "shift_id", nullable = false)
-    private Shift shift;
-    @JoinColumn(name = "sick_leave_id")
-    private SickLeave sickLeave;
-    @JoinColumn(name = "venue_id")
-    private Venue venue;
-    @Column(name = "task")
-    private String task;
+    @JoinColumn(name = "duty_id", nullable = false, unique = true)
+    @ManyToOne(cascade = CascadeType.ALL)
+    private Duty duty;
+    @Column(name = "arrive_time")
+    private Time arriveTime;
+    @Column(name = "leave_time")
+    private Time leaveTime;
+    @Column(name = "report")
+    private String report;
 }

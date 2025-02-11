@@ -21,6 +21,7 @@ public class Request {
     @JoinColumn(name = "req_method_id",nullable = false)
     private RequestMethod requestMethod;
     @JoinColumn(name = "from_staff_id",nullable = false)
+    @ManyToOne(cascade = CascadeType.ALL)
     private RequestMethod fromStaffId;
     @Column(name = "time",nullable = false)
     private LocalDateTime time;

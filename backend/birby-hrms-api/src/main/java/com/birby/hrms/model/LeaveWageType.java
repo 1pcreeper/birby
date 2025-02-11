@@ -10,6 +10,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
+
 @Data
 @Builder
 @NoArgsConstructor
@@ -22,4 +24,6 @@ public class LeaveWageType {
     private String id;
     @Column(name = "name", nullable = false, length = 20)
     private String name;
+    @Column(name = "ratio", nullable = false)
+    private BigDecimal ratio;
 }
