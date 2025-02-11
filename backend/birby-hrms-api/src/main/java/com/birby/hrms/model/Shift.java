@@ -9,16 +9,22 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.sql.Time;
+
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "staff")
-public class Staff {
+@Table(name = "shift")
+public class Shift {
     @Id
     @Column(name = "id", nullable = false)
     private String id;
-    @Column(name = "display_name", nullable = false, length = 20)
-    private String displayName;
+    @Column(name = "name", nullable = false, length = 50)
+    private String name;
+    @Column(name = "start_time",nullable = false)
+    private Time startTime;
+    @Column(name = "end_time",nullable = false)
+    private Time endTime;
 }

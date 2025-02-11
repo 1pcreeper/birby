@@ -14,11 +14,17 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "staff")
-public class Staff {
+@Table(name = "venue")
+public class Venue {
     @Id
     @Column(name = "id", nullable = false)
     private String id;
-    @Column(name = "display_name", nullable = false, length = 20)
-    private String displayName;
+    @Column(name = "name", nullable = false, length = 50)
+    private String name;
+    @Column(name="address",nullable = false)
+    private String address;
+    @Column(name = "staff_amount",nullable = false)
+    private int staffAmount;
+    @Column(name = "is_active")
+    private boolean isActive = true;
 }

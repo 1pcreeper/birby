@@ -1,5 +1,6 @@
 package com.birby.hrms.model;
 
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -14,11 +15,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "staff")
-public class Staff {
+@Table(name = "leave_wage_type")
+public class LeaveWageType {
     @Id
     @Column(name = "id", nullable = false)
     private String id;
-    @Column(name = "display_name", nullable = false, length = 20)
-    private String displayName;
+    @Column(name = "name", nullable = false, length = 20)
+    private String name;
 }

@@ -14,11 +14,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "staff")
-public class Staff {
+@Table(name = "leave_approval")
+public class LeaveApproval {
     @Id
     @Column(name = "id", nullable = false)
     private String id;
-    @Column(name = "display_name", nullable = false, length = 20)
-    private String displayName;
+    @Column(name = "name", nullable = false, length = 20)
+    private String name;
 }

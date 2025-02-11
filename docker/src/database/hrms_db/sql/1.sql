@@ -1,5 +1,6 @@
 CREATE TABLE staff(
     id VARCHAR(255) NOT NULL,
+    display_name VARCHAR(20) NOT NULL,
     PRIMARY KEY (id)
 );
 CREATE TABLE job_type(
@@ -9,7 +10,6 @@ CREATE TABLE job_type(
 );
 CREATE TABLE staff_detail(
 	staff_id VARCHAR(255) NOT NULL,
-    display_name VARCHAR(20) NOT NULL,
     gender BOOLEAN NOT NULL,
     birth DATE NULL,
     hk_phone VARCHAR(8) UNIQUE CHECK (REGEXP_LIKE(hk_phone, '^[0-9]{8}$')),
@@ -91,7 +91,7 @@ CREATE TABLE duty (
 CREATE TABLE staff_wage(
 	id VARCHAR(255) NOT NULL,
     duty_id VARCHAR(255) NOT NULL UNIQUE,
-    wage DECIMAL(10,10),
+    wage DECIMAL(10,10) NOT NULL,
     is_paid BOOL DEFAULT FALSE,
     PRIMARY KEY (id),
     FOREIGN KEY (duty_id) REFERENCES duty(id),
@@ -110,13 +110,13 @@ CREATE TABLE request(
     req_method_id VARCHAR(255) NOT NULL,
     from_staff_id VARCHAR(255) NOT NULL,
     time DATETIME NOT NULL,
-    is_approved BOOL NULL,
+    is_approved BOOLEAN NULL,
     PRIMARY KEY (id),
     FOREIGN KEY (req_method_id) REFERENCES request_method(id),
     FOREIGN KEY (from_staff_id) REFERENCES staff(id)
 );
 
-CREATE TABLE pend_req_sickleave(
+CREATE TABLE sickleave_request(
 	req_id VARCHAR(255) NOT NULL,
     sick_leave_id VARCHAR(255) NOT NULL,
     PRIMARY KEY (req_id),
