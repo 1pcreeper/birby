@@ -1,7 +1,22 @@
 CREATE TABLE staff(
     id VARCHAR(255) NOT NULL,
-    gender BOOLEAN NOT NULL,
     PRIMARY KEY (id)
+);
+CREATE TABLE job_type(
+    id VARCHAR(255) NOT NULL,
+    name VARCHAR(20) NOT NULL,
+    PRIMARY KEY (id)
+);
+CREATE TABLE staff_detail(
+	staff_id VARCHAR(255) NOT NULL,
+    display_name VARCHAR(20) NOT NULL,
+    gender BOOLEAN NOT NULL,
+    birth DATE NULL,
+    hk_phone VARCHAR(8) UNIQUE CHECK (REGEXP_LIKE(hk_phone, '^[0-9]{8}$')),
+    job_type_id VARCHAR(255) NOT NULL,
+    PRIMARY KEY (staff_id),
+    FOREIGN KEY (staff_id) REFERENCES staff(id),
+    FOREIGN KEY (job_type_id) REFERENCES job_type(id)
 );
 
 CREATE TABLE leave_approval(
