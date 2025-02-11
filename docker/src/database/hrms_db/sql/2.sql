@@ -45,4 +45,8 @@ INSERT INTO staff_venue_preference (staff_id,venue_id,z_index) VALUES
 ('e7361b16-8163-4486-abe9-83c891920fa3', '7bb36e78-5e20-4d34-8173-11016356e8a9',1),
 ('e7361b16-8163-4486-abe9-83c891920fa3', 'e5809d77-63fe-4d23-ab0b-aaa903823edd',0);
 
-
+INSERT INTO staff_salary (staff_id,hourly,daily,monthly) VALUES
+('11111111-1111-1111-1111-111111111111', 70,700,21000),
+('3f22aec3-5bd1-4e00-85b5-f74c8b32c8d6', 60,600,18000),
+('679aa5c6-5700-4a02-aec3-d7ff4d1c07e8', 50,500,15000),
+('e7361b16-8163-4486-abe9-83c891920fa3', 40,400,12000);
