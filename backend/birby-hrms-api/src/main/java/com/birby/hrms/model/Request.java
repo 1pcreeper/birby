@@ -22,7 +22,7 @@ public class Request {
     private RequestMethod requestMethod;
     @JoinColumn(name = "from_staff_id",nullable = false)
     @ManyToOne(cascade = CascadeType.ALL)
-    private RequestMethod fromStaffId;
+    private Staff staff;
     @Column(name = "time",nullable = false)
     private LocalDateTime time;
     @Column(name = "is_approved",nullable = true)
