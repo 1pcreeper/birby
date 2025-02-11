@@ -18,7 +18,7 @@ public class SickLeaveRequest {
     @MapsId
     @JoinColumn(name = "req_id", nullable = false)
     @OneToOne(cascade = CascadeType.ALL)
-    private String reqId;
+    private Request request;
     @JoinColumn(name = "sick_leave_id", nullable = false)
     @ManyToOne(cascade = CascadeType.ALL)
     private SickLeave sickLeave;

@@ -47,7 +47,6 @@ CREATE TABLE venue(
     is_active BOOL DEFAULT true,
     PRIMARY KEY (id)
 );
-
 CREATE TABLE staff_venue_preference(
 	staff_id VARCHAR(255) NOT NULL,
     venue_id VARCHAR(255) NOT NULL,
@@ -56,7 +55,6 @@ CREATE TABLE staff_venue_preference(
     FOREIGN KEY (staff_id) REFERENCES staff(id),
     FOREIGN KEY (venue_id) REFERENCES venue(id)
 );
-
 CREATE TABLE shift (
 	id VARCHAR(255) NOT NULL,
     name VARCHAR(50) NOT NULL,
@@ -86,8 +84,7 @@ CREATE TABLE attendance (
     leave_time TIME NULL,
     report TEXT NULL,
     PRIMARY KEY (id),
-    FOREIGN KEY (duty_id) REFERENCES duty(id),
-    INDEX (attend_id)
+    FOREIGN KEY (duty_id) REFERENCES duty(id)
 );
 CREATE TABLE staff_wage(
 	id VARCHAR(255) NOT NULL,
@@ -95,15 +92,13 @@ CREATE TABLE staff_wage(
     wage DECIMAL(8,2) NOT NULL,
     is_paid BOOL DEFAULT FALSE,
     PRIMARY KEY (id),
-    FOREIGN KEY (attend_id) REFERENCES attendance(id),
-    INDEX (duty_id)
+    FOREIGN KEY (attend_id) REFERENCES attendance(id)
 );
 CREATE TABLE request_method(
 	id VARCHAR(255) NOT NULL,
     name VARCHAR(50) NOT NULL,
     PRIMARY KEY (id)
 );
-
 CREATE TABLE request(
 	id VARCHAR(255) NOT NULL,
     req_method_id VARCHAR(255) NOT NULL,
@@ -114,7 +109,6 @@ CREATE TABLE request(
     FOREIGN KEY (req_method_id) REFERENCES request_method(id),
     FOREIGN KEY (from_staff_id) REFERENCES staff(id)
 );
-
 CREATE TABLE sickleave_request(
 	req_id VARCHAR(255) NOT NULL,
     sick_leave_id VARCHAR(255) NOT NULL,
