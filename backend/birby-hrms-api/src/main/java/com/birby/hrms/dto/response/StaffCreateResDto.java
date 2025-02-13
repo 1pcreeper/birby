@@ -1,4 +1,4 @@
-package com.birby.hrms.dto.request;
+package com.birby.hrms.dto.response;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -11,14 +11,14 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class ResourceRegisterReqCliDto {
-    @NotNull
-    @NotBlank
+public class StaffCreateResDto {
     private String name;
-    @NotNull
-    @NotBlank
     private String displayName;
-    @NotNull
-    @NotBlank
-    private String password;
+    private String email;
+    private String staffId;
+    private String uid;
+    private String gender;
+    private String birth;
+    private String hkPhone;
+    private String jobTypeName;
 }

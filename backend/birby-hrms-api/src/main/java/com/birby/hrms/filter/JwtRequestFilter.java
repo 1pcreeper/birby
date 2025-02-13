@@ -1,6 +1,6 @@
 package com.birby.hrms.filter;
 
-import com.birby.hrms.dto.response.ResourceAuthResCliDto;
+import com.birby.hrms.bo.response.ResourceAuthResCliBo;
 import com.birby.hrms.service.cli.ResourceAuthCliService;
 import com.birby.hrms.vo.JwtPrincipal;
 import jakarta.servlet.*;
@@ -15,7 +15,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
-import java.security.Principal;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -36,7 +35,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
         if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
             jwt = authorizationHeader.substring(7);
         }
-        ResourceAuthResCliDto authData = resourceAuthCliService.getAuthData(jwt);
+        ResourceAuthResCliBo authData = resourceAuthCliService.getAuthData(jwt);
         JwtPrincipal jwtPrincipal = new JwtPrincipal(
                 authData.getStaffId(),
                 authData.getToken(),

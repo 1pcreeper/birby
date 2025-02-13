@@ -1,4 +1,4 @@
-package com.birby.hrms.dto.response;
+package com.birby.hrms.bo.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,7 +11,7 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class ResourceAuthResCliDto {
+public class ResourceAuthResCliBo {
     private String uid;
     private String staffId;
     private List<String> roleIds;

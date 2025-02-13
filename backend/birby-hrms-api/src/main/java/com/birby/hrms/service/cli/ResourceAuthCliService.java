@@ -1,7 +1,7 @@
 package com.birby.hrms.service.cli;
 
-import com.birby.hrms.dto.response.ResourceAuthResCliDto;
+import com.birby.hrms.bo.response.ResourceAuthResCliBo;
 
 public interface ResourceAuthCliService {
-    ResourceAuthResCliDto getAuthData(String bearer);
+    ResourceAuthResCliBo getAuthData(String bearer);
 }

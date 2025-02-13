@@ -1,7 +1,6 @@
 package com.birby.hrms.controller;
 
 import com.birby.hrms.constant.Roles;
-import com.birby.hrms.service.auth.JwtPrincipalService;
 import com.birby.hrms.service.cli.ResourceAuthCliService;
 import com.birby.hrms.vo.JwtPrincipal;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,8 +17,6 @@ import java.security.Principal;
 public class TestController {
     @Autowired
     private ResourceAuthCliService resourceAuthCliService;
-    @Autowired
-    private JwtPrincipalService jwtPrincipalService;
     @GetMapping(path = "/test1")
     @Secured({Roles.DEFAULT_STAFF})
     public Object test1(Principal principal){

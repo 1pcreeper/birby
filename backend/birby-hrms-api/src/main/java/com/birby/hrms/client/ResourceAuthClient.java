@@ -1,15 +1,15 @@
 package com.birby.hrms.client;
 
-import com.birby.hrms.dto.response.ResourceAuthResCliDto;
+import com.birby.hrms.bo.response.ResourceAuthResCliBo;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
 
 @FeignClient(
         name="resourceAuthClient",
-        url="http://localhost:8080"
+        url="${client-config.resource-url}"
 )
 public interface ResourceAuthClient {
     @GetMapping("/auth")
-    ResourceAuthResCliDto getAuthData(@RequestHeader(name = "Authorization")String authorization);
+    ResourceAuthResCliBo getAuthData(@RequestHeader(name = "Authorization")String authorization);
 }
