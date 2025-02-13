@@ -25,3 +25,4 @@ security-config:
   allowed-cors:
     - http://localhost
     - http://localhost:3000
+  api-key: ${SECURITY_API_KEY}

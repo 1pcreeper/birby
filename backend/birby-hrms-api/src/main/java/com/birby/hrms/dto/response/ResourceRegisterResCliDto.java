@@ -5,14 +5,11 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class AuthResCliDto {
+public class ResourceRegisterResCliDto {
     private String uid;
     private String staffId;
-    private List<String> roleIds;
 }

@@ -34,6 +34,7 @@ public class AuthPrincipalMapperImpl implements AuthPrincipalMapper {
             resDto.setUid((String)principalData.get(UID_KEY));
             resDto.setRoleIds((List<String>)principalData.get(ROLES_KEY));
             resDto.setStaffId(staffId);
+            resDto.setToken(resBo.getToken());
             return resDto;
         } catch (RuntimeException e) {
             throw new PrincipalException("Parse Principal Error");

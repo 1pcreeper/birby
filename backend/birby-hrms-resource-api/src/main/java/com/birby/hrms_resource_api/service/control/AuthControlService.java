@@ -8,5 +8,5 @@ import java.security.Principal;
 import java.util.Map;
 
 public interface AuthControlService {
-    AuthResBo getAuthData(Principal principal) throws UnAuthorizedException, ResourceNotFoundException;
+    AuthResBo getAuthData(Principal principal,String authorization) throws UnAuthorizedException, ResourceNotFoundException;
 }

@@ -1,6 +1,6 @@
 package com.birby.hrms.client;
 
-import com.birby.hrms.dto.response.AuthResCliDto;
+import com.birby.hrms.dto.response.ResourceAuthResCliDto;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -11,5 +11,5 @@ import org.springframework.web.bind.annotation.RequestHeader;
 )
 public interface ResourceAuthClient {
     @GetMapping("/auth")
-    AuthResCliDto getAuthData(@RequestHeader(name = "Authorization")String authorization);
+    ResourceAuthResCliDto getAuthData(@RequestHeader(name = "Authorization")String authorization);
 }

@@ -1,7 +1,8 @@
 package com.birby.hrms.filter;
 
-import com.birby.hrms.dto.response.AuthResCliDto;
+import com.birby.hrms.dto.response.ResourceAuthResCliDto;
 import com.birby.hrms.service.cli.ResourceAuthCliService;
+import com.birby.hrms.vo.JwtPrincipal;
 import jakarta.servlet.*;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -35,7 +36,14 @@ public class JwtRequestFilter extends OncePerRequestFilter {
         if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
             jwt = authorizationHeader.substring(7);
         }
-        AuthResCliDto authData = resourceAuthCliService.getAuthData(jwt);
+        ResourceAuthResCliDto authData = resourceAuthCliService.getAuthData(jwt);
+        JwtPrincipal jwtPrincipal = new JwtPrincipal(
+                authData.getStaffId(),
+                authData.getToken(),
+                authData.getUid(),
+                authData.getStaffId(),
+                authData.getRoleIds()
+        );
         SecurityContextHolder.getContext().setAuthentication(new Authentication() {
             @Override
             public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -60,12 +68,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
             }
             @Override
             public Object getPrincipal() {
-                return new Principal() {
-                    @Override
-                    public String getName() {
-                        return authData.getStaffId();
-                    }
-                };
+                return jwtPrincipal;
             }
             @Override
             public boolean isAuthenticated() {
@@ -76,7 +79,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
             }
             @Override
             public String getName() {
-                return authData.getStaffId();
+                return jwtPrincipal.getStaffId();
             }
         });
 

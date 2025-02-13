@@ -14,4 +14,5 @@ import java.util.Map;
 public class AuthResBo {
     private Map<String,Object> principalData;
     private String staffId;
+    private String token;
 }

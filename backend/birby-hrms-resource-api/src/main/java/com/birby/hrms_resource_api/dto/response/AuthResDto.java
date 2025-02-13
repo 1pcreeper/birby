@@ -14,5 +14,6 @@ import java.util.List;
 public class AuthResDto {
     private String uid;
     private String staffId;
+    private String token;
     private List<String> roleIds;
 }

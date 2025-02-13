@@ -7,6 +7,7 @@ import com.birby.hrms_resource_api.service.control.BloomFilterControlService;
 import com.birby.hrms_resource_api.service.control.AuthControlService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -29,8 +30,11 @@ public class AuthController {
         this.bloomFilterControlService = bloomFilterControlService;
     }
     @GetMapping()
-    public AuthResDto getPrincipal(Principal principal) throws UnAuthorizedException {
-        AuthResDto authData = authPrincipalMapper.toAuthResDto(authControlService.getAuthData(principal));
+    public AuthResDto getPrincipal(
+            @RequestHeader(name = "Authorization")String authorization ,
+            Principal principal
+    ) throws UnAuthorizedException {
+        AuthResDto authData = authPrincipalMapper.toAuthResDto(authControlService.getAuthData(principal,authorization));
         bloomFilterControlService.authorize(authData.getStaffId(),authData.getRoleIds());
         return authData;
     }

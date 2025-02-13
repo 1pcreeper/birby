@@ -26,7 +26,7 @@ public class AuthControlServiceImpl implements AuthControlService {
         this.staffEntityService = staffEntityService;
     }
     @Override
-    public AuthResBo getAuthData(Principal principal) throws UnAuthorizedException,ResourceNotFoundException {
+    public AuthResBo getAuthData(Principal principal,String authorization) throws UnAuthorizedException,ResourceNotFoundException {
         Map<String,Object> principalData = principalService.getPrincipalData(principal);
         String uid = (String) principalData.get("uid");
         Staff staff = staffEntityService.findByUid(uid);
@@ -34,6 +34,7 @@ public class AuthControlServiceImpl implements AuthControlService {
                 .builder()
                 .principalData(principalData)
                 .staffId(staff.getId())
+                .token(authorization)
                 .build();
     }
 }

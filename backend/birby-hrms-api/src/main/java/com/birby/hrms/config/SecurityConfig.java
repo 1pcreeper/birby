@@ -2,7 +2,6 @@ package com.birby.hrms.config;
 
 import com.birby.hrms.filter.JwtRequestFilter;
 import com.birby.hrms.properties.SecurityProperties;
-import jakarta.servlet.Filter;
 import jakarta.servlet.http.HttpServlet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
