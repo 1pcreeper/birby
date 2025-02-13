@@ -19,6 +19,7 @@ public class Request {
     @Column(name = "id", nullable = false)
     private String id;
     @JoinColumn(name = "req_method_id",nullable = false)
+    @ManyToOne(cascade = CascadeType.ALL)
     private RequestMethod requestMethod;
     @JoinColumn(name = "from_staff_id",nullable = false)
     @ManyToOne(cascade = CascadeType.ALL)
