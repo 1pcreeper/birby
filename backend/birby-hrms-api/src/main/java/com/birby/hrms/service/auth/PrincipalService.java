@@ -1,6 +1,6 @@
-package com.birby.hrms_account_api.service.auth;
+package com.birby.hrms.service.auth;
 
-import com.birby.hrms_account_api.exception.PrincipalException;
+import com.birby.hrms.exception.PrincipalException;
 
 import java.security.Principal;
 import java.util.List;

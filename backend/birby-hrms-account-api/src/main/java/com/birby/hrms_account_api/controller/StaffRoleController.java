@@ -11,6 +11,9 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.security.PermitAll;
+import java.security.Principal;
+
 @RestController
 @RequestMapping(path = "/staff-role")
 public class StaffRoleController {
@@ -40,6 +43,13 @@ public class StaffRoleController {
         return ApiResponse.ok(
                 "Get Staff's Roles By Uid",
                 staffRoleManagerService.getStaffRolesByUid(uid)
+        );
+    }
+    @GetMapping("/view-uid/me")
+    public ApiResponse<StaffRoleIdsResDto> getStaffRolesByUidMyself(Principal principal){
+        return ApiResponse.ok(
+                "Get Staff's Roles of Myself",
+                staffRoleManagerService.getStaffRolesByUid(principal.getName())
         );
     }
 }
