@@ -8,10 +8,10 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @SpringBootApplication
 @EnableFeignClients
 @EnableConfigurationProperties
-public class HRMSApplication {
+public class HRMSApiApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(HRMSApplication.class, args);
+		SpringApplication.run(HRMSApiApplication.class, args);
 	}
 
 }

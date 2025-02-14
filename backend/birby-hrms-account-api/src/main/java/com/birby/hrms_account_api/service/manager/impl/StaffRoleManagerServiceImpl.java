@@ -1,8 +1,9 @@
 package com.birby.hrms_account_api.service.manager.impl;
 
+import com.birby.hrms_account_api.dto.response.StaffRoleIdsResDto;
 import com.birby.hrms_account_api.exception.DatabaseUpdateFailureException;
 import com.birby.hrms_account_api.exception.ResourceNotFoundException;
-import com.birby.hrms_account_api.mapper.StaffMapper;
+import com.birby.hrms_account_api.mapper.StaffRoleMapper;
 import com.birby.hrms_account_api.model.Staff;
 import com.birby.hrms_account_api.model.StaffRole;
 import com.birby.hrms_account_api.service.auth.FirebaseAuthService;
@@ -20,14 +21,17 @@ public class StaffRoleManagerServiceImpl implements StaffRoleManagerService {
     private final StaffRoleEntityService staffRoleEntityService;
     private final FirebaseAuthService firebaseAuthService;
     private final StaffEntityService staffEntityService;
+    private final StaffRoleMapper staffRoleMapper;
     public StaffRoleManagerServiceImpl(
             StaffRoleEntityService staffRoleEntityService,
             FirebaseAuthService firebaseAuthService,
-            StaffEntityService staffEntityService
+            StaffEntityService staffEntityService,
+            StaffRoleMapper staffRoleMapper
     ) {
         this.staffRoleEntityService = staffRoleEntityService;
         this.firebaseAuthService = firebaseAuthService;
         this.staffEntityService = staffEntityService;
+        this.staffRoleMapper = staffRoleMapper;
     }
 
     @Override
@@ -41,5 +45,12 @@ public class StaffRoleManagerServiceImpl implements StaffRoleManagerService {
         }
         Staff staff = staffEntityService.findById(staffId);
         firebaseAuthService.setRoleClaims(staff.getUid(),roleIds);
+    }
+
+    @Override
+    public StaffRoleIdsResDto getStaffRolesByUid(String uid) {
+        Staff staff = staffEntityService.findByUid(uid);
+        List<StaffRole> staffRoles = staffRoleEntityService.findByStaffId(staff.getId());
+        return staffRoleMapper.toStaffRoleIdsResDto(staff,staffRoles);
     }
 }

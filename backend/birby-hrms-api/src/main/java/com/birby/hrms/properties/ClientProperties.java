@@ -10,13 +10,5 @@ import java.util.List;
 @Component
 @ConfigurationProperties(prefix = "client-config")
 public class ClientProperties {
-    private String resourceUrl;
-
-    public String getResourceUrl() {
-        return resourceUrl;
-    }
-
-    public void setResourceUrl(String resourceUrl) {
-        this.resourceUrl = resourceUrl;
-    }
+    private String accountUrl;
 }

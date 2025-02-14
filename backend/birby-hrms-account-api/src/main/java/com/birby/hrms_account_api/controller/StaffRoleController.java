@@ -2,6 +2,7 @@ package com.birby.hrms_account_api.controller;
 
 import com.birby.hrms_account_api.dto.ApiResponse;
 import com.birby.hrms_account_api.dto.request.StaffRoleUpdateReqDto;
+import com.birby.hrms_account_api.dto.response.StaffRoleIdsResDto;
 import com.birby.hrms_account_api.exception.DatabaseUpdateFailureException;
 import com.birby.hrms_account_api.service.manager.BloomFilterManagerService;
 import com.birby.hrms_account_api.service.manager.StaffRoleManagerService;
@@ -32,6 +33,13 @@ public class StaffRoleController {
         return ApiResponse.ok(
           "Updated StaffRoles",
           ""
+        );
+    }
+    @GetMapping("/view-uid/{uid}")
+    public ApiResponse<StaffRoleIdsResDto> getStaffRolesByUid(@PathVariable(name = "uid")String uid){
+        return ApiResponse.ok(
+                "Get Staff's Roles By Uid",
+                staffRoleManagerService.getStaffRolesByUid(uid)
         );
     }
 }

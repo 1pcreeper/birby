@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.birby</groupId>
-	<artifactId>hrms</artifactId>
+	<artifactId>hrms_api</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>hrms</name>
+	<name>hrms_api</name>
 	<description>Demo project for HRMS</description>
 	<url/>
 	<licenses>
