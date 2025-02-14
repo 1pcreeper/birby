@@ -16,7 +16,7 @@ import java.math.BigDecimal;
 @Table(name = "staff_salary")
 public class StaffSalary {
     @Id
-    private int id;
+    private String id;
     @MapsId
     @JoinColumn(name = "staff_id", nullable = false)
     @OneToOne(cascade = CascadeType.ALL)

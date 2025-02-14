@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "sickleave_request")
 public class SickLeaveRequest {
     @Id
-    private int id;
+    private String id;
     @MapsId
     @JoinColumn(name = "req_id", nullable = false)
     @OneToOne(cascade = CascadeType.ALL)

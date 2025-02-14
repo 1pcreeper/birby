@@ -41,7 +41,8 @@ public class JwtRequestFilter extends OncePerRequestFilter {
                 authData.getToken(),
                 authData.getUid(),
                 authData.getStaffId(),
-                authData.getRoleIds()
+                authData.getRoleIds(),
+                authData.getEmail()
         );
         SecurityContextHolder.getContext().setAuthentication(new Authentication() {
             @Override

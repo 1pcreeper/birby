@@ -13,13 +13,15 @@ public class JwtPrincipal implements Principal {
     private final String uid;
     private final String staffId;
     private final List<String> roleIds;
+    private final String email;
 
-    public JwtPrincipal(String name, String token, String uid, String staffId, List<String> roleIds) {
+    public JwtPrincipal(String name, String token, String uid, String staffId, List<String> roleIds, String email) {
         this.name = name;
         this.token = token;
         this.uid = uid;
         this.staffId = staffId;
         this.roleIds = roleIds;
+        this.email = email;
     }
 
     public String getName() {
@@ -40,5 +42,9 @@ public class JwtPrincipal implements Principal {
 
     public List<String> getRoleIds() {
         return roleIds;
+    }
+
+    public String getEmail() {
+        return email;
     }
 }

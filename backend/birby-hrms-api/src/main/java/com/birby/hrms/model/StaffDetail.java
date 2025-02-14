@@ -16,7 +16,7 @@ import java.util.Date;
 @Table(name = "staff_detail")
 public class StaffDetail {
     @Id
-    private int id;
+    private String id;
     @MapsId
     @JoinColumn(name = "staff_id", nullable = false)
     @OneToOne(cascade = CascadeType.ALL)
@@ -31,11 +31,11 @@ public class StaffDetail {
     @ManyToOne(cascade = CascadeType.ALL)
     private JobType jobType;
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
