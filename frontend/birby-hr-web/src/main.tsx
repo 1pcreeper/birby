@@ -4,7 +4,6 @@ import App from './App'
 import MatrixImpl from './contexts/matrix/MatrixImpl';
 import MatrixContext from './contexts/MatrixContext';
 import Matrix from './contexts/matrix/Matrix';
-import BackgroundProgram from './programs/background/BackgroundProgram';
 
 const matrix: Matrix = new MatrixImpl();
 createRoot(document.getElementById('root')!).render(
@@ -14,4 +13,3 @@ createRoot(document.getElementById('root')!).render(
     </MatrixContext.Provider>
   </StrictMode>
 );
-BackgroundProgram.run(matrix);
