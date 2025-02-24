@@ -1,7 +1,7 @@
 package com.birby.hrms.controller;
 
-import com.birby.hrms.model.dto.ApiResponse;
-import com.birby.hrms.model.dto.request.RevokeReqDto;
+import com.birby.hrms.model.response.ApiResponse;
+import com.birby.hrms.model.dto.req.RevokeReqDto;
 import com.birby.hrms.service.manager.BloomFilterManagerService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;

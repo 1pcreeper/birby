@@ -1,6 +1,6 @@
 package com.birby.hrms_account_api.mapper.impl;
 
-import com.birby.hrms_account_api.model.dto.response.StaffResDto;
+import com.birby.hrms_account_api.model.dto.res.StaffResDto;
 import com.birby.hrms_account_api.mapper.StaffMapper;
 import com.birby.hrms_account_api.model.entity.Staff;
 import org.springframework.stereotype.Component;

@@ -1,7 +1,7 @@
 package com.birby.hrms_account_api.client;
 
-import com.birby.hrms_account_api.model.bo.request.RevokeReqCliBo;
-import com.birby.hrms_account_api.model.dto.ApiResponse;
+import com.birby.hrms_account_api.model.bo.req.RevokeReqCliBo;
+import com.birby.hrms_account_api.model.response.ApiResponse;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

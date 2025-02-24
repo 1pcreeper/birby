@@ -1,5 +1,4 @@
-package com.birby.hrms_account_api.model.bo.request;
-
+package com.birby.hrms_account_api.model.dto.res;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,7 +11,7 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class RevokeReqCliBo {
-    private String uid;
+public class StaffRoleIdsResDto {
+    private String staffId;
     private List<String> roleIds;
 }

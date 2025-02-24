@@ -1,7 +1,5 @@
-package com.birby.hrms_account_api.model.dto.request;
+package com.birby.hrms.model.bo.res;
 
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -13,7 +11,7 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class StaffRoleUpdateReqDto {
-    @NotNull
+public class AccountStaffRoleIdsResCliBo {
+    private String staffId;
     private List<String> roleIds;
 }

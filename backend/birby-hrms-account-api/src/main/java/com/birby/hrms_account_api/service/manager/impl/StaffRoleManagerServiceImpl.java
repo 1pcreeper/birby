@@ -1,7 +1,7 @@
 package com.birby.hrms_account_api.service.manager.impl;
 
-import com.birby.hrms_account_api.model.bo.request.RevokeReqCliBo;
-import com.birby.hrms_account_api.model.dto.response.StaffRoleIdsResDto;
+import com.birby.hrms_account_api.model.bo.req.RevokeReqCliBo;
+import com.birby.hrms_account_api.model.dto.res.StaffRoleIdsResDto;
 import com.birby.hrms_account_api.exception.DatabaseUpdateFailureException;
 import com.birby.hrms_account_api.exception.ResourceNotFoundException;
 import com.birby.hrms_account_api.mapper.StaffRoleMapper;

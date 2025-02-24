@@ -1,6 +1,6 @@
 package com.birby.hrms.service.manager.impl;
 
-import com.birby.hrms.model.bo.response.AccountStaffRoleIdsResCliBo;
+import com.birby.hrms.model.bo.res.AccountStaffRoleIdsResCliBo;
 import com.birby.hrms.cache.BloomCache;
 import com.birby.hrms.exception.UnAuthorizedException;
 import com.birby.hrms.service.cli.AccountStaffRoleCliService;

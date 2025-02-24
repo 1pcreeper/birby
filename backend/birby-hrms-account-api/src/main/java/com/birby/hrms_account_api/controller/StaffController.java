@@ -1,8 +1,8 @@
 package com.birby.hrms_account_api.controller;
 
-import com.birby.hrms_account_api.model.dto.ApiResponse;
-import com.birby.hrms_account_api.model.dto.request.StaffUpdateReqDto;
-import com.birby.hrms_account_api.model.dto.response.StaffResDto;
+import com.birby.hrms_account_api.model.response.ApiResponse;
+import com.birby.hrms_account_api.model.dto.req.StaffUpdateReqDto;
+import com.birby.hrms_account_api.model.dto.res.StaffResDto;
 import com.birby.hrms_account_api.service.manager.StaffManagerService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;

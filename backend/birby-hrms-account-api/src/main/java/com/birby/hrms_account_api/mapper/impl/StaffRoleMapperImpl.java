@@ -1,6 +1,6 @@
 package com.birby.hrms_account_api.mapper.impl;
 
-import com.birby.hrms_account_api.model.dto.response.StaffRoleIdsResDto;
+import com.birby.hrms_account_api.model.dto.res.StaffRoleIdsResDto;
 import com.birby.hrms_account_api.mapper.StaffRoleMapper;
 import com.birby.hrms_account_api.model.entity.Staff;
 import com.birby.hrms_account_api.model.entity.StaffRole;
