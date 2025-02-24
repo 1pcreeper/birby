@@ -1,6 +1,6 @@
 package com.birby.hrms_account_api.repository;
 
-import com.birby.hrms_account_api.model.Properties;
+import com.birby.hrms_account_api.model.entity.Properties;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

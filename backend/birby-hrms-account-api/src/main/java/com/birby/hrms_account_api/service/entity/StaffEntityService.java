@@ -1,7 +1,7 @@
 package com.birby.hrms_account_api.service.entity;
 
 import com.birby.hrms_account_api.exception.ResourceNotFoundException;
-import com.birby.hrms_account_api.model.Staff;
+import com.birby.hrms_account_api.model.entity.Staff;
 
 public interface StaffEntityService {
     Staff findByName(String name) throws ResourceNotFoundException;

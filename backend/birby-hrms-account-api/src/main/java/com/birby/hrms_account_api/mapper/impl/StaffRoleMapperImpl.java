@@ -1,9 +1,9 @@
 package com.birby.hrms_account_api.mapper.impl;
 
-import com.birby.hrms_account_api.dto.response.StaffRoleIdsResDto;
+import com.birby.hrms_account_api.model.dto.response.StaffRoleIdsResDto;
 import com.birby.hrms_account_api.mapper.StaffRoleMapper;
-import com.birby.hrms_account_api.model.Staff;
-import com.birby.hrms_account_api.model.StaffRole;
+import com.birby.hrms_account_api.model.entity.Staff;
+import com.birby.hrms_account_api.model.entity.StaffRole;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

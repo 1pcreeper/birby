@@ -1,7 +1,7 @@
 package com.birby.hrms.service.entity.impl;
 
 import com.birby.hrms.exception.ResourceNotFoundException;
-import com.birby.hrms.model.Staff;
+import com.birby.hrms.model.entity.Staff;
 import com.birby.hrms.repository.StaffRepository;
 import com.birby.hrms.service.entity.StaffEntityService;
 import org.springframework.beans.factory.annotation.Autowired;

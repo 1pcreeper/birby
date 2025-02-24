@@ -1,6 +1,6 @@
 package com.birby.hrms_account_api.service.manager;
 
-import com.birby.hrms_account_api.dto.response.StaffResDto;
+import com.birby.hrms_account_api.model.dto.response.StaffResDto;
 import com.birby.hrms_account_api.exception.RegisterFailureException;
 
 public interface RegisterManagerService {

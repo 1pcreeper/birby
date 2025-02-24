@@ -1,5 +1,6 @@
 package com.birby.hrms.filter;
 
+import com.birby.hrms.exception.UnAuthorizedException;
 import com.birby.hrms.properties.SecurityProperties;
 import com.birby.hrms.service.auth.PrincipalService;
 import com.birby.hrms.service.cli.AccountStaffRoleCliService;
@@ -42,7 +43,11 @@ public class BloomFilter extends OncePerRequestFilter {
         Map<String, Object> principalData = principalService.getPrincipalData(principal);
         String uid = (String) principalData.get("uid");
         List<String> roleIds = (List<String>) principalData.get(securityProperties.getRolesClaim());
-        bloomFilterManagerService.authorize(uid,roleIds,authorization);
+        try{
+            bloomFilterManagerService.authorize(uid,roleIds,authorization);
+        } catch (UnAuthorizedException e) {
+            response.sendError(401,e.getMessage());
+        }
         filterChain.doFilter(request, response);
     }
 }

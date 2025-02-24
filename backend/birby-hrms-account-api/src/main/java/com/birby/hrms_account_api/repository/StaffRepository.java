@@ -1,6 +1,6 @@
 package com.birby.hrms_account_api.repository;
 
-import com.birby.hrms_account_api.model.Staff;
+import com.birby.hrms_account_api.model.entity.Staff;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

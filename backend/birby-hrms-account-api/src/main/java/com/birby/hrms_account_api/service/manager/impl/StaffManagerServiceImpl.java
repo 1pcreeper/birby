@@ -1,9 +1,9 @@
 package com.birby.hrms_account_api.service.manager.impl;
 
-import com.birby.hrms_account_api.dto.request.StaffUpdateReqDto;
-import com.birby.hrms_account_api.dto.response.StaffResDto;
+import com.birby.hrms_account_api.model.dto.request.StaffUpdateReqDto;
+import com.birby.hrms_account_api.model.dto.response.StaffResDto;
 import com.birby.hrms_account_api.mapper.StaffMapper;
-import com.birby.hrms_account_api.model.Staff;
+import com.birby.hrms_account_api.model.entity.Staff;
 import com.birby.hrms_account_api.service.entity.StaffEntityService;
 import com.birby.hrms_account_api.service.manager.StaffManagerService;
 import org.springframework.beans.factory.annotation.Autowired;

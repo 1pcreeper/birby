@@ -1,6 +1,6 @@
 package com.birby.hrms.service.manager.impl;
 
-import com.birby.hrms.bo.response.AccountStaffRoleIdsResCliBo;
+import com.birby.hrms.model.bo.response.AccountStaffRoleIdsResCliBo;
 import com.birby.hrms.cache.BloomCache;
 import com.birby.hrms.exception.UnAuthorizedException;
 import com.birby.hrms.service.cli.AccountStaffRoleCliService;
@@ -8,7 +8,6 @@ import com.birby.hrms.service.manager.BloomFilterManagerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service

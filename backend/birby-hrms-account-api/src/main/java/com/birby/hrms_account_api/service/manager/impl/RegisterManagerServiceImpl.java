@@ -1,12 +1,12 @@
 package com.birby.hrms_account_api.service.manager.impl;
 
-import com.birby.hrms_account_api.bo.request.FirebaseAuthCreateUserReqBo;
+import com.birby.hrms_account_api.model.bo.request.FirebaseAuthCreateUserReqBo;
 import com.birby.hrms_account_api.constant.Roles;
-import com.birby.hrms_account_api.dto.response.StaffResDto;
+import com.birby.hrms_account_api.model.dto.response.StaffResDto;
 import com.birby.hrms_account_api.exception.RegisterFailureException;
 import com.birby.hrms_account_api.exception.ResourceNotFoundException;
 import com.birby.hrms_account_api.mapper.StaffMapper;
-import com.birby.hrms_account_api.model.Staff;
+import com.birby.hrms_account_api.model.entity.Staff;
 import com.birby.hrms_account_api.properties.FirebaseProperties;
 import com.birby.hrms_account_api.service.auth.FirebaseAuthService;
 import com.birby.hrms_account_api.service.manager.RegisterManagerService;

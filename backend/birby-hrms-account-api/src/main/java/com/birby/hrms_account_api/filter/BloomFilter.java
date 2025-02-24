@@ -1,8 +1,9 @@
 package com.birby.hrms_account_api.filter;
 
+import com.birby.hrms_account_api.exception.UnAuthorizedException;
 import com.birby.hrms_account_api.properties.FirebaseProperties;
 import com.birby.hrms_account_api.service.auth.PrincipalService;
-import com.birby.hrms_account_api.service.manager.BloomFilterManagerService;
+import com.birby.hrms_account_api.service.common.BloomFilterService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -19,15 +20,15 @@ import java.util.Map;
 @Component
 public class BloomFilter extends OncePerRequestFilter {
     private final FirebaseProperties firebaseProperties;
-    private final BloomFilterManagerService bloomFilterManagerService;
+    private final BloomFilterService bloomFilterService;
     private final PrincipalService principalService;
     @Autowired
     public BloomFilter(
-            BloomFilterManagerService bloomFilterManagerService,
+            BloomFilterService bloomFilterService,
             PrincipalService principalService,
             FirebaseProperties firebaseProperties
     ){
-        this.bloomFilterManagerService = bloomFilterManagerService;
+        this.bloomFilterService = bloomFilterService;
         this.principalService = principalService;
         this.firebaseProperties = firebaseProperties;
     }
@@ -37,7 +38,11 @@ public class BloomFilter extends OncePerRequestFilter {
         Map<String,Object> principalData = principalService.getPrincipalData(principal);
         String uid = (String)principalData.get("uid");
         List<String> roleIds = (List<String>)principalData.get(firebaseProperties.getRolesClaim());
-        bloomFilterManagerService.authorize(uid,roleIds);
+        try{
+            bloomFilterService.authorize(uid,roleIds);
+        } catch (UnAuthorizedException e) {
+            response.sendError(403,e.getMessage());
+        }
         filterChain.doFilter(request, response);
     }
 }
