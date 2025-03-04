@@ -1,14 +1,14 @@
 package com.birby.hrms_account_api.service.manager.impl;
 
-import com.birby.hrms_account_api.model.bo.req.RevokeReqCliBo;
+import com.birby.hrms_account_api.model.clidto.req.RevokeReqCliDto;
 import com.birby.hrms_account_api.model.dto.res.StaffRoleIdsResDto;
-import com.birby.hrms_account_api.exception.DatabaseUpdateFailureException;
-import com.birby.hrms_account_api.exception.ResourceNotFoundException;
-import com.birby.hrms_account_api.mapper.StaffRoleMapper;
+import com.birby.hrms_account_api.model.exception.DatabaseUpdateFailureException;
+import com.birby.hrms_account_api.model.exception.ResourceNotFoundException;
+import com.birby.hrms_account_api.component.mapper.StaffRoleMapper;
 import com.birby.hrms_account_api.model.entity.Staff;
 import com.birby.hrms_account_api.model.entity.StaffRole;
 import com.birby.hrms_account_api.service.auth.FirebaseAuthService;
-import com.birby.hrms_account_api.service.cli.HRMSRevokeCliService;
+import com.birby.hrms_account_api.service.client.HRMSRevokeClientService;
 import com.birby.hrms_account_api.service.entity.StaffEntityService;
 import com.birby.hrms_account_api.service.entity.StaffRoleEntityService;
 import com.birby.hrms_account_api.service.common.BloomFilterService;
@@ -27,7 +27,7 @@ public class StaffRoleManagerServiceImpl implements StaffRoleManagerService {
     private final StaffEntityService staffEntityService;
     private final StaffRoleMapper staffRoleMapper;
     private final BloomFilterService bloomFilterService;
-    private final HRMSRevokeCliService hrmsRevokeCliService;
+    private final HRMSRevokeClientService hrmsRevokeClientService;
     @Autowired
     public StaffRoleManagerServiceImpl(
             StaffRoleEntityService staffRoleEntityService,
@@ -35,14 +35,14 @@ public class StaffRoleManagerServiceImpl implements StaffRoleManagerService {
             StaffEntityService staffEntityService,
             StaffRoleMapper staffRoleMapper,
             BloomFilterService bloomFilterService,
-            HRMSRevokeCliService hrmsRevokeCliService
+            HRMSRevokeClientService hrmsRevokeClientService
     ) {
         this.staffRoleEntityService = staffRoleEntityService;
         this.firebaseAuthService = firebaseAuthService;
         this.staffEntityService = staffEntityService;
         this.staffRoleMapper = staffRoleMapper;
         this.bloomFilterService = bloomFilterService;
-        this.hrmsRevokeCliService = hrmsRevokeCliService;
+        this.hrmsRevokeClientService = hrmsRevokeClientService;
     }
 
     @Override
@@ -57,11 +57,11 @@ public class StaffRoleManagerServiceImpl implements StaffRoleManagerService {
         Staff staff = staffEntityService.findById(staffId);
         firebaseAuthService.setRoleClaims(staff.getUid(),roleIds);
         bloomFilterService.addBloom(staff.getUid(),roleIds);
-        RevokeReqCliBo revokeReqCliBo =  RevokeReqCliBo.builder()
+        RevokeReqCliDto revokeReqCliDto =  RevokeReqCliDto.builder()
                 .uid(staff.getUid())
                 .roleIds(roleIds)
                 .build();
-       hrmsRevokeCliService.revoke(revokeReqCliBo);
+       hrmsRevokeClientService.revoke(revokeReqCliDto);
     }
 
     @Override

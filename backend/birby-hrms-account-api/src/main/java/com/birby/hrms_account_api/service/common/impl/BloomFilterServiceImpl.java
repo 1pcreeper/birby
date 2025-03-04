@@ -1,9 +1,9 @@
 package com.birby.hrms_account_api.service.common.impl;
 
-import com.birby.hrms_account_api.cache.BloomCache;
-import com.birby.hrms_account_api.exception.UnAuthorizedException;
+import com.birby.hrms_account_api.model.exception.UnAuthorizedException;
 import com.birby.hrms_account_api.model.entity.Staff;
 import com.birby.hrms_account_api.model.entity.StaffRole;
+import com.birby.hrms_account_api.service.data.BloomDataService;
 import com.birby.hrms_account_api.service.entity.StaffEntityService;
 import com.birby.hrms_account_api.service.entity.StaffRoleEntityService;
 import com.birby.hrms_account_api.service.common.BloomFilterService;
@@ -16,22 +16,25 @@ import java.util.List;
 public class BloomFilterServiceImpl implements BloomFilterService {
     private final StaffRoleEntityService staffRoleEntityService;
     private final StaffEntityService staffEntityService;
+    private final BloomDataService bloomDataService;
     public BloomFilterServiceImpl(
             StaffRoleEntityService staffRoleEntityService,
-            StaffEntityService staffEntityService
+            StaffEntityService staffEntityService,
+            BloomDataService bloomDataService
     ) {
         this.staffRoleEntityService = staffRoleEntityService;
         this.staffEntityService = staffEntityService;
+        this.bloomDataService = bloomDataService;
     }
 
     @Override
     public void addBloom(String uid, List<String> roleIds) {
-        BloomCache.put(uid,roleIds);
+        bloomDataService.put(uid, roleIds);
     }
 
     @Override
     public void authorize(String uid, List<String> roleIds) throws UnAuthorizedException {
-        if(!BloomCache.mightContain(uid,roleIds)){
+        if(!bloomDataService.mightContain(uid,roleIds)){
             return;
         }
         Staff staff = staffEntityService.findByUid(uid);

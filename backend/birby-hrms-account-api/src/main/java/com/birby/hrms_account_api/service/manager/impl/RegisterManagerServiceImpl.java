@@ -1,13 +1,13 @@
 package com.birby.hrms_account_api.service.manager.impl;
 
-import com.birby.hrms_account_api.model.bo.req.FirebaseAuthCreateUserReqBo;
+import com.birby.hrms_account_api.model.clidto.req.FirebaseAuthCreateUserReqCliDto;
 import com.birby.hrms_account_api.constant.Roles;
 import com.birby.hrms_account_api.model.dto.res.StaffResDto;
-import com.birby.hrms_account_api.exception.RegisterFailureException;
-import com.birby.hrms_account_api.exception.ResourceNotFoundException;
-import com.birby.hrms_account_api.mapper.StaffMapper;
+import com.birby.hrms_account_api.model.exception.RegisterFailureException;
+import com.birby.hrms_account_api.model.exception.ResourceNotFoundException;
+import com.birby.hrms_account_api.component.mapper.StaffMapper;
 import com.birby.hrms_account_api.model.entity.Staff;
-import com.birby.hrms_account_api.properties.FirebaseProperties;
+import com.birby.hrms_account_api.component.properties.FirebaseProperties;
 import com.birby.hrms_account_api.service.auth.FirebaseAuthService;
 import com.birby.hrms_account_api.service.manager.RegisterManagerService;
 import com.birby.hrms_account_api.service.entity.StaffEntityService;
@@ -78,7 +78,7 @@ public class RegisterManagerServiceImpl implements RegisterManagerService {
         if (isEmailExisted || isNameExisted || isEmailExistedInFirebase) {
             throw new RegisterFailureException(errMessage);
         }
-        FirebaseAuthCreateUserReqBo reqBo = FirebaseAuthCreateUserReqBo
+        FirebaseAuthCreateUserReqCliDto reqBo = FirebaseAuthCreateUserReqCliDto
                 .builder()
                 .displayName(displayName)
                 .email(alignedEmail)

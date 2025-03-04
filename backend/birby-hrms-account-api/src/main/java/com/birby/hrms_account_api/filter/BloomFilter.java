@@ -1,7 +1,7 @@
 package com.birby.hrms_account_api.filter;
 
-import com.birby.hrms_account_api.exception.UnAuthorizedException;
-import com.birby.hrms_account_api.properties.FirebaseProperties;
+import com.birby.hrms_account_api.model.exception.UnAuthorizedException;
+import com.birby.hrms_account_api.component.properties.FirebaseProperties;
 import com.birby.hrms_account_api.service.auth.PrincipalService;
 import com.birby.hrms_account_api.service.common.BloomFilterService;
 import jakarta.servlet.FilterChain;

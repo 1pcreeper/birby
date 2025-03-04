@@ -1,7 +1,7 @@
 package com.birby.hrms_account_api.service.auth.impl;
 
-import com.birby.hrms_account_api.exception.PrincipalException;
-import com.birby.hrms_account_api.properties.FirebaseProperties;
+import com.birby.hrms_account_api.model.exception.PrincipalException;
+import com.birby.hrms_account_api.component.properties.FirebaseProperties;
 import com.birby.hrms_account_api.service.auth.PrincipalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;

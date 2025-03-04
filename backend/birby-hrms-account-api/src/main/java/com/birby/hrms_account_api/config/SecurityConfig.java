@@ -1,8 +1,8 @@
 package com.birby.hrms_account_api.config;
 
 import com.birby.hrms_account_api.filter.BloomFilter;
-import com.birby.hrms_account_api.properties.FirebaseProperties;
-import com.birby.hrms_account_api.properties.SecurityProperties;
+import com.birby.hrms_account_api.component.properties.FirebaseProperties;
+import com.birby.hrms_account_api.component.properties.SecurityProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,7 +15,6 @@ import org.springframework.security.oauth2.jwt.JwtDecoders;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationConverter;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.access.intercept.AuthorizationFilter;
-import org.springframework.security.web.authentication.AuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
