@@ -1,4 +1,4 @@
-package com.birby.hrms_account_api.controller;
+package com.birby.hrms_account_api.controller.general;
 
 import com.birby.hrms_account_api.model.response.ApiResponse;
 import com.birby.hrms_account_api.model.dto.req.StaffRoleUpdateReqDto;
