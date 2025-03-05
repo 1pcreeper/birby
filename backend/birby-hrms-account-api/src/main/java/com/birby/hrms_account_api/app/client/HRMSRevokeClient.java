@@ -11,6 +11,6 @@ import org.springframework.web.bind.annotation.RequestBody;
         url="${client-config.hrms-url}"
 )
 public interface HRMSRevokeClient {
-    @PostMapping()
-    ApiResponse<String> revoke(@RequestBody RevokeReqCliDto reqCliBo);
+    @PostMapping("/revoke")
+    ApiResponse<String> revoke(@RequestBody RevokeReqCliDto reqCliDto);
 }
