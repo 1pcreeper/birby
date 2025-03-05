@@ -1,7 +1,7 @@
-package com.birby.hrms_account_api.service.manager;
+package com.birby.hrms_account_api.app.service.manager;
 
-import com.birby.hrms_account_api.model.dto.req.StaffUpdateReqDto;
-import com.birby.hrms_account_api.model.dto.res.StaffResDto;
+import com.birby.hrms_account_api.app.model.dto.req.StaffUpdateReqDto;
+import com.birby.hrms_account_api.app.model.dto.res.StaffResDto;
 
 import java.security.Principal;
 

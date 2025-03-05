@@ -1,4 +1,4 @@
-package com.birby.hrms_account_api.model.dto.req;
+package com.birby.hrms_account_api.app.model.dto.req;
 
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;

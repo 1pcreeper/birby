@@ -1,4 +1,4 @@
-package com.birby.hrms_account_api.component.data;
+package com.birby.hrms_account_api.app.component.data;
 
 import com.google.common.hash.BloomFilter;
 import com.google.common.hash.Funnels;

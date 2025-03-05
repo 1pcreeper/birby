@@ -1,8 +1,8 @@
-package com.birby.hrms_account_api.service.entity;
+package com.birby.hrms_account_api.app.service.entity;
 
-import com.birby.hrms_account_api.model.exception.DatabaseUpdateFailureException;
-import com.birby.hrms_account_api.model.exception.ResourceNotFoundException;
-import com.birby.hrms_account_api.model.entity.StaffRole;
+import com.birby.hrms_account_api.app.model.exception.DatabaseUpdateFailureException;
+import com.birby.hrms_account_api.app.model.exception.ResourceNotFoundException;
+import com.birby.hrms_account_api.app.model.entity.StaffRole;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;

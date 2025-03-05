@@ -1,7 +1,7 @@
-package com.birby.hrms_account_api.component.mapper;
+package com.birby.hrms_account_api.app.component.mapper;
 
-import com.birby.hrms_account_api.model.dto.res.StaffResDto;
-import com.birby.hrms_account_api.model.entity.Staff;
+import com.birby.hrms_account_api.app.model.dto.res.StaffResDto;
+import com.birby.hrms_account_api.app.model.entity.Staff;
 
 public interface StaffMapper {
     StaffResDto toStaffResDto(Staff staff);

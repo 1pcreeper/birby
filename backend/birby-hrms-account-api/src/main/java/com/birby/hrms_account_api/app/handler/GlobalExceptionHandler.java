@@ -1,7 +1,7 @@
-package com.birby.hrms_account_api.handler;
+package com.birby.hrms_account_api.app.handler;
 
-import com.birby.hrms_account_api.model.exception.*;
-import com.birby.hrms_account_api.model.response.ApiResponse;
+import com.birby.hrms_account_api.app.model.exception.*;
+import com.birby.hrms_account_api.app.model.response.ApiResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;

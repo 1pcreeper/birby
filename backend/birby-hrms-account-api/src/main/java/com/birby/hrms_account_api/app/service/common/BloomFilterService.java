@@ -1,6 +1,6 @@
-package com.birby.hrms_account_api.service.common;
+package com.birby.hrms_account_api.app.service.common;
 
-import com.birby.hrms_account_api.model.exception.UnAuthorizedException;
+import com.birby.hrms_account_api.app.model.exception.UnAuthorizedException;
 
 import java.util.List;
 

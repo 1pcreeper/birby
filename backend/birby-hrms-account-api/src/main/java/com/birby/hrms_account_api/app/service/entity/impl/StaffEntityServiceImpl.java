@@ -1,9 +1,9 @@
-package com.birby.hrms_account_api.service.entity.impl;
+package com.birby.hrms_account_api.app.service.entity.impl;
 
-import com.birby.hrms_account_api.model.exception.ResourceNotFoundException;
-import com.birby.hrms_account_api.model.entity.Staff;
-import com.birby.hrms_account_api.repository.StaffRepository;
-import com.birby.hrms_account_api.service.entity.StaffEntityService;
+import com.birby.hrms_account_api.app.model.exception.ResourceNotFoundException;
+import com.birby.hrms_account_api.app.model.entity.Staff;
+import com.birby.hrms_account_api.app.repository.StaffRepository;
+import com.birby.hrms_account_api.app.service.entity.StaffEntityService;
 import org.springframework.stereotype.Service;
 
 @Service

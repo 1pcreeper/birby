@@ -1,4 +1,4 @@
-package com.birby.hrms_api.component.properties;
+package com.birby.hrms_api.app.component.properties;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;

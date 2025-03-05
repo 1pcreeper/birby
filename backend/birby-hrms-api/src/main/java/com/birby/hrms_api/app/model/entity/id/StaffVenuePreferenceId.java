@@ -1,4 +1,4 @@
-package com.birby.hrms_api.model.entity.id;
+package com.birby.hrms_api.app.model.entity.id;
 
 import jakarta.persistence.Embeddable;
 

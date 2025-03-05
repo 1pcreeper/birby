@@ -8,9 +8,13 @@ class StaffsEditRoute implements Route {
             id: params.id
         } as StaffsEditLoader;
     };
-    public async action({ request, params }: ActionFunctionArgs): Promise<unknown> {
+    // @ts-ignore
+    public async action({ request, params }: ActionFunctionArgs<String>): Promise<unknown> {
+        // @ts-ignore
         const formData: FormData = await request.formData();
+        // @ts-ignore
         const id: string = params.id;
+
         return redirect("/");
     };
 

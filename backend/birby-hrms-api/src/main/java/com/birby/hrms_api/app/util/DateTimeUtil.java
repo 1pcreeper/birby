@@ -1,6 +1,6 @@
-package com.birby.hrms_api.util;
+package com.birby.hrms_api.app.util;
 
-import com.birby.hrms_api.model.exception.DateTimeParseException;
+import com.birby.hrms_api.app.model.exception.DateTimeParseException;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

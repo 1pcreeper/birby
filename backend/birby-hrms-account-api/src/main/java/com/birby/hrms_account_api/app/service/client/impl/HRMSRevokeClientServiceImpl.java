@@ -1,10 +1,10 @@
-package com.birby.hrms_account_api.service.client.impl;
+package com.birby.hrms_account_api.app.service.client.impl;
 
-import com.birby.hrms_account_api.model.clidto.req.RevokeReqCliDto;
-import com.birby.hrms_account_api.client.HRMSRevokeClient;
-import com.birby.hrms_account_api.model.response.ApiResponse;
-import com.birby.hrms_account_api.model.exception.DatabaseUpdateFailureException;
-import com.birby.hrms_account_api.service.client.HRMSRevokeClientService;
+import com.birby.hrms_account_api.app.model.clidto.req.RevokeReqCliDto;
+import com.birby.hrms_account_api.app.client.HRMSRevokeClient;
+import com.birby.hrms_account_api.app.model.response.ApiResponse;
+import com.birby.hrms_account_api.app.model.exception.DatabaseUpdateFailureException;
+import com.birby.hrms_account_api.app.service.client.HRMSRevokeClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,4 +1,4 @@
-package com.birby.hrms_api.service.data;
+package com.birby.hrms_api.app.service.data;
 
 import java.util.Collections;
 import java.util.List;

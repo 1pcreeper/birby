@@ -1,7 +1,7 @@
-package com.birby.hrms_account_api.repository;
+package com.birby.hrms_account_api.app.repository;
 
-import com.birby.hrms_account_api.model.entity.StaffRole;
-import com.birby.hrms_account_api.model.entity.id.StaffRoleId;
+import com.birby.hrms_account_api.app.model.entity.StaffRole;
+import com.birby.hrms_account_api.app.model.entity.id.StaffRoleId;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;

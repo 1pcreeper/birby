@@ -1,4 +1,4 @@
-package com.birby.hrms_account_api.config;
+package com.birby.hrms_account_api.app.config;
 
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.firebase.FirebaseApp;

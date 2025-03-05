@@ -1,4 +1,4 @@
-package com.birby.hrms_api.model.exception;
+package com.birby.hrms_api.app.model.exception;
 
 public class DatabaseUpdateFailureException extends RuntimeException {
     public DatabaseUpdateFailureException(String message) {

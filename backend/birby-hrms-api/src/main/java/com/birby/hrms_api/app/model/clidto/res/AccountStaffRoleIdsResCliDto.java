@@ -1,4 +1,4 @@
-package com.birby.hrms_api.model.clidto.res;
+package com.birby.hrms_api.app.model.clidto.res;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

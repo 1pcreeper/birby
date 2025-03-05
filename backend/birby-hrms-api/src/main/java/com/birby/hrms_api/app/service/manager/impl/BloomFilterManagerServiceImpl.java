@@ -1,11 +1,10 @@
-package com.birby.hrms_api.service.manager.impl;
+package com.birby.hrms_api.app.service.manager.impl;
 
-import com.birby.hrms_api.model.clidto.res.AccountStaffRoleIdsResCliDto;
-import com.birby.hrms_api.component.data.BloomData;
-import com.birby.hrms_api.model.exception.UnAuthorizedException;
-import com.birby.hrms_api.service.client.AccountStaffRoleClientService;
-import com.birby.hrms_api.service.data.BloomDataService;
-import com.birby.hrms_api.service.manager.BloomFilterManagerService;
+import com.birby.hrms_api.app.model.clidto.res.AccountStaffRoleIdsResCliDto;
+import com.birby.hrms_api.app.model.exception.UnAuthorizedException;
+import com.birby.hrms_api.app.service.client.AccountStaffRoleClientService;
+import com.birby.hrms_api.app.service.data.BloomDataService;
+import com.birby.hrms_api.app.service.manager.BloomFilterManagerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

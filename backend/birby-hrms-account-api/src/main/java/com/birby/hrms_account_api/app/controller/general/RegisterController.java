@@ -1,9 +1,9 @@
-package com.birby.hrms_account_api.controller.general;
+package com.birby.hrms_account_api.app.controller.general;
 
-import com.birby.hrms_account_api.model.response.ApiResponse;
-import com.birby.hrms_account_api.model.dto.req.RegisterReqDto;
-import com.birby.hrms_account_api.model.dto.res.StaffResDto;
-import com.birby.hrms_account_api.service.manager.RegisterManagerService;
+import com.birby.hrms_account_api.app.model.response.ApiResponse;
+import com.birby.hrms_account_api.app.model.dto.req.RegisterReqDto;
+import com.birby.hrms_account_api.app.model.dto.res.StaffResDto;
+import com.birby.hrms_account_api.app.service.manager.RegisterManagerService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;

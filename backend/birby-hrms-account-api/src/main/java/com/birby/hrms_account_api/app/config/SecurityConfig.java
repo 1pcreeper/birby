@@ -1,8 +1,8 @@
-package com.birby.hrms_account_api.config;
+package com.birby.hrms_account_api.app.config;
 
-import com.birby.hrms_account_api.filter.BloomFilter;
-import com.birby.hrms_account_api.component.properties.FirebaseProperties;
-import com.birby.hrms_account_api.component.properties.SecurityProperties;
+import com.birby.hrms_account_api.app.filter.BloomFilter;
+import com.birby.hrms_account_api.app.component.properties.FirebaseProperties;
+import com.birby.hrms_account_api.app.component.properties.SecurityProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

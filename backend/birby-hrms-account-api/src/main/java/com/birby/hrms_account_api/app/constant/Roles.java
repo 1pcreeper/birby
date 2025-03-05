@@ -1,4 +1,4 @@
-package com.birby.hrms_account_api.constant;
+package com.birby.hrms_account_api.app.constant;
 
 public enum Roles {
     ;

@@ -1,8 +1,8 @@
-package com.birby.hrms_api.service.auth.impl;
+package com.birby.hrms_api.app.service.auth.impl;
 
-import com.birby.hrms_api.model.exception.PrincipalException;
-import com.birby.hrms_api.component.properties.SecurityProperties;
-import com.birby.hrms_api.service.auth.PrincipalService;
+import com.birby.hrms_api.app.model.exception.PrincipalException;
+import com.birby.hrms_api.app.component.properties.SecurityProperties;
+import com.birby.hrms_api.app.service.auth.PrincipalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;

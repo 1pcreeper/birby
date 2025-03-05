@@ -1,6 +1,6 @@
-package com.birby.hrms_account_api.model.entity;
+package com.birby.hrms_account_api.app.model.entity;
 
-import com.birby.hrms_account_api.model.entity.id.StaffRoleId;
+import com.birby.hrms_account_api.app.model.entity.id.StaffRoleId;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

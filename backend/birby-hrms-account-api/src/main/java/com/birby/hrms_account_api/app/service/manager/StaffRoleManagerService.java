@@ -1,8 +1,8 @@
-package com.birby.hrms_account_api.service.manager;
+package com.birby.hrms_account_api.app.service.manager;
 
-import com.birby.hrms_account_api.model.dto.res.StaffRoleIdsResDto;
-import com.birby.hrms_account_api.model.exception.DatabaseUpdateFailureException;
-import com.birby.hrms_account_api.model.exception.ResourceNotFoundException;
+import com.birby.hrms_account_api.app.model.dto.res.StaffRoleIdsResDto;
+import com.birby.hrms_account_api.app.model.exception.DatabaseUpdateFailureException;
+import com.birby.hrms_account_api.app.model.exception.ResourceNotFoundException;
 import com.google.firebase.auth.FirebaseAuthException;
 
 import java.util.List;

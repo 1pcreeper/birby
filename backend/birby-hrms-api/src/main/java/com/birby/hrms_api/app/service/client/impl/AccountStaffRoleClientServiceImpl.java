@@ -1,9 +1,9 @@
-package com.birby.hrms_api.service.client.impl;
+package com.birby.hrms_api.app.service.client.impl;
 
-import com.birby.hrms_api.model.clidto.res.AccountStaffRoleIdsResCliDto;
-import com.birby.hrms_api.client.AccountStaffRoleClient;
-import com.birby.hrms_api.model.response.ApiResponse;
-import com.birby.hrms_api.service.client.AccountStaffRoleClientService;
+import com.birby.hrms_api.app.model.clidto.res.AccountStaffRoleIdsResCliDto;
+import com.birby.hrms_api.app.client.AccountStaffRoleClient;
+import com.birby.hrms_api.app.model.response.ApiResponse;
+import com.birby.hrms_api.app.service.client.AccountStaffRoleClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

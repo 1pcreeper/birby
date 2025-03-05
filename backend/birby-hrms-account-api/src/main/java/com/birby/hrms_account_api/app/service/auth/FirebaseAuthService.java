@@ -1,6 +1,6 @@
-package com.birby.hrms_account_api.service.auth;
+package com.birby.hrms_account_api.app.service.auth;
 
-import com.birby.hrms_account_api.model.clidto.req.FirebaseAuthCreateUserReqCliDto;
+import com.birby.hrms_account_api.app.model.clidto.req.FirebaseAuthCreateUserReqCliDto;
 import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.auth.UserRecord;
 

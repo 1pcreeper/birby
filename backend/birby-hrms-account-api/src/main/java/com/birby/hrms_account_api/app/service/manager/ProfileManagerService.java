@@ -1,4 +1,4 @@
-package com.birby.hrms_account_api.service.manager;
+package com.birby.hrms_account_api.app.service.manager;
 
 public interface ProfileManagerService {
 }

@@ -1,6 +1,6 @@
-package com.birby.hrms_api.config;
+package com.birby.hrms_api.app.config;
 
-import com.birby.hrms_api.component.properties.SecurityProperties;
+import com.birby.hrms_api.app.component.properties.SecurityProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

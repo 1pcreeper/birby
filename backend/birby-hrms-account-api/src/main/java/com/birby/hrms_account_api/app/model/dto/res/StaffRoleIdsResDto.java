@@ -1,4 +1,4 @@
-package com.birby.hrms_account_api.model.dto.res;
+package com.birby.hrms_account_api.app.model.dto.res;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

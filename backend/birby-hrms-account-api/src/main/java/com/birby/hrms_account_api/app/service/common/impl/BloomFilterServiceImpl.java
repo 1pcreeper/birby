@@ -1,12 +1,12 @@
-package com.birby.hrms_account_api.service.common.impl;
+package com.birby.hrms_account_api.app.service.common.impl;
 
-import com.birby.hrms_account_api.model.exception.UnAuthorizedException;
-import com.birby.hrms_account_api.model.entity.Staff;
-import com.birby.hrms_account_api.model.entity.StaffRole;
-import com.birby.hrms_account_api.service.data.BloomDataService;
-import com.birby.hrms_account_api.service.entity.StaffEntityService;
-import com.birby.hrms_account_api.service.entity.StaffRoleEntityService;
-import com.birby.hrms_account_api.service.common.BloomFilterService;
+import com.birby.hrms_account_api.app.model.exception.UnAuthorizedException;
+import com.birby.hrms_account_api.app.model.entity.Staff;
+import com.birby.hrms_account_api.app.model.entity.StaffRole;
+import com.birby.hrms_account_api.app.service.data.BloomDataService;
+import com.birby.hrms_account_api.app.service.entity.StaffEntityService;
+import com.birby.hrms_account_api.app.service.entity.StaffRoleEntityService;
+import com.birby.hrms_account_api.app.service.common.BloomFilterService;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;

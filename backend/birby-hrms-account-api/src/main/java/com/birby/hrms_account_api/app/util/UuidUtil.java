@@ -1,4 +1,4 @@
-package com.birby.hrms_account_api.util;
+package com.birby.hrms_account_api.app.util;
 
 import java.util.UUID;
 

@@ -1,9 +1,9 @@
-package com.birby.hrms_api.service.entity.impl;
+package com.birby.hrms_api.app.service.entity.impl;
 
-import com.birby.hrms_api.model.exception.ResourceNotFoundException;
-import com.birby.hrms_api.model.entity.JobType;
-import com.birby.hrms_api.repository.JobTypeRepository;
-import com.birby.hrms_api.service.entity.JobTypeEntityService;
+import com.birby.hrms_api.app.model.exception.ResourceNotFoundException;
+import com.birby.hrms_api.app.model.entity.JobType;
+import com.birby.hrms_api.app.repository.JobTypeRepository;
+import com.birby.hrms_api.app.service.entity.JobTypeEntityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

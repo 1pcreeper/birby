@@ -1,7 +1,7 @@
-package com.birby.hrms_api.service.data.impl;
+package com.birby.hrms_api.app.service.data.impl;
 
-import com.birby.hrms_api.component.data.BloomData;
-import com.birby.hrms_api.service.data.BloomDataService;
+import com.birby.hrms_api.app.component.data.BloomData;
+import com.birby.hrms_api.app.service.data.BloomDataService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
@@ -16,13 +16,13 @@ public class BloomDataServiceImpl implements BloomDataService {
 
     @Override
     public boolean put(String uid, List<String> roleIds) {
-        return bloomData.getData().put(stringifyKey(uid,roleIds));
+        return bloomData.getData().put(stringify(uid,roleIds));
     }
     @Override
     public boolean mightContain(String uid, List<String> roleIds) {
-        return bloomData.getData().mightContain(stringifyKey(uid,roleIds));
+        return bloomData.getData().mightContain(stringify(uid,roleIds));
     }
-    private String stringifyKey(String uid, List<String> roleIds) {
+    private String stringify(String uid, List<String> roleIds) {
         return BloomDataService.stringifyKey(uid,roleIds);
     }
 }

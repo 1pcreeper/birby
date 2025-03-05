@@ -1,10 +1,10 @@
-package com.birby.hrms_account_api.controller.general;
+package com.birby.hrms_account_api.app.controller.general;
 
-import com.birby.hrms_account_api.model.response.ApiResponse;
-import com.birby.hrms_account_api.model.dto.req.StaffRoleUpdateReqDto;
-import com.birby.hrms_account_api.model.dto.res.StaffRoleIdsResDto;
-import com.birby.hrms_account_api.model.exception.DatabaseUpdateFailureException;
-import com.birby.hrms_account_api.service.manager.StaffRoleManagerService;
+import com.birby.hrms_account_api.app.model.response.ApiResponse;
+import com.birby.hrms_account_api.app.model.dto.req.StaffRoleUpdateReqDto;
+import com.birby.hrms_account_api.app.model.dto.res.StaffRoleIdsResDto;
+import com.birby.hrms_account_api.app.model.exception.DatabaseUpdateFailureException;
+import com.birby.hrms_account_api.app.service.manager.StaffRoleManagerService;
 import com.google.firebase.auth.FirebaseAuthException;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;

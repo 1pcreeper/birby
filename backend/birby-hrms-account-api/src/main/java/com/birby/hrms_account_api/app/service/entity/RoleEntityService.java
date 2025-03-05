@@ -1,7 +1,7 @@
-package com.birby.hrms_account_api.service.entity;
+package com.birby.hrms_account_api.app.service.entity;
 
-import com.birby.hrms_account_api.model.exception.ResourceNotFoundException;
-import com.birby.hrms_account_api.model.entity.Role;
+import com.birby.hrms_account_api.app.model.exception.ResourceNotFoundException;
+import com.birby.hrms_account_api.app.model.entity.Role;
 
 import java.util.List;
 

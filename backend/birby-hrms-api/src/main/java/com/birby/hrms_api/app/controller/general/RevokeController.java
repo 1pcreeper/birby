@@ -1,8 +1,8 @@
-package com.birby.hrms_api.controller;
+package com.birby.hrms_api.app.controller.general;
 
-import com.birby.hrms_api.model.response.ApiResponse;
-import com.birby.hrms_api.model.dto.req.RevokeReqDto;
-import com.birby.hrms_api.service.manager.BloomFilterManagerService;
+import com.birby.hrms_api.app.model.response.ApiResponse;
+import com.birby.hrms_api.app.model.dto.req.RevokeReqDto;
+import com.birby.hrms_api.app.service.manager.BloomFilterManagerService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

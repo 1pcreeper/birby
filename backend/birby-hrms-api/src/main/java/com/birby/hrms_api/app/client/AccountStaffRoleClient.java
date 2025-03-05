@@ -1,7 +1,7 @@
-package com.birby.hrms_api.client;
+package com.birby.hrms_api.app.client;
 
-import com.birby.hrms_api.model.clidto.res.AccountStaffRoleIdsResCliDto;
-import com.birby.hrms_api.model.response.ApiResponse;
+import com.birby.hrms_api.app.model.clidto.res.AccountStaffRoleIdsResCliDto;
+import com.birby.hrms_api.app.model.response.ApiResponse;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

@@ -1,8 +1,8 @@
-package com.birby.hrms_account_api.component.mapper;
+package com.birby.hrms_account_api.app.component.mapper;
 
-import com.birby.hrms_account_api.model.dto.res.StaffRoleIdsResDto;
-import com.birby.hrms_account_api.model.entity.Staff;
-import com.birby.hrms_account_api.model.entity.StaffRole;
+import com.birby.hrms_account_api.app.model.dto.res.StaffRoleIdsResDto;
+import com.birby.hrms_account_api.app.model.entity.Staff;
+import com.birby.hrms_account_api.app.model.entity.StaffRole;
 
 import java.util.List;
 
