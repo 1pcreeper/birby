@@ -4,12 +4,14 @@ import com.google.common.hash.BloomFilter;
 import com.google.common.hash.Funnels;
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Collections;
 import java.util.List;
 
 @Getter
+@Component
 public class BloomData {
     private BloomFilter<String> data;
     @Autowired
