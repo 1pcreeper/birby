@@ -9,6 +9,7 @@ import com.birby.hrms_account_api.app.model.entity.Staff;
 import com.birby.hrms_account_api.app.model.entity.StaffRole;
 import com.birby.hrms_account_api.app.service.auth.FirebaseAuthService;
 import com.birby.hrms_account_api.app.service.client.HRMSRevokeClientService;
+import com.birby.hrms_account_api.app.service.entity.RoleEntityService;
 import com.birby.hrms_account_api.app.service.entity.StaffEntityService;
 import com.birby.hrms_account_api.app.service.entity.StaffRoleEntityService;
 import com.birby.hrms_account_api.app.service.common.BloomFilterService;
@@ -19,6 +20,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class StaffRoleManagerServiceImpl implements StaffRoleManagerService {
@@ -28,6 +30,7 @@ public class StaffRoleManagerServiceImpl implements StaffRoleManagerService {
     private final StaffRoleMapper staffRoleMapper;
     private final BloomFilterService bloomFilterService;
     private final HRMSRevokeClientService hrmsRevokeClientService;
+    private final RoleEntityService roleEntityService;
     @Autowired
     public StaffRoleManagerServiceImpl(
             StaffRoleEntityService staffRoleEntityService,
@@ -35,7 +38,8 @@ public class StaffRoleManagerServiceImpl implements StaffRoleManagerService {
             StaffEntityService staffEntityService,
             StaffRoleMapper staffRoleMapper,
             BloomFilterService bloomFilterService,
-            HRMSRevokeClientService hrmsRevokeClientService
+            HRMSRevokeClientService hrmsRevokeClientService,
+            RoleEntityService roleEntityService
     ) {
         this.staffRoleEntityService = staffRoleEntityService;
         this.firebaseAuthService = firebaseAuthService;
@@ -43,6 +47,7 @@ public class StaffRoleManagerServiceImpl implements StaffRoleManagerService {
         this.staffRoleMapper = staffRoleMapper;
         this.bloomFilterService = bloomFilterService;
         this.hrmsRevokeClientService = hrmsRevokeClientService;
+        this.roleEntityService = roleEntityService;
     }
 
     @Override
@@ -52,6 +57,7 @@ public class StaffRoleManagerServiceImpl implements StaffRoleManagerService {
         List<StaffRole> staffRoles = staffRoleEntityService.findByStaffId(staffId);
         staffRoleEntityService.deleteAll(staffRoles);
         for(String roleId : roleIds){
+            roleEntityService.findById(roleId);
             staffRoleEntityService.insert(staffId,roleId);
         }
         Staff staff = staffEntityService.findById(staffId);
