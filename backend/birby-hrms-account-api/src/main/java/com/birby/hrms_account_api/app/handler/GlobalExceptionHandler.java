@@ -49,5 +49,13 @@ public class GlobalExceptionHandler {
                         ApiResponse.error(e.getMessage())
                 );
     }
+    @ExceptionHandler(BloomFilterTransferException.class)
+    public ResponseEntity<ApiResponse<String>> handleBloomFilterTransferException(BloomFilterTransferException e){
+        return ResponseEntity
+                .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body(
+                        ApiResponse.error(e.getMessage())
+                );
+    }
 }
 

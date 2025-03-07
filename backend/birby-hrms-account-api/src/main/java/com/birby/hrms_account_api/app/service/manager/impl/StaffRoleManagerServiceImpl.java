@@ -2,6 +2,7 @@ package com.birby.hrms_account_api.app.service.manager.impl;
 
 import com.birby.hrms_account_api.app.model.clidto.req.RevokeReqCliDto;
 import com.birby.hrms_account_api.app.model.dto.res.StaffRoleIdsResDto;
+import com.birby.hrms_account_api.app.model.exception.BloomFilterTransferException;
 import com.birby.hrms_account_api.app.model.exception.DatabaseUpdateFailureException;
 import com.birby.hrms_account_api.app.model.exception.ResourceNotFoundException;
 import com.birby.hrms_account_api.app.component.mapper.StaffRoleMapper;
@@ -16,6 +17,7 @@ import com.birby.hrms_account_api.app.service.common.BloomFilterService;
 import com.birby.hrms_account_api.app.service.manager.StaffRoleManagerService;
 import com.google.firebase.auth.FirebaseAuthException;
 import jakarta.transaction.Transactional;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +25,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@Slf4j
 public class StaffRoleManagerServiceImpl implements StaffRoleManagerService {
     private final StaffRoleEntityService staffRoleEntityService;
     private final FirebaseAuthService firebaseAuthService;
@@ -67,7 +70,11 @@ public class StaffRoleManagerServiceImpl implements StaffRoleManagerService {
                 .uid(staff.getUid())
                 .roleIds(roleIds)
                 .build();
-       hrmsRevokeClientService.revoke(revokeReqCliDto);
+        try{
+           hrmsRevokeClientService.revoke(revokeReqCliDto);
+       } catch (BloomFilterTransferException e) {
+            log.error("HRMS Update Bloom Failure");
+        }
     }
 
     @Override
