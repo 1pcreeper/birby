@@ -5,6 +5,7 @@ import com.birby.hrms_account_api.app.model.response.ApiResponse;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 
 @FeignClient(
         name="hrmsRevokeClient",
@@ -12,5 +13,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 )
 public interface HRMSRevokeClient {
     @PostMapping("/revoke")
-    ApiResponse<String> revoke(@RequestBody RevokeReqCliDto reqCliDto);
+    ApiResponse<String> revoke(
+            @RequestBody RevokeReqCliDto reqCliDto,
+            @RequestHeader(name = "Access")String access,
+            @RequestHeader(name = "Authorization")String authorization
+    );
 }

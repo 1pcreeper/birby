@@ -23,10 +23,14 @@ public class StaffRoleController {
         this.staffRoleManagerService = staffRoleManagerService;
     }
     @PutMapping("/{id}")
-    public ApiResponse<String> updateStaffRoles(@PathVariable(name = "id")String staffId,@Valid @RequestBody StaffRoleUpdateReqDto reqDto)
+    public ApiResponse<String> updateStaffRoles(
+            @PathVariable(name = "id")String staffId,
+            @Valid @RequestBody StaffRoleUpdateReqDto reqDto,
+            @RequestHeader(name = "Authorization")String authorization
+    )
             throws DatabaseUpdateFailureException , FirebaseAuthException
     {
-        staffRoleManagerService.setStaffRoles(staffId,reqDto.getRoleIds());
+        staffRoleManagerService.setStaffRoles(staffId,reqDto.getRoleIds(),authorization);
         return ApiResponse.ok(
           "Updated StaffRoles",
           ""

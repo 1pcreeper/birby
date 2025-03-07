@@ -8,7 +8,7 @@ import com.google.firebase.auth.FirebaseAuthException;
 import java.util.List;
 
 public interface StaffRoleManagerService {
-    void setStaffRoles(String staffId, List<String> roleIds)
+    void setStaffRoles(String staffId, List<String> roleIds,String token)
             throws ResourceNotFoundException, FirebaseAuthException, DatabaseUpdateFailureException;
     StaffRoleIdsResDto getStaffRolesByUid(String uid);
 }

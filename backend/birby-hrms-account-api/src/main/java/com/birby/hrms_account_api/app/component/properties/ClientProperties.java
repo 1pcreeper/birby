@@ -9,4 +9,5 @@ import org.springframework.stereotype.Component;
 @ConfigurationProperties(prefix = "client-config")
 public class ClientProperties {
     private String hrmsUrl;
+    private String hrmsApi;
 }

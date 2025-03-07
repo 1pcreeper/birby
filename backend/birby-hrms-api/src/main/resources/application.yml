@@ -23,5 +23,7 @@ security-config:
     - http://localhost:3000
   firebase-issuer-location: ${SECURITY_FIREBASE_ISSUER_LOCATION}
   roles-claim: ${SECURITY_FIREBASE_ROLES_CLAIM}
+  api-key: ${SECURITY_API_KEY}
 client-config:
   account-url: ${CLIENT_ACCOUNT_URL}
+  account-api: ${CLIENT_ACCOUNT_API}

@@ -13,4 +13,5 @@ public class SecurityProperties {
     private List<String> allowedCors;
     private String firebaseIssuerLocation;
     private String rolesClaim;
+    private String apiKey;
 }

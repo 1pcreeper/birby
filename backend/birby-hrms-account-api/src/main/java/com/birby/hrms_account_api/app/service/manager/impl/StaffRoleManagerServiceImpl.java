@@ -1,5 +1,6 @@
 package com.birby.hrms_account_api.app.service.manager.impl;
 
+import com.birby.hrms_account_api.app.component.properties.ClientProperties;
 import com.birby.hrms_account_api.app.model.clidto.req.RevokeReqCliDto;
 import com.birby.hrms_account_api.app.model.dto.res.StaffRoleIdsResDto;
 import com.birby.hrms_account_api.app.model.exception.BloomFilterTransferException;
@@ -23,6 +24,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 @Service
 @Slf4j
@@ -55,23 +58,28 @@ public class StaffRoleManagerServiceImpl implements StaffRoleManagerService {
 
     @Override
     @Transactional
-    public void setStaffRoles(String staffId, List<String> roleIds)
+    public void setStaffRoles(String staffId, List<String> roleIds,String token)
             throws ResourceNotFoundException, FirebaseAuthException , DatabaseUpdateFailureException {
-        List<StaffRole> staffRoles = staffRoleEntityService.findByStaffId(staffId);
+        Staff staff = staffEntityService.findById(staffId);
+        List<StaffRole> staffRoles = staffRoleEntityService.findByStaffId(staff.getId());
+        List<String> currentRoleIds = staffRoles.stream().map(sr->sr.getRole().getId()).collect(Collectors.toList());
+        System.out.println(currentRoleIds);
         staffRoleEntityService.deleteAll(staffRoles);
         for(String roleId : roleIds){
             roleEntityService.findById(roleId);
-            staffRoleEntityService.insert(staffId,roleId);
+            staffRoleEntityService.insert(staff.getId(),roleId);
         }
-        Staff staff = staffEntityService.findById(staffId);
         firebaseAuthService.setRoleClaims(staff.getUid(),roleIds);
-        bloomFilterService.addBloom(staff.getUid(),roleIds);
+        bloomFilterService.addBloom(
+                staff.getUid(),
+                currentRoleIds
+        );
         RevokeReqCliDto revokeReqCliDto =  RevokeReqCliDto.builder()
                 .uid(staff.getUid())
-                .roleIds(roleIds)
+                .roleIds(currentRoleIds)
                 .build();
         try{
-           hrmsRevokeClientService.revoke(revokeReqCliDto);
+           hrmsRevokeClientService.revoke(revokeReqCliDto,token);
        } catch (BloomFilterTransferException e) {
             log.error("HRMS Update Bloom Failure");
         }

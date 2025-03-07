@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class BloomFilterServiceImpl implements BloomFilterService {
@@ -39,8 +40,7 @@ public class BloomFilterServiceImpl implements BloomFilterService {
         }
         Staff staff = staffEntityService.findByUid(uid);
         List<StaffRole> dbStaffRoles = staffRoleEntityService.findByStaffId(staff.getId());
-        List<String> dbRoleIds = new ArrayList<>();
-        dbStaffRoles.forEach(sr->dbRoleIds.add(sr.getId().getRoleId()));
+        List<String> dbRoleIds = dbStaffRoles.stream().map(sr->sr.getRole().getId()).collect(Collectors.toUnmodifiableList());
         if(!roleIds.equals(dbRoleIds)){
             throw new UnAuthorizedException("Token Expired");
         }
