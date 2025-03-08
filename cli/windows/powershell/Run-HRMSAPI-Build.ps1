@@ -1,3 +1,7 @@
+if (-not $(Test-Path "$PSScriptRoot/../../../package/apache-maven-3.9.9")) {
+    Write-Host "Maven not found, please run Download-Maven.ps1 first";
+    exit;
+}
 [string]$maven = Resolve-Path "$PSScriptRoot/../../../package/apache-maven-3.9.9/bin/mvn.cmd";
 [string]$path = $PSScriptRoot + "/../../../backend/birby-hrms-api/target/hrms_api-0.0.1-SNAPSHOT.jar";
 [string]$envPath = $PSScriptRoot + "/../../../backend/birby-hrms-api/src/main/resources/.env";
