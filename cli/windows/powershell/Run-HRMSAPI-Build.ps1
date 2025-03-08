@@ -1,5 +1,7 @@
+[string]$maven = Resolve-Path "$PSScriptRoot/../../../package/apache-maven-3.9.9/bin/mvn.cmd";
 [string]$path = $PSScriptRoot + "/../../../backend/birby-hrms-api/target/hrms_api-0.0.1-SNAPSHOT.jar";
 [string]$envPath = $PSScriptRoot + "/../../../backend/birby-hrms-api/src/main/resources/.env";
+& $maven clean install -f "$PSScriptRoot/../../../backend/birby-hrms-api/pom.xml";
 Get-Content $envPath | ForEach-Object {
     if ($_ -and $_ -notmatch '^\s*#') {
         # Ignore empty lines and comments
