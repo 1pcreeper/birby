@@ -1,0 +1,1 @@
+powershell.exe ./../powershell/Download-Maven.ps1 -ExecutionPolicy Bypass

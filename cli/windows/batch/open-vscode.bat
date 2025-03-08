@@ -1,1 +1,1 @@
-code ./../../..
+powershell.exe ./../powershell/Open-VSCode.ps1 -ExecutionPolicy Bypass

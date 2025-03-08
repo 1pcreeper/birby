@@ -1,1 +1,1 @@
-PowerShell.exe -File ./../ps/Delete-Volume.ps1 -ExecutionPolicy Bypass
+powershell.exe ./../powershell/Delete-Volume.ps1 -ExecutionPolicy Bypass

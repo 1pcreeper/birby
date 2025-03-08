@@ -1,0 +1,1 @@
+powershell.exe ./../powershell/Run-HRMSAccountAPI-Build.ps1 -ExecutionPolicy Bypass
