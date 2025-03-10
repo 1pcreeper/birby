@@ -42,10 +42,18 @@ public class FirebaseAuthServiceImpl implements FirebaseAuthService {
         return userRecord.getUid();
     }
 
+
+
     @Override
     public void setRoleClaims(String uid, List<String> roles) throws FirebaseAuthException {
         Map<String, Object> claims = Map.of(firebaseProperties.getRolesClaim(), roles);
         firebaseAuth.revokeRefreshTokens(uid);
+        firebaseAuth.setCustomUserClaims(uid, claims);
+    }
+
+    @Override
+    public void setIdClaim(String uid, String id) throws FirebaseAuthException {
+        Map<String, Object> claims = Map.of("id", id);
         firebaseAuth.setCustomUserClaims(uid, claims);
     }
 

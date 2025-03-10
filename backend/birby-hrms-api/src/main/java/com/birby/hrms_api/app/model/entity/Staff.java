@@ -19,6 +19,6 @@ public class Staff {
     @Id
     @Column(name = "id", nullable = false)
     private String id;
-    @Column(name = "display_name", nullable = false, length = 20)
-    private String displayName;
+    @Column(name = "uid", nullable = false, unique = true)
+    private String uid;
 }

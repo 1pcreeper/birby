@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestHeader;
 
 @FeignClient(
-        name="resourceAuthClient",
+        name="accountStaffRoleClient",
         url="${client-config.account-url}"
 )
 public interface AccountStaffRoleClient {

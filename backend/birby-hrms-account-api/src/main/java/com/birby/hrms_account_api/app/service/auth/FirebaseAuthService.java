@@ -8,7 +8,12 @@ import java.util.List;
 
 public interface FirebaseAuthService {
     String createUser(FirebaseAuthCreateUserReqCliDto reqBo) throws FirebaseAuthException;
+
     void setRoleClaims(String uid, List<String> roles) throws FirebaseAuthException;
+
+    void setIdClaim(String uid, String id) throws FirebaseAuthException;
+
     UserRecord getUser(String uid) throws FirebaseAuthException;
+
     UserRecord getUserByEmail(String email) throws FirebaseAuthException;
 }

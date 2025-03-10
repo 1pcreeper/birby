@@ -90,6 +90,7 @@ public class RegisterManagerServiceImpl implements RegisterManagerService {
         try {
             uid = firebaseAuthService.createUser(reqBo);
             firebaseAuthService.setRoleClaims(uid, roles);
+            firebaseAuthService.setIdClaim(uid,id);
         } catch (FirebaseAuthException e) {
             throw new RegisterFailureException(e.getMessage());
         }

@@ -6,4 +6,5 @@ import com.birby.hrms_api.app.model.entity.Staff;
 public interface StaffEntityService {
     Staff findById(String id) throws ResourceNotFoundException;
     Staff save(Staff staff);
+    void delete(String id);
 }

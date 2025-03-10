@@ -45,6 +45,11 @@ public class PrincipalServiceImpl implements PrincipalService {
     }
 
     @Override
+    public String getId(Principal principal) throws PrincipalException {
+        return (String)getClaim(principal,"id");
+    }
+
+    @Override
     public boolean hasRoles(Principal principal, List<String> roleIds) throws PrincipalException {
         Set<String> staffRoles = getRolesClaim(principal).stream().collect(Collectors.toSet());
         Set<String> requiredRoles = roleIds.stream().collect(Collectors.toSet());
@@ -70,4 +75,5 @@ public class PrincipalServiceImpl implements PrincipalService {
             throw new PrincipalException(e.getMessage());
         }
     }
+
 }
