@@ -1,6 +1,6 @@
 package com.birby.hrms_account_api.app.service.auth.impl;
 
-import com.birby.hrms_account_api.app.model.clidto.req.FirebaseAuthCreateUserV1ReqCliDTO;
+import com.birby.hrms_account_api.app.model.cto.req.FirebaseAuthCreateUserV1ReqCTO;
 import com.birby.hrms_account_api.app.component.properties.FirebaseProperties;
 import com.birby.hrms_account_api.app.service.auth.FirebaseAuthService;
 import com.google.firebase.auth.FirebaseAuth;
@@ -29,7 +29,7 @@ public class FirebaseAuthServiceImpl implements FirebaseAuthService {
     }
 
     @Override
-    public String createUser(FirebaseAuthCreateUserV1ReqCliDTO reqBo) throws FirebaseAuthException {
+    public String createUser(FirebaseAuthCreateUserV1ReqCTO reqBo) throws FirebaseAuthException {
         UserRecord.CreateRequest createRequest = new UserRecord.CreateRequest()
                 .setDisplayName(reqBo.getDisplayName())
                 .setEmail(reqBo.getEmail())

@@ -3,7 +3,7 @@ package com.birby.hrms_account_api.app.filter;
 import com.birby.hrms_account_api.app.model.exception.UnAuthorizedException;
 import com.birby.hrms_account_api.app.component.properties.FirebaseProperties;
 import com.birby.hrms_account_api.app.service.auth.PrincipalService;
-import com.birby.hrms_account_api.app.service.common.BloomFilterService;
+import com.birby.hrms_account_api.app.service.manager.BloomFilterManagerService;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.FilterChain;
@@ -16,24 +16,23 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
 import java.security.Principal;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 @Component
 public class BloomFilter extends OncePerRequestFilter {
     private final FirebaseProperties firebaseProperties;
-    private final BloomFilterService bloomFilterService;
+    private final BloomFilterManagerService bloomFilterManagerService;
     private final PrincipalService principalService;
     private final ObjectMapper objectMapper;
     @Autowired
     public BloomFilter(
-            BloomFilterService bloomFilterService,
+            BloomFilterManagerService bloomFilterManagerService,
             PrincipalService principalService,
             FirebaseProperties firebaseProperties,
             ObjectMapper objectMapper
     ){
-        this.bloomFilterService = bloomFilterService;
+        this.bloomFilterManagerService = bloomFilterManagerService;
         this.principalService = principalService;
         this.firebaseProperties = firebaseProperties;
         this.objectMapper = objectMapper;
@@ -47,7 +46,7 @@ public class BloomFilter extends OncePerRequestFilter {
                 principalData.get(firebaseProperties.getRolesClaim()), new TypeReference<List<String>>(){}
         );
         try{
-            bloomFilterService.authorize(uid,roleIds);
+            bloomFilterManagerService.authorize(uid,roleIds);
         } catch (UnAuthorizedException e) {
             response.sendError(403,e.getMessage());
         }

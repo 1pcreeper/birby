@@ -1,6 +1,6 @@
-package com.birby.hrms_account_api.app.service.manager.impl;
+package com.birby.hrms_account_api.app.service.common.impl;
 
-import com.birby.hrms_account_api.app.model.clidto.req.FirebaseAuthCreateUserV1ReqCliDTO;
+import com.birby.hrms_account_api.app.model.cto.req.FirebaseAuthCreateUserV1ReqCTO;
 import com.birby.hrms_account_api.app.constant.Roles;
 import com.birby.hrms_account_api.app.model.dto.res.StaffV1ResDTO;
 import com.birby.hrms_account_api.app.model.exception.RegisterFailureException;
@@ -9,7 +9,7 @@ import com.birby.hrms_account_api.app.component.mapper.StaffMapper;
 import com.birby.hrms_account_api.app.model.entity.Staff;
 import com.birby.hrms_account_api.app.component.properties.FirebaseProperties;
 import com.birby.hrms_account_api.app.service.auth.FirebaseAuthService;
-import com.birby.hrms_account_api.app.service.manager.RegisterManagerService;
+import com.birby.hrms_account_api.app.service.common.RegisterService;
 import com.birby.hrms_account_api.app.service.entity.StaffEntityService;
 import com.birby.hrms_account_api.app.service.entity.StaffRoleEntityService;
 import com.birby.hrms_account_api.app.util.UuidUtil;
@@ -24,14 +24,14 @@ import java.util.Locale;
 
 @Service
 @EnableConfigurationProperties(FirebaseProperties.class)
-public class RegisterManagerServiceImpl implements RegisterManagerService {
+public class RegisterServiceImpl implements RegisterService {
     private final FirebaseAuthService firebaseAuthService;
     private final StaffEntityService staffEntityService;
     private final StaffRoleEntityService staffRoleEntityService;
     private final FirebaseProperties firebaseProperties;
     private final StaffMapper staffMapper;
     @Autowired
-    public RegisterManagerServiceImpl(
+    public RegisterServiceImpl(
             FirebaseAuthService firebaseAuthService,
             StaffEntityService staffEntityService,
             StaffRoleEntityService staffRoleEntityService,
@@ -78,7 +78,7 @@ public class RegisterManagerServiceImpl implements RegisterManagerService {
         if (isEmailExisted || isNameExisted || isEmailExistedInFirebase) {
             throw new RegisterFailureException(errMessage);
         }
-        FirebaseAuthCreateUserV1ReqCliDTO cliDTO = FirebaseAuthCreateUserV1ReqCliDTO
+        FirebaseAuthCreateUserV1ReqCTO cliDTO = FirebaseAuthCreateUserV1ReqCTO
                 .builder()
                 .displayName(displayName)
                 .email(alignedEmail)

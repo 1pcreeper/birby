@@ -1,27 +1,25 @@
-package com.birby.hrms_account_api.app.service.manager.impl;
+package com.birby.hrms_account_api.app.service.common.impl;
 
 import com.birby.hrms_account_api.app.constant.KafkaTopics;
-import com.birby.hrms_account_api.app.model.mqdto.RevokeReqV1MqDTO;
+import com.birby.hrms_account_api.app.model.eto.req.RevokeV1ReqETO;
 import com.birby.hrms_account_api.app.model.dto.res.StaffRoleIdsV1ResDTO;
-import com.birby.hrms_account_api.app.model.exception.BloomFilterTransferException;
 import com.birby.hrms_account_api.app.model.exception.DatabaseUpdateFailureException;
 import com.birby.hrms_account_api.app.model.exception.ResourceNotFoundException;
 import com.birby.hrms_account_api.app.component.mapper.StaffRoleMapper;
 import com.birby.hrms_account_api.app.model.entity.Staff;
 import com.birby.hrms_account_api.app.model.entity.StaffRole;
 import com.birby.hrms_account_api.app.service.auth.FirebaseAuthService;
-import com.birby.hrms_account_api.app.service.common.KafkaProducerService;
+import com.birby.hrms_account_api.app.service.manager.KafkaProducerService;
 import com.birby.hrms_account_api.app.service.entity.RoleEntityService;
 import com.birby.hrms_account_api.app.service.entity.StaffEntityService;
 import com.birby.hrms_account_api.app.service.entity.StaffRoleEntityService;
-import com.birby.hrms_account_api.app.service.common.BloomFilterService;
-import com.birby.hrms_account_api.app.service.manager.StaffRoleManagerService;
+import com.birby.hrms_account_api.app.service.manager.BloomFilterManagerService;
+import com.birby.hrms_account_api.app.service.common.StaffRoleService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.google.firebase.auth.FirebaseAuthException;
 import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -29,21 +27,21 @@ import java.util.stream.Collectors;
 
 @Service
 @Slf4j
-public class StaffRoleManagerServiceImpl implements StaffRoleManagerService {
+public class StaffRoleServiceImpl implements StaffRoleService {
     private final StaffRoleEntityService staffRoleEntityService;
     private final FirebaseAuthService firebaseAuthService;
     private final StaffEntityService staffEntityService;
     private final StaffRoleMapper staffRoleMapper;
-    private final BloomFilterService bloomFilterService;
+    private final BloomFilterManagerService bloomFilterManagerService;
     private final RoleEntityService roleEntityService;
     private final KafkaProducerService kafkaProducerService;
     @Autowired
-    public StaffRoleManagerServiceImpl(
+    public StaffRoleServiceImpl(
             StaffRoleEntityService staffRoleEntityService,
             FirebaseAuthService firebaseAuthService,
             StaffEntityService staffEntityService,
             StaffRoleMapper staffRoleMapper,
-            BloomFilterService bloomFilterService,
+            BloomFilterManagerService bloomFilterManagerService,
             RoleEntityService roleEntityService,
             KafkaProducerService kafkaProducerService
     ) {
@@ -51,7 +49,7 @@ public class StaffRoleManagerServiceImpl implements StaffRoleManagerService {
         this.firebaseAuthService = firebaseAuthService;
         this.staffEntityService = staffEntityService;
         this.staffRoleMapper = staffRoleMapper;
-        this.bloomFilterService = bloomFilterService;
+        this.bloomFilterManagerService = bloomFilterManagerService;
         this.roleEntityService = roleEntityService;
         this.kafkaProducerService = kafkaProducerService;
     }
@@ -70,16 +68,16 @@ public class StaffRoleManagerServiceImpl implements StaffRoleManagerService {
             staffRoleEntityService.insert(staff.getId(),roleId);
         }
         firebaseAuthService.setClaims(staff.getUid(),roleIds,staff.getId());
-        bloomFilterService.addBloom(
+        bloomFilterManagerService.addBloom(
                 staff.getUid(),
                 currentRoleIds
         );
-        RevokeReqV1MqDTO revokeReqV1MqDTO =  RevokeReqV1MqDTO.builder()
+        RevokeV1ReqETO revokeV1ReqETO =  RevokeV1ReqETO.builder()
                 .uid(staff.getUid())
                 .roleIds(currentRoleIds)
                 .build();
         try{
-            kafkaProducerService.sendMessage(KafkaTopics.REVOKE_ROLE,revokeReqV1MqDTO);
+            kafkaProducerService.sendMessage(KafkaTopics.REVOKE_ROLE, revokeV1ReqETO);
        } catch (JsonProcessingException e) {
             log.error(e.getMessage());
         }

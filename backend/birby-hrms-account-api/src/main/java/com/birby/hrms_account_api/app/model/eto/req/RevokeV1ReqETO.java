@@ -1,4 +1,4 @@
-package com.birby.hrms_account_api.app.model.mqdto;
+package com.birby.hrms_account_api.app.model.eto.req;
 
 
 import lombok.AllArgsConstructor;
@@ -12,7 +12,7 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class RevokeReqV1MqDTO {
+public class RevokeV1ReqETO {
     private String uid;
     private List<String> roleIds;
 }

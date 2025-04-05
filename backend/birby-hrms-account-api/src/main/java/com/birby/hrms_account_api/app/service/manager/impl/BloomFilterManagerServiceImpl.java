@@ -1,4 +1,4 @@
-package com.birby.hrms_account_api.app.service.common.impl;
+package com.birby.hrms_account_api.app.service.manager.impl;
 
 import com.birby.hrms_account_api.app.model.exception.UnAuthorizedException;
 import com.birby.hrms_account_api.app.model.entity.Staff;
@@ -6,19 +6,17 @@ import com.birby.hrms_account_api.app.model.entity.StaffRole;
 import com.birby.hrms_account_api.app.service.data.BloomDataService;
 import com.birby.hrms_account_api.app.service.entity.StaffEntityService;
 import com.birby.hrms_account_api.app.service.entity.StaffRoleEntityService;
-import com.birby.hrms_account_api.app.service.common.BloomFilterService;
+import com.birby.hrms_account_api.app.service.manager.BloomFilterManagerService;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
-public class BloomFilterServiceImpl implements BloomFilterService {
+public class BloomFilterManagerServiceImpl implements BloomFilterManagerService {
     private final StaffRoleEntityService staffRoleEntityService;
     private final StaffEntityService staffEntityService;
     private final BloomDataService bloomDataService;
-    public BloomFilterServiceImpl(
+    public BloomFilterManagerServiceImpl(
             StaffRoleEntityService staffRoleEntityService,
             StaffEntityService staffEntityService,
             BloomDataService bloomDataService
