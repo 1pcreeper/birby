@@ -1,6 +1,6 @@
 package com.birby.hrms_account_api.app.service.auth.impl;
 
-import com.birby.hrms_account_api.app.model.clidto.req.FirebaseAuthCreateUserReqCliDto;
+import com.birby.hrms_account_api.app.model.clidto.req.FirebaseAuthCreateUserV1ReqCliDTO;
 import com.birby.hrms_account_api.app.component.properties.FirebaseProperties;
 import com.birby.hrms_account_api.app.service.auth.FirebaseAuthService;
 import com.google.firebase.auth.FirebaseAuth;
@@ -29,7 +29,7 @@ public class FirebaseAuthServiceImpl implements FirebaseAuthService {
     }
 
     @Override
-    public String createUser(FirebaseAuthCreateUserReqCliDto reqBo) throws FirebaseAuthException {
+    public String createUser(FirebaseAuthCreateUserV1ReqCliDTO reqBo) throws FirebaseAuthException {
         UserRecord.CreateRequest createRequest = new UserRecord.CreateRequest()
                 .setDisplayName(reqBo.getDisplayName())
                 .setEmail(reqBo.getEmail())
@@ -42,18 +42,10 @@ public class FirebaseAuthServiceImpl implements FirebaseAuthService {
         return userRecord.getUid();
     }
 
-
-
     @Override
-    public void setRoleClaims(String uid, List<String> roles) throws FirebaseAuthException {
-        Map<String, Object> claims = Map.of(firebaseProperties.getRolesClaim(), roles);
+    public void setClaims(String uid, List<String> roles, String staffId) throws FirebaseAuthException {
+        Map<String, Object> claims = Map.of(firebaseProperties.getRolesClaim(), roles,"id",staffId);
         firebaseAuth.revokeRefreshTokens(uid);
-        firebaseAuth.setCustomUserClaims(uid, claims);
-    }
-
-    @Override
-    public void setIdClaim(String uid, String id) throws FirebaseAuthException {
-        Map<String, Object> claims = Map.of("id", id);
         firebaseAuth.setCustomUserClaims(uid, claims);
     }
 

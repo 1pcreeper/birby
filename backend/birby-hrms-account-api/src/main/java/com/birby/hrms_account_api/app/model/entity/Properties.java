@@ -19,6 +19,6 @@ public class Properties {
     @Id
     @Column(name = "id", nullable = false)
     private String id;
-    @Column(name = "props_value")
-    private String propsValue;
+    @Column(name = "state")
+    private String state;
 }

@@ -12,7 +12,7 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class StaffRoleUpdateReqDto {
+public class StaffRoleUpdateV1ReqDTO {
     @NotNull
     private List<String> roleIds;
 }

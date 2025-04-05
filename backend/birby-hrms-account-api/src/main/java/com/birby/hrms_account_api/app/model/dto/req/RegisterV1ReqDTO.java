@@ -8,7 +8,7 @@ import lombok.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class RegisterReqDto {
+public class RegisterV1ReqDTO {
     @NotNull
     @NotBlank
     private String name;

@@ -11,7 +11,7 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class StaffRoleIdsResDto {
+public class StaffRoleIdsV1ResDTO {
     private String staffId;
     private List<String> roleIds;
 }

@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class FirebaseAuthCreateUserReqCliDto {
+public class FirebaseAuthCreateUserV1ReqCliDTO {
     private String displayName;
     private String email;
     private String password;

@@ -1,4 +1,5 @@
 package com.birby.hrms_account_api.app.constant;
 
-public enum Topics {
+public class KafkaTopics {
+    public static final String REVOKE_ROLE = "revoke-role";
 }

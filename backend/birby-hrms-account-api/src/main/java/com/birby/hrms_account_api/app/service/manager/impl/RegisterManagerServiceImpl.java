@@ -1,8 +1,8 @@
 package com.birby.hrms_account_api.app.service.manager.impl;
 
-import com.birby.hrms_account_api.app.model.clidto.req.FirebaseAuthCreateUserReqCliDto;
+import com.birby.hrms_account_api.app.model.clidto.req.FirebaseAuthCreateUserV1ReqCliDTO;
 import com.birby.hrms_account_api.app.constant.Roles;
-import com.birby.hrms_account_api.app.model.dto.res.StaffResDto;
+import com.birby.hrms_account_api.app.model.dto.res.StaffV1ResDTO;
 import com.birby.hrms_account_api.app.model.exception.RegisterFailureException;
 import com.birby.hrms_account_api.app.model.exception.ResourceNotFoundException;
 import com.birby.hrms_account_api.app.component.mapper.StaffMapper;
@@ -47,7 +47,7 @@ public class RegisterManagerServiceImpl implements RegisterManagerService {
 
     @Override
     @Transactional(rollbackOn = RuntimeException.class)
-    public StaffResDto register(String name, String password, String displayName) throws RegisterFailureException {
+    public StaffV1ResDTO registerV1(String name, String password, String displayName) throws RegisterFailureException {
         List<String> roles = List.of(Roles.DEFAULT_STAFF);
 
         String alignedName = name.toLowerCase(Locale.ROOT).trim();
@@ -78,7 +78,7 @@ public class RegisterManagerServiceImpl implements RegisterManagerService {
         if (isEmailExisted || isNameExisted || isEmailExistedInFirebase) {
             throw new RegisterFailureException(errMessage);
         }
-        FirebaseAuthCreateUserReqCliDto reqBo = FirebaseAuthCreateUserReqCliDto
+        FirebaseAuthCreateUserV1ReqCliDTO cliDTO = FirebaseAuthCreateUserV1ReqCliDTO
                 .builder()
                 .displayName(displayName)
                 .email(alignedEmail)
@@ -88,9 +88,8 @@ public class RegisterManagerServiceImpl implements RegisterManagerService {
         String uid;
         String id = UuidUtil.generate();
         try {
-            uid = firebaseAuthService.createUser(reqBo);
-            firebaseAuthService.setRoleClaims(uid, roles);
-            firebaseAuthService.setIdClaim(uid,id);
+            uid = firebaseAuthService.createUser(cliDTO);
+            firebaseAuthService.setClaims(uid, roles,id);
         } catch (FirebaseAuthException e) {
             throw new RegisterFailureException(e.getMessage());
         }

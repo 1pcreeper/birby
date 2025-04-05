@@ -1,6 +1,6 @@
 package com.birby.hrms_account_api.app.component.mapper.impl;
 
-import com.birby.hrms_account_api.app.model.dto.res.StaffRoleIdsResDto;
+import com.birby.hrms_account_api.app.model.dto.res.StaffRoleIdsV1ResDTO;
 import com.birby.hrms_account_api.app.component.mapper.StaffRoleMapper;
 import com.birby.hrms_account_api.app.model.entity.Staff;
 import com.birby.hrms_account_api.app.model.entity.StaffRole;
@@ -12,8 +12,8 @@ import java.util.stream.Collectors;
 @Component
 public class StaffRoleMapperImpl implements StaffRoleMapper {
     @Override
-    public StaffRoleIdsResDto toStaffRoleIdsResDto(Staff staff, List<StaffRole> staffRoles) {
-        return StaffRoleIdsResDto.builder()
+    public StaffRoleIdsV1ResDTO toStaffRoleIdsResDto(Staff staff, List<StaffRole> staffRoles) {
+        return StaffRoleIdsV1ResDTO.builder()
                 .roleIds(staffRoles.stream().map(sr->sr.getId().getRoleId()).collect(Collectors.toList()))
                 .staffId(staff.getId())
                 .build();

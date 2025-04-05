@@ -35,7 +35,7 @@ CREATE TABLE staff_role(
 );
 CREATE TABLE properties(
 	id VARCHAR(255) NOT NULL,
-    props_value VARCHAR(255) NULL,
+    state VARCHAR(255) NULL,
     PRIMARY KEY (id)
 );
 
@@ -87,5 +87,5 @@ INSERT INTO staff_role (staff_id, role_id) VALUES
 ('679aa5c6-5700-4a02-aec3-d7ff4d1c07e8', '08760e01-ee0e-4a55-a3d3-e43a701eb0bf');
 
 
-INSERT INTO properties (id, props_value) VALUES 
+INSERT INTO properties (id, state) VALUES 
 ('p1', 'Value 1');

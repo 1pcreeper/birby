@@ -40,7 +40,7 @@ public class BloomFilterServiceImpl implements BloomFilterService {
         }
         Staff staff = staffEntityService.findByUid(uid);
         List<StaffRole> dbStaffRoles = staffRoleEntityService.findByStaffId(staff.getId());
-        List<String> dbRoleIds = dbStaffRoles.stream().map(sr->sr.getRole().getId()).collect(Collectors.toUnmodifiableList());
+        List<String> dbRoleIds = dbStaffRoles.stream().map(sr->sr.getRole().getId()).toList();
         if(!roleIds.equals(dbRoleIds)){
             throw new UnAuthorizedException("Token Expired");
         }

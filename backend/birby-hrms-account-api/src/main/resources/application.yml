@@ -29,5 +29,7 @@ security-config:
 client-config:
   hrms-url: ${CLIENT_HRMS_URL}
   hrms-api: ${CLIENT_HRMS_API}
+kafka-config:
+  server-url: ${KAFKA_SERVER_URL}
 
 

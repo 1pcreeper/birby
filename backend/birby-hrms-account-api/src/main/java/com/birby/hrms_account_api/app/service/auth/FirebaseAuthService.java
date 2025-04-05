@@ -1,17 +1,15 @@
 package com.birby.hrms_account_api.app.service.auth;
 
-import com.birby.hrms_account_api.app.model.clidto.req.FirebaseAuthCreateUserReqCliDto;
+import com.birby.hrms_account_api.app.model.clidto.req.FirebaseAuthCreateUserV1ReqCliDTO;
 import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.auth.UserRecord;
 
 import java.util.List;
 
 public interface FirebaseAuthService {
-    String createUser(FirebaseAuthCreateUserReqCliDto reqBo) throws FirebaseAuthException;
+    String createUser(FirebaseAuthCreateUserV1ReqCliDTO reqBo) throws FirebaseAuthException;
 
-    void setRoleClaims(String uid, List<String> roles) throws FirebaseAuthException;
-
-    void setIdClaim(String uid, String id) throws FirebaseAuthException;
+    void setClaims(String uid, List<String> roles , String staffId) throws FirebaseAuthException;
 
     UserRecord getUser(String uid) throws FirebaseAuthException;
 
