@@ -1,6 +1,6 @@
 package com.birby.hrms_account_api.app.service.common.impl;
 
-import com.birby.hrms_account_api.app.model.cto.req.FirebaseAuthCreateUserV1ReqCTO;
+import com.birby.hrms_account_api.app.model.bo.req.FirebaseAuthCreateUserV1ReqBO;
 import com.birby.hrms_account_api.app.constant.Roles;
 import com.birby.hrms_account_api.app.model.dto.res.StaffV1ResDTO;
 import com.birby.hrms_account_api.app.model.exception.RegisterFailureException;
@@ -78,7 +78,7 @@ public class RegisterServiceImpl implements RegisterService {
         if (isEmailExisted || isNameExisted || isEmailExistedInFirebase) {
             throw new RegisterFailureException(errMessage);
         }
-        FirebaseAuthCreateUserV1ReqCTO cliDTO = FirebaseAuthCreateUserV1ReqCTO
+        FirebaseAuthCreateUserV1ReqBO cliDTO = FirebaseAuthCreateUserV1ReqBO
                 .builder()
                 .displayName(displayName)
                 .email(alignedEmail)

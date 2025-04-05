@@ -1,4 +1,4 @@
-package com.birby.hrms_account_api.app.model.cto.req;
+package com.birby.hrms_account_api.app.model.bo.req;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class FirebaseAuthCreateUserV1ReqCTO {
+public class FirebaseAuthCreateUserV1ReqBO {
     private String displayName;
     private String email;
     private String password;

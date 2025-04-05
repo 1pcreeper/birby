@@ -9,7 +9,7 @@ import com.birby.hrms_account_api.app.component.mapper.StaffRoleMapper;
 import com.birby.hrms_account_api.app.model.entity.Staff;
 import com.birby.hrms_account_api.app.model.entity.StaffRole;
 import com.birby.hrms_account_api.app.service.auth.FirebaseAuthService;
-import com.birby.hrms_account_api.app.service.manager.KafkaProducerService;
+import com.birby.hrms_account_api.app.service.common.KafkaProducerService;
 import com.birby.hrms_account_api.app.service.entity.RoleEntityService;
 import com.birby.hrms_account_api.app.service.entity.StaffEntityService;
 import com.birby.hrms_account_api.app.service.entity.StaffRoleEntityService;
