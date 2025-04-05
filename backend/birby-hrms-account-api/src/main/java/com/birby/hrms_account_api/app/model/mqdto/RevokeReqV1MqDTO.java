@@ -12,7 +12,7 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class RevokeReqCliDto {
+public class RevokeReqV1CliDTO {
     private String uid;
     private List<String> roleIds;
 }
