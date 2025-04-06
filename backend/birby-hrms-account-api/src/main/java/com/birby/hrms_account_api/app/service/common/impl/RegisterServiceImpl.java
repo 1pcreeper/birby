@@ -30,14 +30,14 @@ public class RegisterServiceImpl implements RegisterService {
     private final StaffRoleEntityService staffRoleEntityService;
     private final FirebaseProperties firebaseProperties;
     private final StaffMapper staffMapper;
+
     @Autowired
     public RegisterServiceImpl(
             FirebaseAuthService firebaseAuthService,
             StaffEntityService staffEntityService,
             StaffRoleEntityService staffRoleEntityService,
             FirebaseProperties firebaseProperties,
-            StaffMapper staffMapper
-    ) {
+            StaffMapper staffMapper) {
         this.firebaseAuthService = firebaseAuthService;
         this.staffEntityService = staffEntityService;
         this.staffRoleEntityService = staffRoleEntityService;
@@ -78,7 +78,7 @@ public class RegisterServiceImpl implements RegisterService {
         if (isEmailExisted || isNameExisted || isEmailExistedInFirebase) {
             throw new RegisterFailureException(errMessage);
         }
-        FirebaseAuthCreateUserV1ReqBO cliDTO = FirebaseAuthCreateUserV1ReqBO
+        FirebaseAuthCreateUserV1ReqBO reqBO = FirebaseAuthCreateUserV1ReqBO
                 .builder()
                 .displayName(displayName)
                 .email(alignedEmail)
@@ -88,8 +88,8 @@ public class RegisterServiceImpl implements RegisterService {
         String uid;
         String id = UuidUtil.generate();
         try {
-            uid = firebaseAuthService.createUser(cliDTO);
-            firebaseAuthService.setClaims(uid, roles,id);
+            uid = firebaseAuthService.createUser(reqBO);
+            firebaseAuthService.setClaims(uid, roles, id);
         } catch (FirebaseAuthException e) {
             throw new RegisterFailureException(e.getMessage());
         }

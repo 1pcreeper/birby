@@ -1,5 +1,6 @@
 package com.birby.hrms_api.app.service.auth.impl;
 
+import com.birby.hrms_api.app.component.properties.FirebaseProperties;
 import com.birby.hrms_api.app.model.exception.PrincipalException;
 import com.birby.hrms_api.app.component.properties.SecurityProperties;
 import com.birby.hrms_api.app.service.auth.PrincipalService;
@@ -18,23 +19,25 @@ import java.util.stream.Collectors;
 @Service
 @EnableConfigurationProperties(SecurityProperties.class)
 public class PrincipalServiceImpl implements PrincipalService {
-    private final SecurityProperties securityProperties;
+    private final FirebaseProperties firebaseProperties;
 
     @Autowired
     public PrincipalServiceImpl(
-            SecurityProperties securityProperties
+            FirebaseProperties firebaseProperties
     ) {
-        this.securityProperties = securityProperties;
+        this.firebaseProperties = firebaseProperties;
     }
 
     @Override
     public Map<String, Object> getPrincipalData(Principal principal) throws PrincipalException {
         Map<String, Object> data = new HashMap<>();
-        String roleKey = securityProperties.getRolesClaim();
+        String roleKey = firebaseProperties.getRolesClaim();
         String uidKey = "uid";
+        String id = "id";
 
         data.put(uidKey, principal.getName());
         data.put(roleKey, getRolesAsStringList(principal));
+        data.put(id,getId(principal));
 
         return data;
     }
@@ -42,6 +45,11 @@ public class PrincipalServiceImpl implements PrincipalService {
     @Override
     public List<String> getRolesAsStringList(Principal principal) throws PrincipalException {
         return getRolesClaim(principal);
+    }
+
+    @Override
+    public String getId(Principal principal) throws PrincipalException {
+        return (String)getClaim(principal,"id");
     }
 
     @Override
@@ -65,7 +73,7 @@ public class PrincipalServiceImpl implements PrincipalService {
 
     private List<String> getRolesClaim(Principal principal) throws PrincipalException {
         try {
-            return (List<String>) getClaim(principal, securityProperties.getRolesClaim());
+            return (List<String>) getClaim(principal, firebaseProperties.getRolesClaim());
         } catch (PrincipalException e) {
             throw new PrincipalException(e.getMessage());
         }

@@ -6,7 +6,8 @@ import org.springframework.stereotype.Component;
 
 @Data
 @Component
-@ConfigurationProperties(prefix = "client-config")
-public class ClientProperties {
-    private String accountUrl;
+@ConfigurationProperties(prefix = "firebase-config")
+public class FirebaseProperties {
+    private String issuerLocation;
+    private String rolesClaim;
 }

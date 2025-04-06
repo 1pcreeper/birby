@@ -22,8 +22,7 @@ public class PrincipalServiceImpl implements PrincipalService {
 
     @Autowired
     public PrincipalServiceImpl(
-            FirebaseProperties firebaseProperties
-    ) {
+            FirebaseProperties firebaseProperties) {
         this.firebaseProperties = firebaseProperties;
     }
 
@@ -32,9 +31,11 @@ public class PrincipalServiceImpl implements PrincipalService {
         Map<String, Object> data = new HashMap<>();
         String roleKey = firebaseProperties.getRolesClaim();
         String uidKey = "uid";
+        String idKey = "id";
 
         data.put(uidKey, principal.getName());
         data.put(roleKey, getRolesAsStringList(principal));
+        data.put(idKey, getId(principal));
 
         return data;
     }
@@ -46,7 +47,7 @@ public class PrincipalServiceImpl implements PrincipalService {
 
     @Override
     public String getId(Principal principal) throws PrincipalException {
-        return (String)getClaim(principal,"id");
+        return (String) getClaim(principal, "id");
     }
 
     @Override

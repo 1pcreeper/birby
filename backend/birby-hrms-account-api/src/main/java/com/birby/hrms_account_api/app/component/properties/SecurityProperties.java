@@ -10,6 +10,5 @@ import java.util.List;
 @Component
 @ConfigurationProperties(prefix = "security-config")
 public class SecurityProperties {
-    private List<String> allowedCors;
-    private String apiKey;
+    private String allowedCors;
 }

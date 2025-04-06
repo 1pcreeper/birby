@@ -1,8 +1,8 @@
 package com.birby.hrms_api.app.service.client;
 
-import com.birby.hrms_api.app.model.clidto.res.AccountStaffRoleIdsResCliDto;
+import com.birby.hrms_api.app.model.cto.res.AccountStaffRoleIdsV1ResCTO;
 
 public interface AccountStaffRoleClientService {
-    AccountStaffRoleIdsResCliDto getStaffRolesByUid(String authorization, String uid);
-    AccountStaffRoleIdsResCliDto getStaffRolesByUidMyself(String authorization);
+    AccountStaffRoleIdsV1ResCTO getStaffRolesByUidV1(String authorization, String uid);
+    AccountStaffRoleIdsV1ResCTO getStaffRolesByUidMyselfV1(String authorization);
 }

@@ -1,6 +1,6 @@
 package com.birby.hrms_api.app.service.entity.impl;
 
-import com.birby.hrms_api.app.model.clidto.res.AccountStaffResCliDto;
+import com.birby.hrms_api.app.model.cto.res.AccountStaffV1ResCTO;
 import com.birby.hrms_api.app.model.exception.ClientServiceException;
 import com.birby.hrms_api.app.model.exception.ResourceNotFoundException;
 import com.birby.hrms_api.app.model.entity.Staff;
@@ -37,10 +37,10 @@ public class StaffEntityServiceImpl implements StaffEntityService {
             return staffOptional.get();
         }
         try{
-            AccountStaffResCliDto resCliDto =  accountStaffClientService.getStaff(id);
+            AccountStaffV1ResCTO resCTO =  accountStaffClientService.getStaffV1(id);
             return save(Staff.builder()
-                    .id(resCliDto.getId())
-                    .uid(resCliDto.getUid())
+                    .id(resCTO.getId())
+                    .uid(resCTO.getUid())
                     .build());
         }catch (ClientServiceException e){
             throw new ResourceNotFoundException("StaffId Not Found");

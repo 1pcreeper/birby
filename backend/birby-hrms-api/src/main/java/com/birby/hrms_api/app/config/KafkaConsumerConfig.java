@@ -1,6 +1,6 @@
-package com.birby.hrms_account_api.app.config;
+package com.birby.hrms_api.app.config;
 
-import com.birby.hrms_account_api.app.component.properties.KafkaProperties;
+import com.birby.hrms_api.app.component.properties.KafkaProperties;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,3 +40,4 @@ public class KafkaConsumerConfig {
         return new DefaultKafkaConsumerFactory<>(configProps);
     }
 }
+

@@ -1,6 +1,6 @@
-package com.birby.hrms_account_api.app.service.common.impl;
+package com.birby.hrms_account_api.app.service.kafka.producer.impl;
 
-import com.birby.hrms_account_api.app.service.common.KafkaProducerService;
+import com.birby.hrms_account_api.app.service.kafka.producer.KafkaProducerService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -25,30 +25,32 @@ public class BloomFilter extends OncePerRequestFilter {
     private final BloomFilterManagerService bloomFilterManagerService;
     private final PrincipalService principalService;
     private final ObjectMapper objectMapper;
+
     @Autowired
     public BloomFilter(
             BloomFilterManagerService bloomFilterManagerService,
             PrincipalService principalService,
             FirebaseProperties firebaseProperties,
-            ObjectMapper objectMapper
-    ){
+            ObjectMapper objectMapper) {
         this.bloomFilterManagerService = bloomFilterManagerService;
         this.principalService = principalService;
         this.firebaseProperties = firebaseProperties;
         this.objectMapper = objectMapper;
     }
+
     @Override
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
+    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
+            throws ServletException, IOException {
         Principal principal = request.getUserPrincipal();
-        Map<String,Object> principalData = principalService.getPrincipalData(principal);
-        String uid = (String)principalData.get("uid");
+        String uid = principal.getName();
+        Map<String, Object> principalData = principalService.getPrincipalData(principal);
         List<String> roleIds = objectMapper.convertValue(
-                principalData.get(firebaseProperties.getRolesClaim()), new TypeReference<List<String>>(){}
-        );
-        try{
-            bloomFilterManagerService.authorize(uid,roleIds);
+                principalData.get(firebaseProperties.getRolesClaim()), new TypeReference<List<String>>() {
+                });
+        try {
+            bloomFilterManagerService.authorize(uid, roleIds);
         } catch (UnAuthorizedException e) {
-            response.sendError(403,e.getMessage());
+            response.sendError(403, e.getMessage());
         }
         filterChain.doFilter(request, response);
     }

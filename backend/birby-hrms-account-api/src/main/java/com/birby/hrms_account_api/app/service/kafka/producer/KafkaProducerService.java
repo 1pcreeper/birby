@@ -1,4 +1,4 @@
-package com.birby.hrms_account_api.app.service.common;
+package com.birby.hrms_account_api.app.service.kafka.producer;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 

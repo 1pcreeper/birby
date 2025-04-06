@@ -1,4 +1,4 @@
-package com.birby.hrms_api.app.model.clidto.res;
+package com.birby.hrms_api.app.model.cto.res;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,7 +11,7 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class AccountStaffRoleIdsResCliDto {
+public class AccountStaffRoleIdsV1ResCTO {
     private String staffId;
     private List<String> roleIds;
 }

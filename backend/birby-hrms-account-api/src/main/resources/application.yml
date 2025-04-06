@@ -18,18 +18,14 @@ spring:
         format_sql: true
     database-platform: org.hibernate.dialect.MySQLDialect
 firebase-config:
-  issuer-location: ${FIREBASE_CONFIG_ISSUER_LOCATION}
-  roles-claim: ${FIREBASE_CONFIG_ROLES_CLAIM}
+  issuer-location: ${FIREBASE_ISSUER_LOCATION}
+  roles-claim: ${FIREBASE_ROLES_CLAIM}
   default-register-email: ${FIREBASE_DEFAULT_REGISTER_EMAIL}
 security-config:
-  allowed-cors:
-    - http://localhost
-    - http://localhost:3000
-  api-key: ${SECURITY_API_KEY}
+  allowed-cors: ${SECURITY_ALLOWED_CORS}
 client-config:
   hrms-url: ${CLIENT_HRMS_URL}
-  hrms-api: ${CLIENT_HRMS_API}
 kafka-config:
-  server-url: ${KAFKA_SERVER_URL}
+  broker-url: ${KAFKA_BROKER_URL}
 
 

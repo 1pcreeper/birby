@@ -1,4 +1,4 @@
-package com.birby.hrms_api.app.model.dto.req;
+package com.birby.hrms_api.app.model.eto.res;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -13,7 +13,7 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class RevokeReqDto {
+public class RevokeV1ResETO {
     @NotNull
     @NotBlank
     private String uid;

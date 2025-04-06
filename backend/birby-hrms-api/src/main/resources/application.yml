@@ -17,13 +17,12 @@ spring:
         dialect: org.hibernate.dialect.MySQLDialect
         format_sql: true
     database-platform: org.hibernate.dialect.MySQLDialect
+firebase-config:
+  issuer-location: ${FIREBASE_ISSUER_LOCATION}
+  roles-claim: ${FIREBASE_ROLES_CLAIM}
 security-config:
-  allowed-cors:
-    - http://localhost
-    - http://localhost:3000
-  firebase-issuer-location: ${SECURITY_FIREBASE_ISSUER_LOCATION}
-  roles-claim: ${SECURITY_FIREBASE_ROLES_CLAIM}
-  api-key: ${SECURITY_API_KEY}
+  allowed-cors: ${SECURITY_ALLOWED_CORS}
 client-config:
   account-url: ${CLIENT_ACCOUNT_URL}
-  account-api: ${CLIENT_ACCOUNT_API}
+kafka-config:
+  broker-url: ${KAFKA_BROKER_URL}

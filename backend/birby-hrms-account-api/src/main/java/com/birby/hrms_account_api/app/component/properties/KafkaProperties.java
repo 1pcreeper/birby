@@ -8,5 +8,5 @@ import org.springframework.stereotype.Component;
 @Component
 @ConfigurationProperties(prefix = "kafka-config")
 public class KafkaProperties {
-    private String serverUrl;
+    private String brokerUrl;
 }

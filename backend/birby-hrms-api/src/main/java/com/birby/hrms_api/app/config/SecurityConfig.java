@@ -1,5 +1,6 @@
 package com.birby.hrms_api.app.config;
 
+import com.birby.hrms_api.app.component.properties.FirebaseProperties;
 import com.birby.hrms_api.app.component.properties.SecurityProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -17,6 +18,7 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -26,11 +28,14 @@ import java.util.stream.Collectors;
 @EnableMethodSecurity(securedEnabled = true)
 public class SecurityConfig {
     private final SecurityProperties securityProperties;
+    private final FirebaseProperties firebaseProperties;
     @Autowired
     public SecurityConfig(
-            SecurityProperties securityProperties
+            SecurityProperties securityProperties,
+            FirebaseProperties firebaseProperties
     ){
         this.securityProperties = securityProperties;
+        this.firebaseProperties = firebaseProperties;
     }
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -50,13 +55,14 @@ public class SecurityConfig {
 
     @Bean
     public JwtDecoder jwtDecoder() {
-        return JwtDecoders.fromIssuerLocation(securityProperties.getFirebaseIssuerLocation());
+        return JwtDecoders.fromIssuerLocation(firebaseProperties.getIssuerLocation());
     }
 
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
+        List<String> allowedCorsList = Arrays.stream(securityProperties.getAllowedCors().split(",")).toList();
         CorsConfiguration corsConfiguration = new CorsConfiguration();
-        corsConfiguration.setAllowedOrigins(securityProperties.getAllowedCors());
+        corsConfiguration.setAllowedOrigins(allowedCorsList);
         corsConfiguration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         corsConfiguration.setAllowedHeaders(Arrays.asList("*"));
         corsConfiguration.setAllowCredentials(true);
@@ -72,7 +78,7 @@ public class SecurityConfig {
         jwtAuthenticationConverter.setJwtGrantedAuthoritiesConverter(
                 jwt -> Optional.ofNullable(
                                 jwt.getClaimAsStringList(
-                                        securityProperties.getRolesClaim()
+                                        firebaseProperties.getRolesClaim()
                                 )
                         ).stream()
                         .flatMap(Collection::stream)

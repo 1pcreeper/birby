@@ -1,9 +1,10 @@
 package com.birby.hrms_api.app.service.manager.impl;
 
 import com.birby.hrms_api.app.component.properties.SecurityProperties;
-import com.birby.hrms_api.app.model.clidto.res.AccountStaffRoleIdsResCliDto;
+import com.birby.hrms_api.app.model.cto.res.AccountStaffRoleIdsV1ResCTO;
 import com.birby.hrms_api.app.model.exception.ClientServiceException;
 import com.birby.hrms_api.app.model.exception.UnAuthorizedException;
+import com.birby.hrms_api.app.model.response.ApiResponse;
 import com.birby.hrms_api.app.service.client.AccountStaffRoleClientService;
 import com.birby.hrms_api.app.service.data.BloomDataService;
 import com.birby.hrms_api.app.service.manager.BloomFilterManagerService;
@@ -29,10 +30,7 @@ public class BloomFilterManagerServiceImpl implements BloomFilterManagerService 
         this.securityProperties = securityProperties;
     }
     @Override
-    public void addBloom(String uid, List<String> roleIds,String access) {
-        if(!access.equals(securityProperties.getApiKey())){
-            throw new UnAuthorizedException("Access Decline");
-        }
+    public void addBloom(String uid, List<String> roleIds) {
         bloomDataService.put(uid,roleIds);
         System.out.println(String.format("Added %s to Bloom Filter",uid));
     }
@@ -42,9 +40,9 @@ public class BloomFilterManagerServiceImpl implements BloomFilterManagerService 
         if(!bloomDataService.mightContain(uid,roleIds)){
             return;
         }
-        AccountStaffRoleIdsResCliDto data;
+        AccountStaffRoleIdsV1ResCTO data;
         try{
-            data = accountStaffRoleClientService.getStaffRolesByUidMyself(token);
+            data = accountStaffRoleClientService.getStaffRolesByUidMyselfV1(token);
         }catch(FeignException e){
             throw new ClientServiceException(e.getMessage());
         }

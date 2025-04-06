@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 
 @Data
 @Component
-@ConfigurationProperties(prefix = "client-config")
-public class ClientProperties {
-    private String accountUrl;
+@ConfigurationProperties(prefix = "kafka-config")
+public class KafkaProperties {
+    private String brokerUrl;
 }

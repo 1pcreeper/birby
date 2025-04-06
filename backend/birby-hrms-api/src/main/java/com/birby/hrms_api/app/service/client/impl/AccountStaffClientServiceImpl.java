@@ -1,11 +1,10 @@
 package com.birby.hrms_api.app.service.client.impl;
 
 import com.birby.hrms_api.app.client.AccountStaffClient;
-import com.birby.hrms_api.app.model.clidto.res.AccountStaffResCliDto;
+import com.birby.hrms_api.app.model.cto.res.AccountStaffV1ResCTO;
 import com.birby.hrms_api.app.model.exception.ClientServiceException;
 import com.birby.hrms_api.app.model.response.ApiResponse;
 import com.birby.hrms_api.app.service.client.AccountStaffClientService;
-import feign.FeignException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -18,13 +17,13 @@ public class AccountStaffClientServiceImpl implements AccountStaffClientService 
     }
 
     @Override
-    public AccountStaffResCliDto getStaff(String staffId) throws ClientServiceException {
+    public AccountStaffV1ResCTO getStaffV1(String staffId) throws ClientServiceException {
         try{
-            ApiResponse<AccountStaffResCliDto> resCliDtoApiResponse = accountStaffClient.getStaff(staffId);
-            if(!resCliDtoApiResponse.isSuccess()){
-                throw new RuntimeException(resCliDtoApiResponse.getMessage());
+            ApiResponse<AccountStaffV1ResCTO> resCTOApiResponse = accountStaffClient.getStaff(staffId);
+            if(!resCTOApiResponse.isSuccess()){
+                throw new RuntimeException(resCTOApiResponse.getMessage());
             }
-            return resCliDtoApiResponse.getData();
+            return resCTOApiResponse.getData();
         }catch(RuntimeException e){
             log.error(e.getMessage());
             throw new ClientServiceException("get Staff Fail from AccountAPI");

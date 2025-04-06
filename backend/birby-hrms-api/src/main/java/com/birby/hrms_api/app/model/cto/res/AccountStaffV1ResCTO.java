@@ -1,4 +1,4 @@
-package com.birby.hrms_api.app.model.clidto.res;
+package com.birby.hrms_api.app.model.cto.res;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class AccountStaffResCliDto {
+public class AccountStaffV1ResCTO {
     private String id;
     private String uid;
     private String name;
