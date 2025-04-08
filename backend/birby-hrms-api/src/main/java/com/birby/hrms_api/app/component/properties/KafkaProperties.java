@@ -9,4 +9,5 @@ import org.springframework.stereotype.Component;
 @ConfigurationProperties(prefix = "kafka-config")
 public class KafkaProperties {
     private String brokerUrl;
+    private String groupId;
 }

@@ -17,7 +17,7 @@ public class ApiResponse<T> {
     public static <D> ApiResponse<D> ok(String message,String version,D data){
         return (ApiResponse<D>) ApiResponse.builder().success(true).version(version).message(message).data(data).build();
     }
-    public static <D> ApiResponse<D> error(String message,String version){
-        return (ApiResponse<D>) ApiResponse.builder().success(false).version(version).message(message).build();
+    public static <D> ApiResponse<D> error(String message){
+        return (ApiResponse<D>) ApiResponse.builder().success(false).message(message).build();
     }
 }

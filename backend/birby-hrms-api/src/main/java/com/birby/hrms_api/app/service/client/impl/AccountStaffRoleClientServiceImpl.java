@@ -22,7 +22,7 @@ public class AccountStaffRoleClientServiceImpl implements AccountStaffRoleClient
     public AccountStaffRoleIdsV1ResCTO getStaffRolesByUidV1(String authorization, String uid) throws ClientServiceException{
         Object object;
         try{
-            object = accountStaffRoleClient.getStaffRolesByUid(authorization,uid);
+            object = accountStaffRoleClient.getStaffRolesByUidV1(authorization,uid);
         }catch(RuntimeException e){
             log.error(e.getLocalizedMessage());
             throw new UnAuthorizedException(e.getMessage());
@@ -35,7 +35,7 @@ public class AccountStaffRoleClientServiceImpl implements AccountStaffRoleClient
     public AccountStaffRoleIdsV1ResCTO getStaffRolesByUidMyselfV1(String authorization) throws ClientServiceException {
         Object object;
         try{
-            object = accountStaffRoleClient.getStaffRolesByUidMyself(authorization);
+            object = accountStaffRoleClient.getStaffRolesByUidMyselfV1(authorization);
         } catch (RuntimeException e){
             log.error(e.getLocalizedMessage());
             throw new UnAuthorizedException(e.getMessage());

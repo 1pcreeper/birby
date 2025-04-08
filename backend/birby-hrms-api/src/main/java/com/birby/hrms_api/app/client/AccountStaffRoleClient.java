@@ -12,13 +12,13 @@ import org.springframework.web.bind.annotation.RequestHeader;
         url="${client-config.account-url}"
 )
 public interface AccountStaffRoleClient {
-    @GetMapping("/staff-role/view-uid/{uid}")
-    ApiResponse<AccountStaffRoleIdsV1ResCTO> getStaffRolesByUid(
+    @GetMapping("/v1/staff-role/view-uid/{uid}")
+    ApiResponse<AccountStaffRoleIdsV1ResCTO> getStaffRolesByUidV1(
             @RequestHeader(name = "Authorization")String authorization,
             @PathVariable(name = "uid")String uid
     );
-    @GetMapping("/staff-role/view-uid/me")
-    ApiResponse<AccountStaffRoleIdsV1ResCTO> getStaffRolesByUidMyself(
+    @GetMapping("/v1/staff-role/view-uid/me")
+    ApiResponse<AccountStaffRoleIdsV1ResCTO> getStaffRolesByUidMyselfV1(
             @RequestHeader(name = "Authorization")String authorization
     );
 }
