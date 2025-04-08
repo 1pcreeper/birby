@@ -4,6 +4,7 @@ import com.birby.hrms_account_api.app.model.response.ApiResponse;
 import com.birby.hrms_account_api.app.model.dto.req.RegisterV1ReqDTO;
 import com.birby.hrms_account_api.app.model.dto.res.StaffV1ResDTO;
 import com.birby.hrms_account_api.app.service.common.RegisterService;
+import jakarta.annotation.security.PermitAll;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,6 +21,7 @@ public class RegisterController {
         this.registerService = registerService;
     }
 
+    @PermitAll
     @PostMapping("/v1/register")
     public ApiResponse<StaffV1ResDTO> registerV1(@Valid @RequestBody RegisterV1ReqDTO reqDto) {
         return ApiResponse.ok(
