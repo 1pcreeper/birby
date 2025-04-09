@@ -1,4 +1,4 @@
-package com.birby.hrms_account_api.app.controller.general;
+package com.birby.hrms_account_api.app.controller.general.v1;
 
 import com.birby.hrms_account_api.app.model.response.ApiResponse;
 import com.birby.hrms_account_api.app.model.dto.req.StaffRoleUpdateV1ReqDTO;
@@ -13,15 +13,16 @@ import org.springframework.web.bind.annotation.*;
 import java.security.Principal;
 
 @RestController
-public class StaffRoleController {
+@RequestMapping(path = "/v1/staff-role")
+public class StaffRoleV1Controller {
     private final StaffRoleService staffRoleService;
     @Autowired
-    public StaffRoleController(
+    public StaffRoleV1Controller(
             StaffRoleService staffRoleService
     ){
         this.staffRoleService = staffRoleService;
     }
-    @PutMapping("/v1/staff-role/{id}")
+    @PutMapping("/{id}")
     public ApiResponse<String> updateStaffRolesV1(
             @PathVariable(name = "id")String staffId,
             @Valid @RequestBody StaffRoleUpdateV1ReqDTO reqDto,
@@ -36,7 +37,7 @@ public class StaffRoleController {
                 ""
         );
     }
-    @GetMapping("/v1/staff-role/view-uid/{uid}")
+    @GetMapping("/view-uid/{uid}")
     public ApiResponse<StaffRoleIdsV1ResDTO> getStaffRolesByUidV1(@PathVariable(name = "uid")String uid){
         return ApiResponse.ok(
                 "Get Staff's Roles By Uid",
@@ -44,7 +45,7 @@ public class StaffRoleController {
                 staffRoleService.getStaffRolesByUidV1(uid)
         );
     }
-    @GetMapping("/v1/staff-role/view-uid/me")
+    @GetMapping("/view-uid/me")
     public ApiResponse<StaffRoleIdsV1ResDTO> getStaffRolesByUidMyselfV1(Principal principal){
         return ApiResponse.ok(
                 "Get Staff's Roles of Myself",
